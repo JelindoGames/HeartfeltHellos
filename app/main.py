@@ -33,7 +33,7 @@ class ShowcaseApp(App):
     def build(self):
         self.title = 'Heartfelt Hellos'
         self.screens = {}
-        self.available_screens = sorted(['Create_Person_Options'])
+        self.available_screens = sorted(['Test_Idea_Screen', 'Create_Person_Options'])
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
