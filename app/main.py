@@ -32,7 +32,6 @@ class ShowcaseApp(App):
 
     def build(self):
         self.title = 'Heartfelt Hellos'
-        Clock.schedule_interval(self._update_clock, 1 / 60.)
         self.screens = {}
         self.available_screens = sorted(['Create_Person_Options'])
         self.screen_names = self.available_screens
@@ -60,25 +59,12 @@ class ShowcaseApp(App):
         self.index = idx
         self.root.ids.sm.switch_to(self.load_screen(idx), direction='left')
 
-    def go_hierarchy_previous(self):
-        ahr = self.hierarchy
-        if len(ahr) == 1:
-            return
-        if ahr:
-            ahr.pop()
-        if ahr:
-            idx = ahr.pop()
-            self.go_screen(idx)
-
     def load_screen(self, index):
         if index in self.screens:
             return self.screens[index]
         screen = Builder.load_file(self.available_screens[index])
         self.screens[index] = screen
         return screen
-
-    def _update_clock(self, dt):
-        self.time = time()
 
 
 if __name__ == '__main__':

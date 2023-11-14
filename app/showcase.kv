@@ -33,22 +33,20 @@ BoxLayout:
             id: av
             ActionPrevious:
                 with_previous: (False if sm.current_screen.name == 'button' else True) if sm.current_screen else False
-                title: 'Showcase' + ('' if not app.current_title else ' - {}'.format(app.current_title))
-                on_release: app.go_hierarchy_previous()
+                title: '' if not app.current_title else app.current_title
 
-            ActionButton:
-                text: 'Previous screen'
-                icon: 'data/icons/chevron-left.png'
-                on_release: app.go_previous_screen()
-
-            ActionButton:
-                text: 'Next screen'
-                icon: 'data/icons/chevron-right.png'
-                on_release: app.go_next_screen()
-                important: True
+#            ActionButton:
+#                text: 'Previous screen'
+#                icon: 'data/icons/chevron-left.png'
+#                on_release: app.go_previous_screen()
+#
+#            ActionButton:
+#                text: 'Next screen'
+#                icon: 'data/icons/chevron-right.png'
+#                on_release: app.go_next_screen()
+#                important: True
 
     ScreenManager:
         id: sm
         on_current_screen:
             idx = app.screen_names.index(args[1].name)
-            if idx > -1: app.hierarchy.append(idx)
