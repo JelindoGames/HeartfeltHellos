@@ -65,20 +65,6 @@ BoxLayout:
                 on_release: app.go_next_screen()
                 important: True
 
-    ScrollView:
-        id: sv
-        size_hint_y: None
-        height: 0
-
-        CodeInput:
-            id: sourcecode
-            lexer: KivyLexer()
-            text: app.sourcecode
-            readonly: True
-            size_hint_y: None
-            font_size: '12sp'
-            height: self.minimum_height
-
     ScreenManager:
         id: sm
         on_current_screen:
