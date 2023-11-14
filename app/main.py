@@ -9,14 +9,13 @@ from kivy.properties import (
     ListProperty,
 )
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
 from widgets import heartfelt_hellos_button
 
 
 class ShowcaseScreen(Screen):
-    fullscreen = BooleanProperty(False)
-
     def add_widget(self, *args, **kwargs):
         if 'content' in self.ids:
             return self.ids.content.add_widget(*args, **kwargs)
@@ -40,13 +39,8 @@ class ShowcaseApp(App):
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
             '{}.kv'.format(fn).lower()) for fn in self.available_screens]
+        Window.size = (350, 600)
         self.go_next_screen()
-
-    def on_pause(self):
-        return True
-
-    def on_resume(self):
-        pass
 
     def go_previous_screen(self):
         self.index = (self.index - 1) % len(self.available_screens)
