@@ -11,6 +11,7 @@ from kivy.properties import (
 from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
+from widgets import heartfelt_hellos_button
 
 
 class ShowcaseScreen(Screen):
@@ -36,7 +37,7 @@ class ShowcaseApp(App):
         self.title = 'Heartfelt Hellos'
         Clock.schedule_interval(self._update_clock, 1 / 60.)
         self.screens = {}
-        self.available_screens = sorted(['Buttons', 'TextInputs', 'DropDown'])
+        self.available_screens = sorted(['Create_Person_Options'])
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
@@ -49,16 +50,12 @@ class ShowcaseApp(App):
     def on_resume(self):
         pass
 
-    def on_current_title(self, instance, value):
-        self.root.ids.spnr.text = value
-
     def go_previous_screen(self):
         self.index = (self.index - 1) % len(self.available_screens)
         screen = self.load_screen(self.index)
         sm = self.root.ids.sm
         sm.switch_to(screen, direction='right')
         self.current_title = screen.name
-        self.update_sourcecode()
 
     def go_next_screen(self):
         self.index = (self.index + 1) % len(self.available_screens)
@@ -66,12 +63,10 @@ class ShowcaseApp(App):
         sm = self.root.ids.sm
         sm.switch_to(screen, direction='left')
         self.current_title = screen.name
-        self.update_sourcecode()
 
     def go_screen(self, idx):
         self.index = idx
         self.root.ids.sm.switch_to(self.load_screen(idx), direction='left')
-        self.update_sourcecode()
 
     def go_hierarchy_previous(self):
         ahr = self.hierarchy
@@ -89,30 +84,6 @@ class ShowcaseApp(App):
         screen = Builder.load_file(self.available_screens[index])
         self.screens[index] = screen
         return screen
-
-    def read_sourcecode(self):
-        fn = self.available_screens[self.index]
-        with open(fn) as fd:
-            return fd.read()
-
-    def toggle_source_code(self):
-        self.show_sourcecode = not self.show_sourcecode
-        if self.show_sourcecode:
-            height = self.root.height * .3
-        else:
-            height = 0
-
-        Animation(height=height, d=.3, t='out_quart').start(
-                self.root.ids.sv)
-
-        self.update_sourcecode()
-
-    def update_sourcecode(self):
-        if not self.show_sourcecode:
-            self.root.ids.sourcecode.focus = False
-            return
-        self.root.ids.sourcecode.text = self.read_sourcecode()
-        self.root.ids.sv.scroll_y = 1
 
     def showcase_floatlayout(self, layout):
 
