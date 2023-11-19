@@ -1,7 +1,7 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from app.main import ShowcaseScreen
-from app.widgets.heartfelt_hellos_idea_button import HeartfeltHellosIdeaButton
+from app.widgets.new_idea_button import HeartfeltHellosNewIdeaButton
 from app.data.data_types.idea import Idea
 
 
@@ -21,7 +21,7 @@ class IdeaScreen(ShowcaseScreen):
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
         for idea in self.get_ideas():
-            new_dynamic_widget = HeartfeltHellosIdeaButton(idea, on_press=lambda x: print("Pressed Idea Button"))
+            new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, on_press=lambda x: print("Pressed Idea Button"))
             self.grid_layout.add_widget(new_dynamic_widget)
 
     def on_leave(self, *args):
