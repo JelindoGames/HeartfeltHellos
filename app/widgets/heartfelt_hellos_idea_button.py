@@ -10,5 +10,5 @@ class HeartfeltHellosIdeaButton(HeartfeltHellosButton):
         super().__init__(**kwargs)
         self.text = idea.prompt
         self.size_hint_y = None
-        self.height = '128dp'
+        self.height = 128
 
