@@ -15,6 +15,9 @@ from kivy.core.window import Window
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
 
+import sys
+import os
+
 
 class ShowcaseScreen(Screen):
     def add_widget(self, *args, **kwargs):
@@ -76,4 +79,5 @@ class ShowcaseApp(App):
 
 
 if __name__ == '__main__':
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ShowcaseApp().run()
