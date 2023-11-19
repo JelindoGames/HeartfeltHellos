@@ -1,3 +1,4 @@
+from  kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from app.main import ShowcaseScreen
@@ -21,8 +22,15 @@ class FriendScreen(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
+        
+        # add friend button rendering
         add_friend_widget = HeartfeltHellosAddFriendButton(on_press=lambda x: print("Pressed add friend"))
         self.grid_layout.add_widget(add_friend_widget)
+
+        # divider rendering
+        line = Label(text="__________________", halign="center", color=(255,255,255))
+        self.grid_layout.add_widget(line)
+
         for friend in self.get_friends():
             friend_name_widget = HeartfeltHellosFriendButton(friend, on_press=lambda x: print("Pressed " + friend.name))
             self.grid_layout.add_widget(friend_name_widget)
