@@ -1,1 +1,13 @@
 .idea/
+app/__pycache__/__init__.cpython-38.pyc
+app/__pycache__/main.cpython-38.pyc
+app/data/__pycache__/__init__.cpython-38.pyc
+app/data/data_types/__pycache__/__init__.cpython-38.pyc
+app/data/data_types/__pycache__/idea.cpython-38.pyc
+app/data/screen_types/__pycache__/__init__.cpython-38.pyc
+app/data/screen_types/__pycache__/idea_screen.cpython-38.pyc
+app/data/screen_types/__pycache__/sub_idea_screen.cpython-38.pyc
+app/data/screen_types/__pycache__/user_idea_screen.cpython-38.pyc
+app/widgets/__pycache__/__init__.cpython-38.pyc
+app/widgets/__pycache__/heartfelt_hellos_button.cpython-38.pyc
+app/widgets/__pycache__/heartfelt_hellos_idea_button.cpython-38.pyc
