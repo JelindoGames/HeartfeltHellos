@@ -1,6 +1,7 @@
 #:kivy 1.8.0
 #:import KivyLexer kivy.extras.highlight.KivyLexer
 #:import Factory kivy.factory.Factory
+#:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
 
 <ShowcaseScreen>:
     ScrollView:
@@ -22,31 +23,52 @@ BoxLayout:
 
     canvas.before:
         Color:
-            rgb: .6, .6, .6
+            rgb: .8, .8, .8
         Rectangle:
             size: self.size
-            source: 'data/background.png'
+        #    source: 'data/background.png'
 
-    ActionBar:
+#    ActionBar:
+#
+#        ActionView:
+#            id: av
+#            ActionPrevious:
+#                with_previous: (False if sm.current_screen.name == 'button' else True) if sm.current_screen else False
+#                title: '' if not app.current_title else app.current_title
+#
+#            ActionButton:
+#                text: 'Previous screen'
+#                icon: 'data/icons/chevron-left.png'
+#                on_release: app.go_previous_screen()
+#
+#            ActionButton:
+#                text: 'Next screen'
+#                icon: 'data/icons/chevron-right.png'
+#                on_release: app.go_next_screen()
+#                important: True
 
-        ActionView:
-            id: av
-            ActionPrevious:
-                with_previous: (False if sm.current_screen.name == 'button' else True) if sm.current_screen else False
-                title: '' if not app.current_title else app.current_title
+    BoxLayout:
 
-            ActionButton:
-                text: 'Previous screen'
-                icon: 'data/icons/chevron-left.png'
-                on_release: app.go_previous_screen()
+        size_hint_y: 0.1
 
-            ActionButton:
-                text: 'Next screen'
-                icon: 'data/icons/chevron-right.png'
-                on_release: app.go_next_screen()
-                important: True
+        HeartfeltHellosButton:
+            background_color: 1, 1, 1
+            text: 'Next Screen'
+            on_release: app.go_next_screen()
 
     ScreenManager:
         id: sm
-        on_current_screen:
-            idx = app.screen_names.index(args[1].name)
+        #on_current_screen:
+        #    idx = app.screen_names.index(args[1].name)
+
+    BoxLayout:
+
+        size_hint_y: 0.1
+
+        HeartfeltHellosButton:
+            text: 'General Ideas'
+            on_release: app.go_screen("General_Idea_Screen")
+
+        HeartfeltHellosButton:
+            text: 'Friend Ideas'
+            on_release: app.go_screen("Friend_List")
