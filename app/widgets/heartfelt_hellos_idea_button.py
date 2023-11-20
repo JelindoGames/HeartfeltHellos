@@ -9,6 +9,7 @@ class HeartfeltHellosIdeaButton(HeartfeltHellosButton):
     def __init__(self, idea: Idea, **kwargs):
         super().__init__(**kwargs)
         self.text = idea.prompt
+        self.color = (0, 0, 0)
         self.size_hint_y = None
         self.height = 128
 

@@ -26,40 +26,26 @@ BoxLayout:
             rgb: .8, .8, .8
         Rectangle:
             size: self.size
-        #    source: 'data/background.png'
-
-#    ActionBar:
-#
-#        ActionView:
-#            id: av
-#            ActionPrevious:
-#                with_previous: (False if sm.current_screen.name == 'button' else True) if sm.current_screen else False
-#                title: '' if not app.current_title else app.current_title
-#
-#            ActionButton:
-#                text: 'Previous screen'
-#                icon: 'data/icons/chevron-left.png'
-#                on_release: app.go_previous_screen()
-#
-#            ActionButton:
-#                text: 'Next screen'
-#                icon: 'data/icons/chevron-right.png'
-#                on_release: app.go_next_screen()
-#                important: True
 
     BoxLayout:
 
+        orientation: 'horizontal'
         size_hint_y: 0.1
 
         HeartfeltHellosButton:
-            background_color: 1, 1, 1
-            text: 'Next Screen'
+            text: "Back"
+            size_hint_x: 0.25
+            font_size: 36
+            on_release: app.on_back_pressed()
+
+        HeartfeltHellosButton:
+            background_color: 0.6, 0.6, 0.6
+            text: app.current_title
+            font_size: 36
             on_release: app.go_next_screen()
 
     ScreenManager:
         id: sm
-        #on_current_screen:
-        #    idx = app.screen_names.index(args[1].name)
 
     BoxLayout:
 
@@ -67,8 +53,10 @@ BoxLayout:
 
         HeartfeltHellosButton:
             text: 'General Ideas'
-            on_release: app.go_screen("General_Idea_Screen")
+            font_size: 36
+            on_release: app.go_screen("General_Idea_Screen", "right")
 
         HeartfeltHellosButton:
             text: 'Friend Ideas'
-            on_release: app.go_screen("Friend_List")
+            font_size: 36
+            on_release: app.go_screen("Friend_List", "left")

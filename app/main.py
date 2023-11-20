@@ -56,26 +56,38 @@ class ShowcaseApp(App):
         self.index = (self.index - 1) % len(self.available_screens)
         screen = self.load_screen(self.index)
         sm = self.root.ids.sm
-        sm.switch_to(screen, direction='right')
-        self.current_title = screen.name
+        self.switch_to(screen, 'right')
 
     def go_next_screen(self):
         self.index = (self.index + 1) % len(self.available_screens)
         screen = self.load_screen(self.index)
         sm = self.root.ids.sm
-        sm.switch_to(screen, direction='left')
-        self.current_title = screen.name
+        self.switch_to(screen, 'left')
 
-    def go_screen(self, name):
+    def go_screen(self, name, direction='left'):
         self.index = self.screen_names.index(name)
-        self.root.ids.sm.switch_to(self.load_screen(self.index), direction='left')
+        self.switch_to(self.load_screen(self.index), direction)
+
+    def switch_to(self, screen, direction):
+        self.root.ids.sm.switch_to(screen, direction=direction)
+        try:
+            self.current_title = screen.display_name
+        except AttributeError:
+            self.current_title = screen.name
 
     def load_screen(self, index):
-        if index in self.screens:
-            return self.screens[index]
-        screen = Builder.load_file(self.available_screens[index])
+        #if index in self.screens:
+        #    return self.screens[index]
+        screen = Builder.load_file(self.available_screens[index], test="Test")
         self.screens[index] = screen
         return screen
+
+    def on_back_pressed(self):
+        try:
+            prev_screen = self.screens[self.index].previous_screen
+            self.go_screen(prev_screen, 'right')
+        except AttributeError:
+            return
 
 
 if __name__ == '__main__':
