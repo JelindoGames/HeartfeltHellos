@@ -1,6 +1,7 @@
-from  kivy.uix.label import Label
+from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.app import App
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_add_friend_button import HeartfeltHellosAddFriendButton
 from app.widgets.heartfelt_hellos_friend_button import HeartfeltHellosFriendButton
@@ -38,9 +39,9 @@ class FriendScreen(ShowcaseScreen):
 
     def pressed_add_friend(self):
         # pressed add friend, go to correct screen
-        print("Pressed add friend")
+        App.get_running_app().go_screen("Create_Person_Options", "left")
 
-    def pressed_friend(self,name):
+    def pressed_friend(self, name):
         # pressed friend, go to correct screen
         print("Pressed " + name)
 

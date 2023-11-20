@@ -10,8 +10,10 @@ ShowcaseScreen:
         size_hint_y: None
         height: 128
         text: 'Create from Scratch'
+        on_press: app.go_screen("Friend_Creation_First_Step", "left")
 
     HeartfeltHellosButton:
         size_hint_y: None
         height: 128
         text: 'Create from Contact'
+        on_press: app.go_screen("Contact_List", "left")

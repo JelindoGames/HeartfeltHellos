@@ -43,8 +43,9 @@ class ShowcaseApp(App):
         self.title = 'Heartfelt Hellos'
         self.screens = {}
         self.available_screens = ['Title_Screen', 'General_Idea_Screen', 'Sub_Idea_Screen', 'User_Idea_Screen',
-                                  'Create_Person_Options', 'Friend_List', 'Friend_Creation_Steps',
-                                  'Idea_Share_Rate_Screen', 'Contact_List', 'Message_Screen', 'Create_Post']
+                                  'Create_Person_Options', 'Friend_List', 'Friend_Creation_First_Step',
+                                  'Friend_Creation_Second_Step', 'Idea_Share_Rate_Screen', 'Contact_List',
+                                  'Message_Screen', 'Create_Post']
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
