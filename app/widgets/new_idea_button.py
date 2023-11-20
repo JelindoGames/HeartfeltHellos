@@ -21,7 +21,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.button.color = (0.1, 0.1, 0.1)
         self.button.background_color = (0.4, 0.4, 0.4)
         self.button.font_size = "36dp"
-        self.button.text_size = 500, None
+        self.button.text_size = self.button.width * 3, None
         self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
         self.label = Label(text="2.5", color=(0, 0, 0))
         self.add_widget(self.button)

@@ -6,7 +6,7 @@ class HeartfeltHellosStepProgressionButton(HeartfeltHellosButton):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.size_hint_y = None
-        self.width = 25
-        self.height = 50
-        self.font_size = 20
+        self.width = "25dp"
+        self.height = "50dp"
+        self.font_size = "20dp"
 

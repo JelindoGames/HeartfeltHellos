@@ -22,9 +22,9 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         #self.friends = []
         self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
         self.master_layout.add_widget(
-            Label(text="What tags are related to the idea?", height=50, color=(255, 255, 255),
+            Label(text="What tags are related to the idea?", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
-        textinput = TextInput(hint_text="Search Tag here", height=50, font_size=24, size_hint_y=None)
+        textinput = TextInput(hint_text="Search Tag here", height="50dp", font_size="24dp", size_hint_y=None)
         textinput.bind(text=lambda a, v: self.refresh_tags(v))
         self.master_layout.add_widget(textinput)
         self.add_widget(self.master_layout)
@@ -48,7 +48,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         for tag in self.tags:
             if tag_filter in tag:
                 bg = (0, 0.5, 1) if tag in self.tags_selected else (0.3, 0.3, 0.3)
-                tag_button = HeartfeltHellosButton(text=tag, height=50, on_press=lambda x: self.pressTag(x.text),
+                tag_button = HeartfeltHellosButton(text=tag, height="50dp", on_press=lambda x: self.pressTag(x.text),
                                                    size_hint_y=None)
                 tag_button.background_color = bg
                 self.grid_layout.add_widget(tag_button)
