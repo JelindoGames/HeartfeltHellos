@@ -1,9 +1,26 @@
 #:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
 
 ShowcaseScreen:
-    title: "Contact_List"
+    name: 'Contact_List'
     display_name: "Contacts"
 
-    Label:
-        text: "Contact List"
-        color: 0, 0, 0
+    BoxLayout:
+        orientation: 'vertical'
+        
+        ScrollView:
+            do_scroll_x: False
+            GridLayout:
+                id: contacts_grid
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: '50dp'
+                row_force_default: True
+
+#ShowcaseScreen:
+    #title: "Contact_List"
+    #display_name: "Contacts"
+
+    #Label:
+        #text: "Contact List"
+        #color: 0, 0, 0
