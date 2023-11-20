@@ -32,6 +32,7 @@ BoxLayout:
         HeartfeltHellosButton:
             text: "Go\nBack" if app.have_back_button else ""
             size_hint_x: 0.3
+            halign: "center"
             background_color: (0.6, 0.6, 0.6)
             color: (0, 0.5, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: 30
@@ -46,6 +47,7 @@ BoxLayout:
         HeartfeltHellosButton:
             text: "Go\nHome" if app.have_home_button else ""
             size_hint_x: 0.3
+            halign: "center"
             background_color: (0.6, 0.6, 0.6)
             color: (0, 0.5, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: 30
@@ -59,10 +61,12 @@ BoxLayout:
 
         HeartfeltHellosButton:
             text: 'Find\nGeneral Ideas'
+            halign: "center"
             font_size: 30
             on_release: app.go_screen("General_Idea_Screen", "right")
 
         HeartfeltHellosButton:
             text: 'Find\nFriend Ideas'
+            halign: "center"
             font_size: 30
             on_release: app.go_screen("Friend_List", "left")
