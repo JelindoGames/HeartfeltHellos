@@ -14,12 +14,12 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.orientation = "vertical"
         self.size_hint_y = None
         self.height = 250
-        self.button = HeartfeltHellosButton(text=idea.prompt, size_hint=(1, None), height=150, background_color=(0, 0, 0, 0))
+        self.button = HeartfeltHellosButton(text=idea.prompt, size_hint=(1, None), height="150dp", background_color=(0, 0, 0, 0))
         self.button.color = (0.1, 0.1, 0.1)
         self.button.background_color = (0.4, 0.4, 0.4)
-        self.button.font_size = 36
+        self.button.font_size = "36dp"
         self.button.text_size = 500, None
-        self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height=50)
+        self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
         self.label = Label(text="2.5", color=(0, 0, 0))
         self.add_widget(self.button)
         self.add_widget(self.star_image)
