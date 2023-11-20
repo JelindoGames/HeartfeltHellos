@@ -20,11 +20,11 @@ class ContactList(ShowcaseScreen):
         super(ContactList, self).__init__(**kwargs)
         
         # Initialize GridLayout for contacts
-        self.grid_layout = GridLayout(cols=1, spacing=2, size_hint_y=None)
+        self.grid_layout = GridLayout(cols=1, spacing="2dp", size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter('height'))
         
         # Initialize the search bar at the top
-        self.search_input = TextInput(hint_text='Search', size_hint_y=None, height=48, multiline=False)
+        self.search_input = TextInput(hint_text='Search', size_hint_y=None, height="48dp", multiline=False)
         self.grid_layout.add_widget(self.search_input)
         
         # Initialize ScrollView
@@ -44,23 +44,22 @@ class ContactList(ShowcaseScreen):
             lbl = Label(
                 text=letter, 
                 size_hint_y=None, 
-                height=30, 
+                height="30dp", 
                 halign='left',
-                color=get_color_from_hex('#000000')  # Black color
-            )
+                color=(255,255,255))
             lbl.bind(size=lbl.setter('text_size'))  # To align text to the left
             self.grid_layout.add_widget(lbl)
-            self.grid_layout.add_widget(Widget(size_hint_y=None, height=1))
+            self.grid_layout.add_widget(Widget(size_hint_y=None, height="1dp"))
 
             # Add buttons for each name
             for name in names:
-                self.grid_layout.add_widget(Button(text=name, size_hint_y=None, height=50))
+                self.grid_layout.add_widget(Button(text=name, size_hint_y=None, height="50dp"))
 
         # Call the helper function for each contact section
-        add_contacts_section('A', ['Name 1', 'Name 2'])
-        add_contacts_section('B', ['Name 3'])
-        add_contacts_section('J', ['Name 4'])
-        add_contacts_section('M', ['Name 5', 'Name 6'])
+        add_contacts_section('  A', ['Name 1', 'Name 2'])
+        add_contacts_section('  B', ['Name 3'])
+        add_contacts_section('  J', ['Name 4'])
+        add_contacts_section('  M', ['Name 5', 'Name 6'])
 
     def on_pre_enter(self, *args):
         # Clear the grid and re-populate it when the screen is about to be shown
