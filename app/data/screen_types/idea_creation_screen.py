@@ -36,7 +36,8 @@ class IdeaCreationScreen(ShowcaseScreen):
         self.grid_layout.add_widget(Label())
 
         # text box
-        textinput = TextInput(text="Are you still into sports?", font_size=24, size_hint_y=None, multiline=False)
+        textinput = TextInput(hint_text="Are you still into sports?", font_size=24, size_hint_y=None, multiline=False)
+        textinput.bind(text=lambda x, y: print("Hi"))
         self.grid_layout.add_widget(textinput)
         #self.name = textinput.text
 
@@ -56,7 +57,7 @@ class IdeaCreationScreen(ShowcaseScreen):
 
         # text box
         #NOTE TO SELF: add filtering for search bar
-        textinput = TextInput(text="Search Tag here", height=50, font_size=24, size_hint_y=None)
+        textinput = TextInput(hint_text="Search Tag here", height=50, font_size=24, size_hint_y=None)
         #textinput.bind(on_text_validate=on_enter(textinput.text))
         self.grid_layout.add_widget(textinput)
 

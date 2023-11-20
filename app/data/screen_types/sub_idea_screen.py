@@ -5,7 +5,8 @@ from app.data.data_types.idea import Idea
 class SubIdeaScreen(IdeaScreen):
 
     def get_ideas(self):
-        return [Idea("Sub Idea 1", ["Tag 1", "Tag 2"]), Idea("Sub Idea 2", ["Tag 3", "Tag 4"])]
+        return [Idea("Why don't you play anymore?", ["Tag 1", "Tag 2"]),
+                Idea("How'd your latest game go?", ["Tag 3", "Tag 4"])]
 
     def get_header(self):
         return "Sub-Ideas"

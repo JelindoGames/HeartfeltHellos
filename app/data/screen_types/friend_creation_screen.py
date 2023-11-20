@@ -35,7 +35,7 @@ class FriendCreationScreen(ShowcaseScreen):
         self.grid_layout.add_widget(Label())
 
         # text box
-        textinput = TextInput(text="Enter Name Here", font_size=24, size_hint_y=None, multiline=False)
+        textinput = TextInput(hint_text="Enter Name Here", font_size=24, size_hint_y=None, multiline=False)
         self.grid_layout.add_widget(textinput)
         #self.name = textinput.text
 
@@ -55,7 +55,7 @@ class FriendCreationScreen(ShowcaseScreen):
 
         # text box
         #NOTE TO SELF: add filtering for search bar
-        textinput = TextInput(text="Search Tag here", height=50, font_size=24, size_hint_y=None)
+        textinput = TextInput(hint_text="Search Tag here", height=50, font_size=24, size_hint_y=None)
         #textinput.bind(on_text_validate=on_enter(textinput.text))
         self.grid_layout.add_widget(textinput)
 
