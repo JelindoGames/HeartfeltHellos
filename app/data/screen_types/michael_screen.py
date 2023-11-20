@@ -26,5 +26,10 @@ class MichaelScreen(Screen):
         self.box_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.tags_layout)
         for tag in selected_friend.tags:
-            self.tags_layout.add_widget(HeartfeltHellosButton(text=tag, size_hint_y=None, height=48))
+            tag_button = HeartfeltHellosButton(text=tag, size_hint_y=None, height=48, on_press=lambda x: self.on_tag_clicked(x.text))
+            self.tags_layout.add_widget(tag_button)
         self.add_widget(self.box_layout)
+
+    def on_tag_clicked(self, value):
+        App.get_running_app().stored_data.temp_selected_tag = value
+        App.get_running_app().go_screen("User_Idea_Screen", "left")

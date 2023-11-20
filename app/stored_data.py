@@ -7,3 +7,6 @@ class StoredData:
 
     # For selection of person from friend list
     temp_selected_person = None
+
+    # For selection of tag under a friend
+    temp_selected_tag = None
