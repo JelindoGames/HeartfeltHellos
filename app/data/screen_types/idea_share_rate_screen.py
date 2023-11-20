@@ -11,9 +11,11 @@ class ShareRateScreen(Screen):
 
     box_layout = None
     rating_layout = None
+    rating_widgets = []
 
     def __init__(self, **kwargs):
         super(ShareRateScreen, self).__init__(**kwargs)
+        self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp", spacing="10dp")
         idea = App.get_running_app().stored_data.temp_selected_idea
         idea_button = HeartfeltHellosNewIdeaButton(idea)
@@ -25,7 +27,9 @@ class ShareRateScreen(Screen):
         self.rating_layout = GridLayout(cols=5, size_hint_y=None, height='40dp')
         self.box_layout.add_widget(self.rating_layout)
         for i in range(5):
-            self.rating_layout.add_widget(HeartfeltHellosButton(text=str(i+1)))
+            rating_widget = HeartfeltHellosButton(text=str(i+1), on_press=self.on_rating_pressed, background_normal="")
+            self.rating_widgets.append(rating_widget)
+            self.rating_layout.add_widget(rating_widget)
         self.box_layout.add_widget(HeartfeltHellosButton(text="View Follow-Up Ideas", size_hint_y=None, height='40dp', on_press=self.on_follow_up_pressed))
         self.add_widget(self.box_layout)
 
@@ -34,6 +38,13 @@ class ShareRateScreen(Screen):
 
     def on_follow_up_pressed(self, arg):
         App.get_running_app().go_screen("Sub_Idea_Screen", "left")
+
+    def on_rating_pressed(self, widget):
+        for rating_widget in self.rating_widgets:
+            if rating_widget == widget:
+                rating_widget.background_color = (0, 0, 1)
+            else:
+                rating_widget.background_color = (0.3, 0.3, 0.3)
 
     def share_idea(self):
         # Logic to share the idea
