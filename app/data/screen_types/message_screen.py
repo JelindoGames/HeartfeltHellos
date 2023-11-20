@@ -15,20 +15,27 @@ class MessageScreen(Screen):
     name_layout = None
     message_layout = None
     writing_layout = None
+    text_input = None
 
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
         self.master_layout = BoxLayout(orientation='vertical')
         self.name_layout = BoxLayout(size_hint_y=0.1, orientation='horizontal')
-        self.message_layout = BoxLayout(size_hint_y=0.8, orientation='vertical')
+        self.message_layout = BoxLayout(size_hint_y=0.8, orientation='vertical', padding='10dp', spacing='10dp')
         self.writing_layout = BoxLayout(size_hint_y=0.1, orientation='horizontal')
         self.add_widget(self.master_layout)
         self.master_layout.add_widget(self.name_layout)
         self.master_layout.add_widget(self.message_layout)
         self.master_layout.add_widget(self.writing_layout)
         self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.temp_selected_person.name))
-        self.writing_layout.add_widget(TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8))
-        self.writing_layout.add_widget(HeartfeltHellosButton(text="Send", size_hint_x=0.2))
+        self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
+        self.writing_layout.add_widget(self.text_input)
+        self.writing_layout.add_widget(HeartfeltHellosButton(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
 
     def send_message(self, message):
         print(message)
+
+    def on_message_sent(self, arg):
+        self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
+        self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text="Hey, long time no see!", size_hint_y=None, height="30dp"))
+        self.text_input.text = ""
