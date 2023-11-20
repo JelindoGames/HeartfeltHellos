@@ -53,15 +53,20 @@ class ContactList(ShowcaseScreen):
 
             # Add buttons for each name
             for name in names:
-                self.grid_layout.add_widget(Button(text=name, size_hint_y=None, height="50dp"))
+                self.grid_layout.add_widget(Button(text=name, size_hint_y=None, height="50dp", background_normal='', background_color=(0.2, 0.2, 0.2), on_press=self.on_contact_pressed))
 
         # Call the helper function for each contact section
-        add_contacts_section('  A', ['Name 1', 'Name 2'])
-        add_contacts_section('  B', ['Name 3'])
-        add_contacts_section('  J', ['Name 4'])
-        add_contacts_section('  M', ['Name 5', 'Name 6'])
+        add_contacts_section('  A', ['Amrit', 'Adeel'])
+        add_contacts_section('  B', ['Ben from Khoury'])
+        add_contacts_section('  J', ['Jamal'])
+        add_contacts_section('  M', ['MatPat', 'Michael', 'Mom'])
 
     def on_pre_enter(self, *args):
         # Clear the grid and re-populate it when the screen is about to be shown
         self.grid_layout.clear_widgets()
         self.populate_contacts()
+
+    def on_contact_pressed(self, widget):
+        App.get_running_app().stored_data.temp_friend_name = widget.text
+        App.get_running_app().go_screen("Friend_Creation_Second_Step", 'left')
+
