@@ -1,46 +1,48 @@
-#:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
+#:import MessageScreen app.data.screen_types.message_screen
 
-ShowcaseScreen:
+MessageScreen:
     name: 'Message_Screen'
-    display_name: "Messaging Michael"
+    display_name: "Messages"
 
-    BoxLayout:
-        orientation: 'vertical'
-        padding: '10dp'
-        spacing: '10dp'
+    previous_screen: "Idea_Share_Rate_Screen"
 
-        Label:
-            text: "Michael"
-            size_hint_y: None
-            height: '50dp'
-
-        BoxLayout:
-            orientation: 'horizontal'
-            TextInput:
-                id: message_input
-                hint_text: "Type your message here"
-                size_hint_y: None
-                height: '50dp'
-
-            Button:
-                text: "Send"
-                size_hint_y: None
-                height: '50dp'
-                on_press: root.send_message()
-
-        ScrollView:
-            do_scroll_x: False
-            GridLayout:
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-
-                Label:
-                    text: "[replace with actual message later]"
-                    size_hint_y: None
-                    height: self.texture_size[1]
-
-                Label:
-                    text: "Hi, long time no chat. yeah"
-                    size_hint_y: None
-                    height: self.texture_size[1]
+#    BoxLayout:
+#        orientation: 'vertical'
+#        padding: '10dp'
+#        spacing: '10dp'
+#
+#        Label:
+#            text: "Michael"
+#            size_hint_y: None
+#            height: '50dp'
+#
+#        BoxLayout:
+#            orientation: 'horizontal'
+#            TextInput:
+#                id: message_input
+#                hint_text: "Type your message here"
+#                size_hint_y: None
+#                height: '50dp'
+#
+#            Button:
+#                text: "Send"
+#                size_hint_y: None
+#                height: '50dp'
+#                on_press: root.send_message()
+#
+#        ScrollView:
+#            do_scroll_x: False
+#            GridLayout:
+#                cols: 1
+#                size_hint_y: None
+#                height: self.minimum_height
+#
+#                Label:
+#                    text: "[replace with actual message later]"
+#                    size_hint_y: None
+#                    height: self.texture_size[1]
+#
+#                Label:
+#                    text: "Hi, long time no chat. yeah"
+#                    size_hint_y: None
+#                    height: self.texture_size[1]
