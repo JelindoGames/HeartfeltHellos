@@ -73,7 +73,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.add_widget(create_person_button)
 
     def createFriend(self, _):
-        new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags)
+        new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags_selected)
         App.get_running_app().stored_data.friends.append(new_friend)
         App.get_running_app().go_screen("Friend_List", "left")
         #self.friends.append(Friend(self.name, self.tags))
