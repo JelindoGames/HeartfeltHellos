@@ -11,3 +11,8 @@ app/data/screen_types/__pycache__/user_idea_screen.cpython-38.pyc
 app/widgets/__pycache__/__init__.cpython-38.pyc
 app/widgets/__pycache__/heartfelt_hellos_button.cpython-38.pyc
 app/widgets/__pycache__/heartfelt_hellos_idea_button.cpython-38.pyc
+app/widgets/__pycache__/heartfelt_hellos_friend_button.cpython-38.pyc
+app/widgets/__pycache__/heartfelt_hellos_add_friend_button.cpython-38.pyc
+app/data/screen_types/__pycache__/friend_list_screen.cpython-38.pyc
+app/data/screen_types/__pycache__/friend_creation_screen.cpython-38.pyc
+*.pyc
