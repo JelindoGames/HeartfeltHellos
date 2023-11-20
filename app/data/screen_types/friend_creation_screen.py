@@ -4,7 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
-from app.widgets.heartfelt_hellos_friend_creation_button import HeartfeltHellosFriendCreationButton
+from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
 from app.data.data_types.friend import Friend
 
 
@@ -40,7 +40,7 @@ class FriendCreationScreen(ShowcaseScreen):
         #self.name = textinput.text
 
         # next and back button rendering
-        next_button = HeartfeltHellosFriendCreationButton(text="next",on_press=lambda x: self.stepTwo(textinput.text))
+        next_button = HeartfeltHellosStepProgressionButton(text="next",on_press=lambda x: self.stepTwo(textinput.text))
         progress_grid=GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
         progress_grid.add_widget(Label())
         progress_grid.add_widget(Label())
@@ -68,8 +68,8 @@ class FriendCreationScreen(ShowcaseScreen):
         
         
         # next and back button rendering
-        create_person_button = HeartfeltHellosFriendCreationButton(text="Create\nPerson", on_press=lambda x: print("pressed create person"))
-        back_button = HeartfeltHellosFriendCreationButton(text="back", on_press=lambda x: self.stepOne())
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Create\nPerson", on_press=lambda x: print("pressed create person"))
+        back_button = HeartfeltHellosStepProgressionButton(text="back", on_press=lambda x: self.stepOne())
         progress_grid=GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
         progress_grid.add_widget(back_button)
         progress_grid.add_widget(Label())

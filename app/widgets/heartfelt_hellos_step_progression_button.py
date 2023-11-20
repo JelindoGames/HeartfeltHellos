@@ -1,7 +1,7 @@
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 
 
-class HeartfeltHellosFriendCreationButton(HeartfeltHellosButton):
+class HeartfeltHellosStepProgressionButton(HeartfeltHellosButton):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
