@@ -7,6 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.app import App
+from kivy.utils import get_color_from_hex
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
 
@@ -39,10 +40,18 @@ class ContactList(ShowcaseScreen):
     def populate_contacts(self):
         # Helper function to add sections for contacts
         def add_contacts_section(letter, names):
-            # Add a letter label and a line divider
-            self.grid_layout.add_widget(Label(text=letter, size_hint_y=None, height=30))
+            # Add a letter label to the left and a line divider
+            lbl = Label(
+                text=letter, 
+                size_hint_y=None, 
+                height=30, 
+                halign='left',
+                color=get_color_from_hex('#000000')  # Black color
+            )
+            lbl.bind(size=lbl.setter('text_size'))  # To align text to the left
+            self.grid_layout.add_widget(lbl)
             self.grid_layout.add_widget(Widget(size_hint_y=None, height=1))
-            
+
             # Add buttons for each name
             for name in names:
                 self.grid_layout.add_widget(Button(text=name, size_hint_y=None, height=50))
