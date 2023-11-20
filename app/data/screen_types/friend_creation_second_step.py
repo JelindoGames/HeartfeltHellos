@@ -2,6 +2,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.app import App
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
@@ -9,65 +10,75 @@ from app.data.data_types.friend import Friend
 
 
 class FriendCreationScreenSecondStep(ShowcaseScreen):
+    master_layout = None
     scroll_view = None
     grid_layout = None
+    progress_layout = None
+    tags = ["books", "movies", "sports"]
+    tags_selected = []
 
     def __init__(self, **kwargs):
         super(FriendCreationScreenSecondStep, self).__init__(**kwargs)
-        self.tags = ["books", "movies", "sports"]
-        self.friends = []
-        # self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=5, size_hint_y=None)
+        #self.friends = []
+        self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
+        self.master_layout.add_widget(
+            Label(text="Step 2: What are their interests?", height=50, color=(255, 255, 255),
+                  size_hint_y=None))
+        textinput = TextInput(hint_text="Search Tag here", height=50, font_size=24, size_hint_y=None)
+        textinput.bind(text=lambda a, v: self.refresh_tags(v))
+        self.master_layout.add_widget(textinput)
+        self.add_widget(self.master_layout)
+
         self.grid_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
-        self.add_widget(self.scroll_view)
+        self.master_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+
+        self.progress_layout = GridLayout(rows=1, size_hint_y=0.1)
+        self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
         self.stepTwo()
 
     def stepTwo(self):
-        self.grid_layout.clear_widgets()
-        self.grid_layout.add_widget(
-            Label(text="Step 2: What are their interests?", height=50, color=(255, 255, 255),
-                  size_hint_y=None))
-
-        # text box
-        # NOTE TO SELF: add filtering for search bar
-        textinput = TextInput(hint_text="Search Tag here", height=50, font_size=24, size_hint_y=None)
-        # textinput.bind(on_text_validate=on_enter(textinput.text))
-        self.grid_layout.add_widget(textinput)
-
-        # NOTE TO SELF: add scroll bar to tags section
-        # tag_grid=GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
-        for tag in self.getTags():
-            tag_button = HeartfeltHellosButton(text=tag, height=50, on_press=lambda x: self.pressTag(x.text),
-                                               size_hint_y=None)
-            self.grid_layout.add_widget(tag_button)
-        # self.grid_layout.add_widget(tag_grid)
-
         # next and back button rendering
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Create\nPerson",
-                                                                    on_press=lambda x: print("pressed create person"))
-        back_button = HeartfeltHellosStepProgressionButton(text="back", on_press=lambda x: self.stepOne())
-        progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
-        progress_grid.add_widget(back_button)
-        progress_grid.add_widget(Label())
-        progress_grid.add_widget(create_person_button)
-        self.grid_layout.add_widget(progress_grid)
+        self.refresh_tags()
+        self.refresh_progress_layout()
+
+    def refresh_tags(self, tag_filter=""):
+        self.grid_layout.clear_widgets()
+        for tag in self.tags:
+            if tag_filter in tag:
+                bg = (0, 0.5, 1) if tag in self.tags_selected else (0.3, 0.3, 0.3)
+                tag_button = HeartfeltHellosButton(text=tag, height=50, on_press=lambda x: self.pressTag(x.text),
+                                                   size_hint_y=None)
+                tag_button.background_color = bg
+                self.grid_layout.add_widget(tag_button)
 
     def pressTag(self, name: str):
-        if name not in self.tags:
-            self.tags.append(name)
+        if name not in self.tags_selected:
+            self.tags_selected.append(name)
         else:
-            self.tags.remove(name)
+            self.tags_selected.remove(name)
+        self.refresh_tags()
+        self.refresh_progress_layout()
 
-    def createFriend(self):
-        self.friends.append(Friend(self.name, self.tags))
+    def refresh_progress_layout(self):
+        self.progress_layout.clear_widgets()
+        if len(self.tags_selected) == 0:
+            return
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Create\nPerson", on_press=self.createFriend)
+        #back_button = HeartfeltHellosStepProgressionButton(text="back", on_press=lambda x: self.stepOne())
+        #self.progress_layout.add_widget(back_button)
+        self.progress_layout.add_widget(Label())  # Filler
+        self.progress_layout.add_widget(Label())  # Filler
+        self.progress_layout.add_widget(create_person_button)
+
+    def createFriend(self, _):
+        App.get_running_app().go_screen("Friend_List", "left")
+        #self.friends.append(Friend(self.name, self.tags))
         # return to friend list screen + add self.friends as input somehow
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
-
-    def getTags(self) -> list:
-        return ["sports", "books", "movies"]
