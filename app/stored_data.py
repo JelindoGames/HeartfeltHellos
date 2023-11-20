@@ -10,3 +10,5 @@ class StoredData:
 
     # For selection of tag under a friend
     temp_selected_tag = None
+
+    temp_selected_idea = None

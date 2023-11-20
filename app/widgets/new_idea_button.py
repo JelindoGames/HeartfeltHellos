@@ -9,8 +9,11 @@ from kivy.app import App
 
 class HeartfeltHellosNewIdeaButton(BoxLayout):
 
+    do_something_on_touch_down = True
+
     def __init__(self, idea, **kwargs):
         super().__init__(**kwargs)
+        self.idea = idea
         self.orientation = "vertical"
         self.size_hint_y = None
         self.height = "250dp"
@@ -34,5 +37,11 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.rect.size = self.size
 
     def on_touch_down(self, touch):
+        if not self.do_something_on_touch_down:
+            return
         if self.collide_point(*touch.pos):
+            App.get_running_app().stored_data.temp_selected_idea = self.idea
             App.get_running_app().go_screen("Idea_Share_Rate_Screen", "left")
+
+    def do_nothing_on_touch_down(self):
+        self.do_something_on_touch_down = False
