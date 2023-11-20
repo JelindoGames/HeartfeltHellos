@@ -1,8 +1,46 @@
 #:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
 
 ShowcaseScreen:
-    title: "Idea_Share_Rate_Screen"
+    name: 'Idea_Share_Rate_Screen'
+    display_name: "Share or Rate an Idea"
 
-    Label:
-        text: "Idea Share/Rate Screen"
-        color: 0, 0, 0
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '10dp'
+        spacing: '10dp'
+
+        Label:
+            id: idea_label
+            text: "Selected idea text goes here..."
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        Button:
+            text: 'Share with Michael'
+            size_hint_y: None
+            height: '50dp'
+            on_press: root.share_idea()
+
+        Label:
+            text: 'Rate this idea:'
+            size_hint_y: None
+            height: '30dp'
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            Button:
+                text: '1'
+                on_press: root.rate_idea(1)
+            Button:
+                text: '2'
+                on_press: root.rate_idea(2)
+            Button:
+                text: '3'
+                on_press: root.rate_idea(3)
+            Button:
+                text: '4'
+                on_press: root.rate_idea(4)
+            Button:
+                text: '5'
+                on_press: root.rate_idea(5)
