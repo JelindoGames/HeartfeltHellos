@@ -11,7 +11,7 @@ from kivy.properties import (
 )
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
-from app.stored_data import StoredData
+from stored_data import StoredData
 
 import sys
 import os
