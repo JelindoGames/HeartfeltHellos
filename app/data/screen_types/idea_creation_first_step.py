@@ -30,11 +30,11 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
     def stepOne(self):
         self.grid_layout.clear_widgets()
-        self.grid_layout.add_widget(Label(text="What is your conversation idea?", font_size="24dp", color=(255, 255, 255)))
+        self.grid_layout.add_widget(Label(text="What is your conversation idea?", font_name="Raleway", font_size="24dp", color=(255, 255, 255)))
         self.grid_layout.add_widget(Label())
 
         # text box
-        textinput = TextInput(hint_text="Are you still into sports?", font_size="24dp", size_hint_y=None, multiline=False)
+        textinput = TextInput(hint_text="Are you still into sports?", font_name="Raleway", font_size="24dp", size_hint_y=None, multiline=False)
         textinput.bind(text=self.on_name_entered)
         self.grid_layout.add_widget(textinput)
         # self.name = textinput.text

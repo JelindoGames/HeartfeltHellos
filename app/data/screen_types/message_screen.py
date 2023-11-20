@@ -34,7 +34,7 @@ class MessageScreen(Screen):
         self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.temp_selected_person.name))
         self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
         self.writing_layout.add_widget(self.text_input)
-        self.writing_layout.add_widget(HeartfeltHellosButton(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
+        self.writing_layout.add_widget(Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
 
     def send_message(self, message):
         print(message)

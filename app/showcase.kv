@@ -41,11 +41,13 @@ BoxLayout:
         HeartfeltHellosButton:
             background_color: 0.6, 0.6, 0.6
             text: app.current_title
+            font_name: "Raleway"
             font_size: 36
             on_release: app.go_next_screen()
 
         HeartfeltHellosButton:
             text: "Go\nHome" if app.have_home_button else ""
+            font_name: "Raleway"
             size_hint_x: 0.3
             halign: "center"
             background_color: (0.6, 0.6, 0.6)
@@ -61,12 +63,14 @@ BoxLayout:
 
         HeartfeltHellosButton:
             text: 'Find\nGeneral Ideas'
+            font_name: "Raleway"
             halign: "center"
             font_size: 30
             on_release: app.go_screen("General_Idea_Screen", "right")
 
         HeartfeltHellosButton:
             text: 'Find\nFriend Ideas'
+            font_name: "Raleway"
             halign: "center"
             font_size: 30
             on_release: app.go_screen("Friend_List", "left")
