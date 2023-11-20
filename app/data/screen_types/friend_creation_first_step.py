@@ -12,6 +12,8 @@ from app.data.data_types.friend import Friend
 class FriendCreationScreenFirstStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
+    progress_grid = None
+    next_button = None
 
     def __init__(self, **kwargs):
         super(FriendCreationScreenFirstStep, self).__init__(**kwargs)
@@ -34,13 +36,25 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
 
         # text box
         textinput = TextInput(hint_text="Enter Name Here", font_size=24, size_hint_y=None, multiline=False)
+        textinput.bind(text=self.on_name_entered)
         self.grid_layout.add_widget(textinput)
         # self.name = textinput.text
 
-        # next and back button rendering
-        next_button = HeartfeltHellosStepProgressionButton(text="next", on_press=lambda x: App.get_running_app().go_screen("Friend_Creation_Second_Step", "left"))
-        progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
-        progress_grid.add_widget(Label())
-        progress_grid.add_widget(Label())
-        progress_grid.add_widget(next_button)
-        self.grid_layout.add_widget(progress_grid)
+    def on_name_entered(self, attribute, value):
+        if value != "":
+            self.consider_add_next_button()
+        else:
+            self.progress_grid.remove_widget(self.next_button)
+            self.next_button = None
+
+    def consider_add_next_button(self):
+        if self.next_button is not None:
+            return
+        self.next_button = HeartfeltHellosStepProgressionButton(text="next", on_press=lambda x: App.get_running_app().go_screen("Friend_Creation_Second_Step", "left"))
+        if self.progress_grid is None:
+            self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
+            self.progress_grid.add_widget(Label())
+            self.progress_grid.add_widget(Label())
+            self.grid_layout.add_widget(self.progress_grid)
+        self.progress_grid.add_widget(self.next_button)
+

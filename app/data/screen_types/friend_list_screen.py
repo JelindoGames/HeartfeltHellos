@@ -15,7 +15,6 @@ class FriendScreen(ShowcaseScreen):
 
     def __init__(self, **kwargs):
         super(FriendScreen, self).__init__(**kwargs)
-        #self.friends = friends
         self.grid_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
@@ -49,5 +48,4 @@ class FriendScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
 
     def get_friends(self) -> list:
-        #return self.friends
         return [Friend("Michael", ["Tag 1", "Tag 2", "Tag 3"])]
