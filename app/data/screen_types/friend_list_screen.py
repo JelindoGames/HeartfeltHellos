@@ -41,10 +41,9 @@ class FriendScreen(ShowcaseScreen):
         App.get_running_app().go_screen("Create_Person_Options", "left")
 
     def pressed_friend(self, name):
-        # pressed friend, go to correct screen
-        print("Pressed " + name)
-
-        # JONATHAN HELP!!!!!!!!!!! How do I make it go to my screen called "Michael_Screen"
+        # TODO Duplicate names won't work, must fix
+        friend_selected = next(friend for friend in App.get_running_app().stored_data.friends if friend.name == name)
+        App.get_running_app().stored_data.temp_selected_person = friend_selected
         App.get_running_app().go_screen("Michael_Screen", "left")
 
     def on_leave(self, *args):

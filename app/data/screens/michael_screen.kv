@@ -1,31 +1,33 @@
-#:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
+#:import MichaelScreen app.data.screen_types.michael_screen
 
-ShowcaseScreen:
+MichaelScreen:
     name: 'Michael_Screen'
     display_name: 'Michael'
 
-    BoxLayout:
-        orientation: 'vertical'
+    previous_screen: "Friend_List"
 
-        Label:
-            text: 'Michael'
-            size_hint_y: None
-            height: '60dp'
-            font_size: '32sp'
-
-        Label:
-            text: '__________________'
-            size_hint_y: None
-            height: '40dp'
-            halign: 'center'
-
-        Label:
-            text: 'These are the tags you have added'
-            size_hint_y: None
-            height: '40dp'
-
-        Button:
-            text: 'Soccer'
-            size_hint_y: None
-            height: '60dp'
-            on_press: app.go_screen('Next_Screen_Name', 'left')  # Change 'Next_Screen_Name' to your actual next screen name
+#    BoxLayout:
+#        orientation: 'vertical'
+#
+#        Label:
+#            text: 'Michael'
+#            size_hint_y: None
+#            height: '60dp'
+#            font_size: '32sp'
+#
+#        Label:
+#            text: '__________________'
+#            size_hint_y: None
+#            height: '40dp'
+#            halign: 'center'
+#
+#        Label:
+#            text: 'These are the tags you have added'
+#            size_hint_y: None
+#            height: '40dp'
+#
+#        Button:
+#            text: 'Soccer'
+#            size_hint_y: None
+#            height: '60dp'
+#            on_press: app.go_screen('Next_Screen_Name', 'left')  # Change 'Next_Screen_Name' to your actual next screen name
