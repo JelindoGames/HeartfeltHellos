@@ -44,6 +44,9 @@ class FriendScreen(ShowcaseScreen):
         # pressed friend, go to correct screen
         print("Pressed " + name)
 
+        # JONATHAN HELP!!!!!!!!!!! How do I make it go to my screen called "Michael_Screen"
+        App.get_running_app().go_screen("Michael_Screen", "left")
+
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
 
