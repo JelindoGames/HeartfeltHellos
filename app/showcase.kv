@@ -1,6 +1,4 @@
 #:kivy 1.8.0
-#:import KivyLexer kivy.extras.highlight.KivyLexer
-#:import Factory kivy.factory.Factory
 #:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
 
 <ShowcaseScreen>:
@@ -28,15 +26,16 @@ BoxLayout:
             size: self.size
 
     BoxLayout:
-
         orientation: 'horizontal'
         size_hint_y: 0.1
 
         HeartfeltHellosButton:
-            text: "Back"
-            size_hint_x: 0.25
+            text: "Back" if app.have_back_button else ""
+            size_hint_x: 0.3
+            background_color: (0.6, 0.6, 0.6)
+            color: (0, 0.5, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: 36
-            on_release: app.on_back_pressed()
+            on_release: app.on_back_pressed() if app.have_back_button else None
 
         HeartfeltHellosButton:
             background_color: 0.6, 0.6, 0.6
@@ -44,11 +43,18 @@ BoxLayout:
             font_size: 36
             on_release: app.go_next_screen()
 
+        HeartfeltHellosButton:
+            text: "Home" if app.have_home_button else ""
+            size_hint_x: 0.3
+            background_color: (0.6, 0.6, 0.6)
+            color: (0, 0.5, 1) if app.have_back_button else (0, 0, 0, 0)
+            font_size: 36
+            on_release: app.go_screen("Title_Screen", "right") if app.have_home_button else None
+
     ScreenManager:
         id: sm
 
     BoxLayout:
-
         size_hint_y: 0.1
 
         HeartfeltHellosButton:

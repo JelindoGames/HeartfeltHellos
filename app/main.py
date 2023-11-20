@@ -7,6 +7,7 @@ from kivy.properties import (
     NumericProperty,
     StringProperty,
     ListProperty,
+    BooleanProperty
 )
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
@@ -27,10 +28,11 @@ class ShowcaseApp(App):
 
     index = NumericProperty(-1)
     current_title = StringProperty()
-    time = NumericProperty(0)
+    have_back_button = BooleanProperty(False)
+    have_home_button = BooleanProperty(False)
     screen_names = ListProperty([])
-    hierarchy = ListProperty([])
     stored_data = StoredData()
+    current_screen = None
 
     def add_custom_fonts(self):
         font_file = join(dirname(__file__), "assets", "Raleway-Regular.ttf")
@@ -66,6 +68,9 @@ class ShowcaseApp(App):
         self.switch_to(self.load_screen(self.index), direction)
 
     def switch_to(self, screen, direction):
+        self.current_screen = screen
+        self.update_back_button_status()
+        self.update_home_button_status()
         self.root.ids.sm.switch_to(screen, direction=direction)
         try:
             self.current_title = screen.display_name
@@ -73,8 +78,6 @@ class ShowcaseApp(App):
             self.current_title = screen.name
 
     def load_screen(self, index):
-        #if index in self.screens:
-        #    return self.screens[index]
         screen = Builder.load_file(self.available_screens[index], test="Test")
         self.screens[index] = screen
         return screen
@@ -82,9 +85,23 @@ class ShowcaseApp(App):
     def on_back_pressed(self):
         try:
             prev_screen = self.screens[self.index].previous_screen
+            if prev_screen == "":
+                return
             self.go_screen(prev_screen, 'right')
         except AttributeError:
             return
+
+    def update_back_button_status(self):
+        try:
+            prev_screen = self.screens[self.index].previous_screen
+            if prev_screen == "":
+                self.have_back_button = False
+            self.have_back_button = True
+        except AttributeError:
+            self.have_back_button = False
+
+    def update_home_button_status(self):
+        self.have_home_button = self.current_screen.name != self.screen_names[0]
 
 
 if __name__ == '__main__':
