@@ -6,21 +6,79 @@ ShowcaseScreen:
 
     BoxLayout:
         orientation: 'vertical'
+
+        TextInput:
+            hint_text: 'Search'
+            size_hint_y: None
+            height: '48dp'
+            multiline: False
         
-        ScrollView:
-            do_scroll_x: False
-            GridLayout:
-                id: contacts_grid
-                cols: 1
+        # NEEDS scroll view or adjustments
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: 'A'
                 size_hint_y: None
-                height: self.minimum_height
-                row_default_height: '50dp'
-                row_force_default: True
+                height: '30dp'
+            Widget:
+                size_hint_y: None
+                height: '2dp'
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: 'Abby'
+                size_hint_y: None
+                height: '50dp'
+            Button:
+                text: 'Astra'
+                size_hint_y: None
+                height: '50dp'
 
-#ShowcaseScreen:
-    #title: "Contact_List"
-    #display_name: "Contacts"
+            # Repeat
 
-    #Label:
-        #text: "Contact List"
-        #color: 0, 0, 0
+            Label:
+                text: 'B'
+                size_hint_y: None
+                height: '30dp'
+            Widget:
+                size_hint_y: None
+                height: '2dp'
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: 'Ben from Khoury'
+                size_hint_y: None
+                height: '50dp'
+
+            Label:
+                text: 'M'
+                size_hint_y: None
+                height: '30dp'
+            Widget:
+                size_hint_y: None
+                height: '2dp'
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: 'Michael'
+                size_hint_y: None
+                height: '50dp'
+            Button:
+                text: 'Mom'
+                size_hint_y: None
+                height: '50dp'
