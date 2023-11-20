@@ -25,10 +25,8 @@ class IdeaCreationScreen(ShowcaseScreen):
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
 
-
     def on_pre_enter(self, *args):
         self.stepOne()
-        
 
     def stepOne(self):
         self.grid_layout.clear_widgets()
