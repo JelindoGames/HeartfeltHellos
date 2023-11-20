@@ -13,7 +13,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         super().__init__(**kwargs)
         self.orientation = "vertical"
         self.size_hint_y = None
-        self.height = 250
+        self.height = "250dp"
         self.button = HeartfeltHellosButton(text=idea.prompt, size_hint=(1, None), height="150dp", background_color=(0, 0, 0, 0))
         self.button.color = (0.1, 0.1, 0.1)
         self.button.background_color = (0.4, 0.4, 0.4)
