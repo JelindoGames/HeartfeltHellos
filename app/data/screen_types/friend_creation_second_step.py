@@ -39,10 +39,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
-        self.stepTwo()
-
-    def stepTwo(self):
-        # next and back button rendering
+        self.tags_selected = []
         self.refresh_tags()
         self.refresh_progress_layout()
 
@@ -76,6 +73,8 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.add_widget(create_person_button)
 
     def createFriend(self, _):
+        new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags)
+        App.get_running_app().stored_data.friends.append(new_friend)
         App.get_running_app().go_screen("Friend_List", "left")
         #self.friends.append(Friend(self.name, self.tags))
         # return to friend list screen + add self.friends as input somehow

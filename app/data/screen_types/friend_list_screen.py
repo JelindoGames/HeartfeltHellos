@@ -48,4 +48,4 @@ class FriendScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
 
     def get_friends(self) -> list:
-        return [Friend("Michael", ["Tag 1", "Tag 2", "Tag 3"])]
+        return App.get_running_app().stored_data.friends

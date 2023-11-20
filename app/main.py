@@ -1,4 +1,3 @@
-from time import time
 from kivy.app import App
 from os.path import dirname, join
 
@@ -7,13 +6,11 @@ from kivy.lang import Builder
 from kivy.properties import (
     NumericProperty,
     StringProperty,
-    BooleanProperty,
     ListProperty,
 )
-from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
+from app.stored_data import StoredData
 
 import sys
 import os
@@ -33,6 +30,7 @@ class ShowcaseApp(App):
     time = NumericProperty(0)
     screen_names = ListProperty([])
     hierarchy = ListProperty([])
+    stored_data = StoredData()
 
     def add_custom_fonts(self):
         font_file = join(dirname(__file__), "assets", "Raleway-Regular.ttf")
@@ -56,13 +54,11 @@ class ShowcaseApp(App):
     def go_previous_screen(self):
         self.index = (self.index - 1) % len(self.available_screens)
         screen = self.load_screen(self.index)
-        sm = self.root.ids.sm
         self.switch_to(screen, 'right')
 
     def go_next_screen(self):
         self.index = (self.index + 1) % len(self.available_screens)
         screen = self.load_screen(self.index)
-        sm = self.root.ids.sm
         self.switch_to(screen, 'left')
 
     def go_screen(self, name, direction='left'):

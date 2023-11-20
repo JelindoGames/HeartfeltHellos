@@ -4,9 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.app import App
 from app.main import ShowcaseScreen
-from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
-from app.data.data_types.friend import Friend
 
 
 class FriendCreationScreenFirstStep(ShowcaseScreen):
@@ -14,6 +12,7 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
     grid_layout = None
     progress_grid = None
     next_button = None
+    newest_name = ""
 
     def __init__(self, **kwargs):
         super(FriendCreationScreenFirstStep, self).__init__(**kwargs)
@@ -41,6 +40,7 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
         # self.name = textinput.text
 
     def on_name_entered(self, attribute, value):
+        self.newest_name = value
         if value != "":
             self.consider_add_next_button()
         else:
@@ -50,11 +50,15 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
     def consider_add_next_button(self):
         if self.next_button is not None:
             return
-        self.next_button = HeartfeltHellosStepProgressionButton(text="next", on_press=lambda x: App.get_running_app().go_screen("Friend_Creation_Second_Step", "left"))
+        self.next_button = HeartfeltHellosStepProgressionButton(text="next", on_press=self.on_next_pressed)
         if self.progress_grid is None:
             self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
             self.progress_grid.add_widget(Label())
             self.progress_grid.add_widget(Label())
             self.grid_layout.add_widget(self.progress_grid)
         self.progress_grid.add_widget(self.next_button)
+
+    def on_next_pressed(self, arg):
+        App.get_running_app().stored_data.temp_friend_name = self.newest_name
+        App.get_running_app().go_screen("Friend_Creation_Second_Step", "left")
 
