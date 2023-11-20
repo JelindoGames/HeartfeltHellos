@@ -6,6 +6,7 @@ from kivy.uix.label import Label
 from kivy.app import App
 from app.widgets.new_idea_button import HeartfeltHellosNewIdeaButton
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
+from app.widgets.colored_label import ColoredLabel
 
 
 class MessageScreen(Screen):
@@ -25,7 +26,7 @@ class MessageScreen(Screen):
         self.master_layout.add_widget(self.name_layout)
         self.master_layout.add_widget(self.message_layout)
         self.master_layout.add_widget(self.writing_layout)
-        self.name_layout.add_widget(Label(text=App.get_running_app().stored_data.temp_selected_person.name))
+        self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.temp_selected_person.name))
         self.writing_layout.add_widget(TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8))
         self.writing_layout.add_widget(HeartfeltHellosButton(text="Send", size_hint_x=0.2))
 
