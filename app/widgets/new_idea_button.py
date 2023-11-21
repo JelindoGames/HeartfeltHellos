@@ -5,7 +5,7 @@ from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 from kivy.graphics import Color
 from kivy.graphics import Rectangle
 from kivy.app import App
-from kivy.metrics import cm
+from kivy.metrics import dp
 
 
 class HeartfeltHellosNewIdeaButton(BoxLayout):
@@ -23,7 +23,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.button.color = (0.1, 0.1, 0.1)
         self.button.background_color = (0.4, 0.4, 0.4)
         self.button.font_size = "36dp"
-        self.button.text_size = cm(7), None
+        self.button.text_size = dp(300), None
         self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
         self.label = Label(text="2.5", color=(0, 0, 0))
         self.add_widget(self.button)
