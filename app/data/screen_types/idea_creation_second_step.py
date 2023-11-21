@@ -73,7 +73,8 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.add_widget(create_person_button)
 
     def create_post(self, _):
-        pass
+        # TODO change
+        App.get_running_app().go_screen("Title_Screen", "left")
         #new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags)
         #App.get_running_app().stored_data.friends.append(new_friend)
         #App.get_running_app().go_screen("Friend_List", "left")

@@ -13,3 +13,6 @@ class SubIdeaScreen(IdeaScreen):
 
     def get_idea_screen_name(self):
         return "Sub_Idea_Screen"
+
+    def is_top_level_idea_screen(self):
+        return False

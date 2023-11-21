@@ -26,3 +26,6 @@ class UserIdeaScreen(IdeaScreen):
 
     def get_idea_screen_name(self):
         return "User_Idea_Screen"
+
+    def is_top_level_idea_screen(self):
+        return True

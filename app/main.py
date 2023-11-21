@@ -33,7 +33,7 @@ class ShowcaseApp(App):
     screen_names = ListProperty([])
     stored_data = StoredData()
     current_screen = None
-    on_back_pressed_callback = []
+    on_back_pressed_callback = None
 
     def add_custom_fonts(self):
         font_file = join(dirname(__file__), "assets", "Raleway-Regular.ttf")

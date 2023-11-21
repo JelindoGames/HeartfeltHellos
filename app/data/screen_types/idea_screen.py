@@ -19,10 +19,13 @@ class IdeaScreen(ShowcaseScreen):
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+        if self.is_top_level_idea_screen():
+            App.get_running_app().stored_data.idea_screen_history = []
+            App.get_running_app().stored_data.idea_history = []
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
-        self.grid_layout.add_widget(HeartfeltHellosButton(text="Create an Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: App.get_running_app().go_screen("Idea_Creation_First_Step", "left")))
+        self.grid_layout.add_widget(HeartfeltHellosButton(text="Create an Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed()))
         for idea in self.get_ideas():
             new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name(), on_press=lambda x: print("Pressed Idea Button"))
             self.grid_layout.add_widget(new_dynamic_widget)
@@ -44,3 +47,9 @@ class IdeaScreen(ShowcaseScreen):
 
     def get_idea_screen_name(self):
         return "General_Idea_Screen"
+
+    def on_create_idea_pressed(self):
+        App.get_running_app().go_screen("Idea_Creation_First_Step", "left")
+
+    def is_top_level_idea_screen(self):
+        return True
