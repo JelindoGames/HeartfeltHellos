@@ -100,15 +100,7 @@ class ShowcaseApp(App):
         
 
     def update_back_button_status(self):
-        try:
-            prev_screen = self.screens[self.index].previous_screen
-            if prev_screen == "" or self.current_screen.name == self.screen_names[0]:
-                self.have_back_button = False
-            else:
-                self.have_back_button = True
-        except AttributeError:
-            self.have_back_button = False
-        
+        self.have_back_button = self.screens[self.index].previous_screen != ""
 
     def update_home_button_status(self):
         self.have_home_button = self.current_screen.name != self.screen_names[0]
