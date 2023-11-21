@@ -23,3 +23,6 @@ class UserIdeaScreen(IdeaScreen):
 
     def get_header(self):
         return "User Ideas"
+
+    def get_idea_screen_name(self):
+        return "User_Idea_Screen"

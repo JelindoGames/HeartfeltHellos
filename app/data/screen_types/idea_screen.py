@@ -12,10 +12,8 @@ class IdeaScreen(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
 
-    def __init__(self, test=None, **kwargs):
+    def __init__(self, **kwargs):
         super(IdeaScreen, self).__init__(**kwargs)
-        if test is not None:
-            print(test)
         self.grid_layout = GridLayout(spacing='20dp', padding='20dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
@@ -26,7 +24,7 @@ class IdeaScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
         self.grid_layout.add_widget(HeartfeltHellosButton(text="Create an Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: App.get_running_app().go_screen("Idea_Creation_First_Step", "left")))
         for idea in self.get_ideas():
-            new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, on_press=lambda x: print("Pressed Idea Button"))
+            new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name(), on_press=lambda x: print("Pressed Idea Button"))
             self.grid_layout.add_widget(new_dynamic_widget)
 
     def on_leave(self, *args):
@@ -43,3 +41,6 @@ class IdeaScreen(ShowcaseScreen):
 
     def get_header(self):
         return "General Ideas"
+
+    def get_idea_screen_name(self):
+        return "General_Idea_Screen"

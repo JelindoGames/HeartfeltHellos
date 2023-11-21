@@ -9,16 +9,22 @@ from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 
 class ShareRateScreen(Screen):
 
+    # Property
+    previous_screen = None
+
     box_layout = None
     rating_layout = None
+    idea = None
     rating_widgets = []
 
     def __init__(self, **kwargs):
         super(ShareRateScreen, self).__init__(**kwargs)
+        App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
+        self.idea = App.get_running_app().stored_data.idea_history[-1]
+        self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp", spacing="10dp")
-        idea = App.get_running_app().stored_data.temp_selected_idea
-        idea_button = HeartfeltHellosNewIdeaButton(idea)
+        idea_button = HeartfeltHellosNewIdeaButton(self.idea, None)
         idea_button.do_nothing_on_touch_down()
         self.box_layout.add_widget(idea_button)
         friend = App.get_running_app().stored_data.temp_selected_person
@@ -35,9 +41,11 @@ class ShareRateScreen(Screen):
 
     def on_share_pressed(self, arg):
         App.get_running_app().go_screen("Message_Screen", "left")
+        App.get_running_app().remove_on_back_pressed_callback()
 
     def on_follow_up_pressed(self, arg):
         App.get_running_app().go_screen("Sub_Idea_Screen", "left")
+        App.get_running_app().remove_on_back_pressed_callback()
 
     def on_rating_pressed(self, widget):
         for rating_widget in self.rating_widgets:
@@ -53,3 +61,8 @@ class ShareRateScreen(Screen):
     def rate_idea(self, rating):
         # Logic to rate the idea
         print(f'Idea rated as: {rating}')
+
+    def on_back_pressed(self):
+        del App.get_running_app().stored_data.idea_screen_history[-1]
+        del App.get_running_app().stored_data.idea_history[-1]
+        App.get_running_app().remove_on_back_pressed_callback()
