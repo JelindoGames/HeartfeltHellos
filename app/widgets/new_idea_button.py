@@ -45,7 +45,10 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
             App.get_running_app().stored_data.idea_screen_history.append(self.idea_screen_name)
             App.get_running_app().stored_data.idea_history.append(self.idea)
             App.get_running_app().stored_data.temp_selected_idea = self.idea
-            App.get_running_app().go_screen("Idea_Share_Rate_Screen", "left")
+            if App.get_running_app().stored_data.temp_selected_person is None:
+                App.get_running_app().go_screen("Friend_List_For_General_Ideas", "left")
+            else:
+                App.get_running_app().go_screen("Idea_Share_Rate_Screen", "left")
 
     def do_nothing_on_touch_down(self):
         self.do_something_on_touch_down = False

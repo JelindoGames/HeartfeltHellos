@@ -22,6 +22,7 @@ class IdeaScreen(ShowcaseScreen):
         if self.is_top_level_idea_screen():
             App.get_running_app().stored_data.idea_screen_history = []
             App.get_running_app().stored_data.idea_history = []
+        self.consider_reset_selected_person()
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
@@ -52,4 +53,11 @@ class IdeaScreen(ShowcaseScreen):
         App.get_running_app().go_screen("Idea_Creation_First_Step", "left")
 
     def is_top_level_idea_screen(self):
+        return True
+
+    def consider_reset_selected_person(self):
+        if self.reset_selected_person():
+            App.get_running_app().stored_data.temp_selected_person = None
+
+    def reset_selected_person(self):
         return True

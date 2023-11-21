@@ -29,3 +29,6 @@ class UserIdeaScreen(IdeaScreen):
 
     def is_top_level_idea_screen(self):
         return True
+
+    def reset_selected_person(self):
+        return False

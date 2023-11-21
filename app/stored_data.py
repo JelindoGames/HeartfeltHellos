@@ -16,3 +16,5 @@ class StoredData:
     idea_screen_history = []
 
     idea_history = []
+
+    previous_friend_list_screen = ""

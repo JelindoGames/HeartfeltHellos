@@ -16,3 +16,6 @@ class SubIdeaScreen(IdeaScreen):
 
     def is_top_level_idea_screen(self):
         return False
+
+    def reset_selected_person(self):
+        return False

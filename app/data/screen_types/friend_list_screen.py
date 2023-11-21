@@ -23,6 +23,7 @@ class FriendScreen(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
+        App.get_running_app().stored_data.previous_friend_list_screen = self.title
         
         # add friend button rendering
         add_friend_widget = HeartfeltHellosAddFriendButton(on_press=lambda x: self.pressed_add_friend())
@@ -44,7 +45,7 @@ class FriendScreen(ShowcaseScreen):
         # TODO Duplicate names won't work, must fix
         friend_selected = next(friend for friend in App.get_running_app().stored_data.friends if friend.name == name)
         App.get_running_app().stored_data.temp_selected_person = friend_selected
-        App.get_running_app().go_screen("Michael_Screen", "left")
+        App.get_running_app().go_screen(self.next_screen, "left")
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
