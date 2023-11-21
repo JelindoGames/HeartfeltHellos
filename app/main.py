@@ -10,6 +10,7 @@ from kivy.properties import (
     BooleanProperty
 )
 from kivy.core.window import Window
+from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen
 from stored_data import StoredData
 
@@ -52,7 +53,7 @@ class ShowcaseApp(App):
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
             '{}.kv'.format(fn).lower()) for fn in self.available_screens]
-        Window.size = (350, 600)
+        Window.size = (dp(300), dp(500))
         self.go_next_screen()
 
     def go_previous_screen(self):
