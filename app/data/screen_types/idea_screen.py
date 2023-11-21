@@ -36,11 +36,11 @@ class IdeaScreen(ShowcaseScreen):
 
     def get_ideas(self) -> list:
         # Default: Give general ideas (can be overridden in subclasses)
-        return [Idea("Do you have a cat?", "2.5", ["Tag 1", "Tag 2"]),
-                Idea("Do you like video games?", "3.0", ["Tag 3", "Tag 4"]),
-                Idea("Seen any good movies?", "3.1", ["Tag 3", "Tag 4"]),
-                Idea("Learned any interesting facts lately?", "2.7", ["Tag 3", "Tag 4"]),
-                Idea("What's changed since I last heard from you?", "4.7", ["Tag 3", "Tag 4"]),
+        return [Idea("Do you have a cat?", "4.5", ["Tag 1", "Tag 2"]),
+                Idea("Do you like video games?", "4.1", ["Tag 3", "Tag 4"]),
+                Idea("Seen any good movies?", "3.8", ["Tag 3", "Tag 4"]),
+                Idea("Learned any interesting facts lately?", "3.6", ["Tag 3", "Tag 4"]),
+                Idea("What's changed since I last heard from you?", "3.4", ["Tag 3", "Tag 4"]),
                 Idea("If you could be any animal, what would you be?", "2.8", ["Tag 3", "Tag 4"])]
 
     def get_header(self):
