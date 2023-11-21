@@ -58,8 +58,8 @@ class ShowcaseApp(App):
 
     def go_previous_screen(self):
         self.index = (self.index - 1) % len(self.available_screens)
-        screen = self.load_screen(self.index)
-        self.switch_to(screen, 'right')
+        #screen = self.load_screen(self.index)
+        self.switch_to(self.load_screen(self.index), 'right')
 
     def go_next_screen(self):
         self.index = (self.index + 1) % len(self.available_screens)
@@ -72,9 +72,10 @@ class ShowcaseApp(App):
 
     def switch_to(self, screen, direction):
         self.current_screen = screen
-        self.update_back_button_status()
-        self.update_home_button_status()
         self.root.ids.sm.switch_to(screen, direction=direction)
+        self.update_home_button_status()
+        self.update_back_button_status()
+
         try:
             self.current_title = screen.display_name
         except AttributeError:
@@ -92,18 +93,22 @@ class ShowcaseApp(App):
                 return
             if self.on_back_pressed_callback is not None:
                 self.on_back_pressed_callback()
-            self.go_screen(prev_screen, 'right')
+            self.go_screen(prev_screen, 'right')            
         except AttributeError:
-            return
+            print("Attr Error thrown")
+            return 
+        
 
     def update_back_button_status(self):
         try:
             prev_screen = self.screens[self.index].previous_screen
-            if prev_screen == "":
+            if prev_screen == "" or self.current_screen.name == self.screen_names[0]:
                 self.have_back_button = False
-            self.have_back_button = True
+            else:
+                self.have_back_button = True
         except AttributeError:
             self.have_back_button = False
+        
 
     def update_home_button_status(self):
         self.have_home_button = self.current_screen.name != self.screen_names[0]
