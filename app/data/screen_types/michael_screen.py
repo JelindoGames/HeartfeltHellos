@@ -3,8 +3,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.app import App
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.metrics import dp
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
-from app.widgets.heartfelt_hellos_label import HeartfeltHellosLabel
 
 
 
@@ -19,8 +20,8 @@ class MichaelScreen(Screen):
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
         selected_friend = App.get_running_app().stored_data.temp_selected_person
-        self.box_layout.add_widget(HeartfeltHellosLabel(text=f"Select one of {selected_friend.name}'s interests.", font_size="24dp", size_hint_y=None, height="60dp"))
-        self.box_layout.add_widget(HeartfeltHellosLabel(text="_________________________", font_size="40dp", halign="center", size_hint_y=None, height="40dp"))
+        self.box_layout.add_widget(Label(text=f"Select one of {selected_friend.name}'s interests.", font_size="24dp", height="60dp", font_name="Raleway", text_size=(dp(300),None), size_hint_y=None, color=(0, 0, 0)))
+        self.box_layout.add_widget(Label(text="_________________________", font_size="40dp", halign="center",  height="40dp", font_name="Raleway", text_size=(dp(300),None), size_hint_y=None, color=(0, 0, 0)))
         self.tags_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.tags_layout.bind(minimum_height=self.tags_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
