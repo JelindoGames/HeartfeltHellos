@@ -25,7 +25,7 @@ class ContactList(ShowcaseScreen):
         self.grid_layout.bind(minimum_height=self.grid_layout.setter('height'))
         
         # Initialize the search bar at the top
-        self.search_input = TextInput(hint_text='Search', size_hint_y=0.1, height="48dp", multiline=False)
+        self.search_input = TextInput(hint_text='Search', size_hint_y=None, height="32dp", multiline=False)
         self.search_input.bind(text=lambda a, v: self.populate_contacts())
         self.master_layout.add_widget(self.search_input)
         

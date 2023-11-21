@@ -30,7 +30,7 @@ class FriendScreen(ShowcaseScreen):
         self.grid_layout.add_widget(add_friend_widget)
 
         # divider rendering
-        line = Label(text="__________________", font_name="Raleway", halign="center", color=(255,255,255))
+        line = Label(text="__________________", halign="center", color=(255,255,255))
         self.grid_layout.add_widget(line)
 
         for friend in self.get_friends():
