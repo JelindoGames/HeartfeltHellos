@@ -10,3 +10,6 @@ class SubIdeaScreen(IdeaScreen):
 
     def get_header(self):
         return "Sub-Ideas"
+
+    def get_idea_screen_name(self):
+        return "Sub_Idea_Screen"

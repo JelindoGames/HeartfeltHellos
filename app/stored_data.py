@@ -12,3 +12,7 @@ class StoredData:
     temp_selected_tag = None
 
     temp_selected_idea = None
+
+    idea_screen_history = []
+
+    idea_history = []

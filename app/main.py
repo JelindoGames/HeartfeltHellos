@@ -33,6 +33,7 @@ class ShowcaseApp(App):
     screen_names = ListProperty([])
     stored_data = StoredData()
     current_screen = None
+    on_back_pressed_callback = []
 
     def add_custom_fonts(self):
         font_file = join(dirname(__file__), "assets", "Raleway-Regular.ttf")
@@ -88,6 +89,8 @@ class ShowcaseApp(App):
             prev_screen = self.screens[self.index].previous_screen
             if prev_screen == "":
                 return
+            if self.on_back_pressed_callback is not None:
+                self.on_back_pressed_callback()
             self.go_screen(prev_screen, 'right')
         except AttributeError:
             return
@@ -103,6 +106,12 @@ class ShowcaseApp(App):
 
     def update_home_button_status(self):
         self.have_home_button = self.current_screen.name != self.screen_names[0]
+
+    def set_on_back_pressed_callback(self, cb):
+        self.on_back_pressed_callback = cb
+
+    def remove_on_back_pressed_callback(self):
+        self.on_back_pressed_callback = None
 
 
 if __name__ == '__main__':

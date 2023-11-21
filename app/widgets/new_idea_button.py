@@ -11,9 +11,10 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
 
     do_something_on_touch_down = True
 
-    def __init__(self, idea, **kwargs):
+    def __init__(self, idea, idea_screen_name, **kwargs):
         super().__init__(**kwargs)
         self.idea = idea
+        self.idea_screen_name = idea_screen_name
         self.orientation = "vertical"
         self.size_hint_y = None
         self.height = "250dp"
@@ -40,6 +41,8 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         if not self.do_something_on_touch_down:
             return
         if self.collide_point(*touch.pos):
+            App.get_running_app().stored_data.idea_screen_history.append(self.idea_screen_name)
+            App.get_running_app().stored_data.idea_history.append(self.idea)
             App.get_running_app().stored_data.temp_selected_idea = self.idea
             App.get_running_app().go_screen("Idea_Share_Rate_Screen", "left")
 
