@@ -53,7 +53,7 @@ class ShowcaseApp(App):
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
             '{}.kv'.format(fn).lower()) for fn in self.available_screens]
-        Window.size = (dp(300), dp(500))
+        Window.size = (350, 600)
         self.go_next_screen()
 
     def go_previous_screen(self):
