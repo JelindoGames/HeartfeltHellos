@@ -25,7 +25,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.button.font_size = "36dp"
         self.button.text_size = dp(300), None
         self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
-        self.label = Label(text=idea.rating, color=(0, 0, 0))
+        self.label = Label(text=str(idea.rating), color=(0, 0, 0))
         self.add_widget(self.button)
         self.add_widget(self.star_image)
         self.add_widget(self.label)
