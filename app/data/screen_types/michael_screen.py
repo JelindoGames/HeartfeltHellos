@@ -18,8 +18,8 @@ class MichaelScreen(Screen):
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
         selected_friend = App.get_running_app().stored_data.temp_selected_person
-        self.box_layout.add_widget(Label(text=f"Select one of {selected_friend.name}'s interests.", font_size="32dp", size_hint_y=None, height="60dp", color=(0, 0, 0)))
-        self.box_layout.add_widget(Label(text="_________________________", font_size="40dp", halign="center", size_hint_y=None, height="40dp", color=(0, 0, 0)))
+        self.box_layout.add_widget(Label(text=f"Select one of {selected_friend.name}'s interests.", font_name="Raleway", font_size="32dp", size_hint_y=None, height="60dp", color=(0, 0, 0)))
+        self.box_layout.add_widget(Label(text="_________________________", font_name="Raleway", font_size="40dp", halign="center", size_hint_y=None, height="40dp", color=(0, 0, 0)))
         self.tags_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.tags_layout.bind(minimum_height=self.tags_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)

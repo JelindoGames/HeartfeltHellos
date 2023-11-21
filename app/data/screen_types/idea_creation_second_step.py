@@ -22,9 +22,9 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         #self.friends = []
         self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
         self.master_layout.add_widget(
-            Label(text="What tags are related to the idea?", height="50dp", color=(255, 255, 255),
+            Label(text="What tags are related to the idea?", font_name="Raleway", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
-        textinput = TextInput(hint_text="Search Tag here", height="50dp", font_size="24dp", size_hint_y=None)
+        textinput = TextInput(hint_text="Search Tag here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None)
         textinput.bind(text=lambda a, v: self.refresh_tags(v))
         self.master_layout.add_widget(textinput)
         self.add_widget(self.master_layout)

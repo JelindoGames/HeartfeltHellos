@@ -29,7 +29,7 @@ class ShareRateScreen(Screen):
         self.box_layout.add_widget(idea_button)
         friend = App.get_running_app().stored_data.temp_selected_person
         self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share with {friend.name}", size_hint_y=None, height='50dp', on_press=self.on_share_pressed))
-        self.box_layout.add_widget(Label(text="Rate this idea", font_size='30dp', color=(0, 0, 0)))
+        self.box_layout.add_widget(Label(text="Rate this idea", font_name="Raleway", font_size='30dp', color=(0, 0, 0)))
         self.rating_layout = GridLayout(cols=5, size_hint_y=None, height='40dp')
         self.box_layout.add_widget(self.rating_layout)
         for i in range(5):
