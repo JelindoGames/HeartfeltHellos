@@ -3,10 +3,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
-from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.app import App
-from app.widgets.new_idea_button import HeartfeltHellosNewIdeaButton
-from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 from app.widgets.colored_label import ColoredLabel
 
 
@@ -34,7 +32,7 @@ class MessageScreen(Screen):
         self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.temp_selected_person.name))
         self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
         self.writing_layout.add_widget(self.text_input)
-        self.writing_layout.add_widget(HeartfeltHellosButton(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
+        self.writing_layout.add_widget(Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
 
     def send_message(self, message):
         print(message)
