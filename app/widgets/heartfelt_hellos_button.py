@@ -8,5 +8,6 @@ class HeartfeltHellosButton(Button):
         self.background_normal = ''
         self.background_color = (0.3, 0.3, 0.3)
         self.font_name = "Raleway"
-        self.font_size = "40dp"
+        self.halign="center"
+        self.font_size = "33dp"
         self.color = (1, 1, 1, 1)
