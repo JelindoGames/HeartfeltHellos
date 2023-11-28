@@ -9,3 +9,6 @@ https://stackoverflow.com/questions/71142175/how-to-add-new-fonts-to-kivy
 
 Dynamically add/remove widgets
 https://stackoverflow.com/questions/48580686/python-how-to-remove-widget-in-kivy
+
+Disable multitouch
+https://stackoverflow.com/questions/68999371/kivy-remove-the-red-dot-creation-on-right-clic
