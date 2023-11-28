@@ -35,7 +35,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
 
-        self.progress_layout = GridLayout(rows=1, size_hint_y=0.1)
+        self.progress_layout = GridLayout(rows=1, size_hint_y=0.2)
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
@@ -64,10 +64,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.clear_widgets()
         if len(self.tags_selected) == 0:
             return
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Create\nPerson", on_press=self.createFriend)
-        #back_button = HeartfeltHellosStepProgressionButton(text="back", on_press=lambda x: self.stepOne())
-        #self.progress_layout.add_widget(back_button)
-        self.progress_layout.add_widget(Label())  # Filler
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Create Person", on_press=self.createFriend)
         self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(create_person_button)
 
@@ -75,8 +72,6 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags_selected)
         App.get_running_app().stored_data.friends.append(new_friend)
         App.get_running_app().go_screen(App.get_running_app().stored_data.previous_friend_list_screen, "left")
-        #self.friends.append(Friend(self.name, self.tags))
-        # return to friend list screen + add self.friends as input somehow
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
