@@ -15,7 +15,6 @@
                 size_hint: (.8, None)
                 height: self.minimum_height
 
-
 BoxLayout:
     orientation: 'vertical'
 
@@ -37,7 +36,7 @@ BoxLayout:
             halign: "center"
             text_size:dp(80), None
 
-            background_color: (.4, .6, 0.902)
+            background_color: (0.6, 0.6, 0.6)
             color: (0, 0.2, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: "22dp"
             on_release: app.on_back_pressed() if app.have_back_button else None
@@ -52,7 +51,7 @@ BoxLayout:
             canvas.before:
                 Color: 
                     rgba: 
-                        (.4, .6, 0.902,1)
+                        (0.6, 0.6, 0.6, 1)
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -65,7 +64,7 @@ BoxLayout:
             size_hint_x: "0.3dp"
             halign: "center"
             text_size:dp(80), None
-            background_color: (.4, .6, 0.902)
+            background_color: (0.6, 0.6, 0.6)
             color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
             font_size: "22dp"
             on_release: app.go_screen("Title_Screen", "right") if app.have_home_button else None
@@ -87,7 +86,7 @@ BoxLayout:
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.4, .6, 0.902)
+            background_color: (0.6, 0.6, 0.6)
             font_size: "23dp"
             on_release: app.go_screen("General_Idea_Screen", "right")
 
@@ -107,6 +106,6 @@ BoxLayout:
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.4, .6, 0.902)
+            background_color: (0.6, 0.6, 0.6)
             font_size: "23dp"
             on_release: app.go_screen("Friend_List", "left")
