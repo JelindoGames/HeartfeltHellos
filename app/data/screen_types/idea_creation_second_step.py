@@ -47,7 +47,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.grid_layout.clear_widgets()
         for tag in self.tags:
             if tag_filter in tag:
-                bg = (0, 0.5, 1) if tag in self.tags_selected else (0.3, 0.3, 0.3)
+                bg = (0, 0.5, 1) if tag in self.tags_selected else (.678, .847, 0.902)
                 tag_button = HeartfeltHellosButton(text=tag, height="50dp", on_press=lambda x: self.pressTag(x.text),
                                                    size_hint_y=None)
                 tag_button.background_color = bg

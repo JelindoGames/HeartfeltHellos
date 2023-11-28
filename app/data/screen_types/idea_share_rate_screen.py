@@ -52,7 +52,7 @@ class ShareRateScreen(Screen):
             if rating_widget == widget:
                 rating_widget.background_color = (0, 0, 1)
             else:
-                rating_widget.background_color = (0.3, 0.3, 0.3)
+                rating_widget.background_color = (.678, .847, 0.902)
 
     def share_idea(self):
         # Logic to share the idea

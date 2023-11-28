@@ -21,18 +21,18 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.height = "250dp"
         self.button = HeartfeltHellosButton(text=idea.prompt, size_hint=(1, None), height="150dp", background_color=(0, 0, 0, 0))
         self.button.color = (0.1, 0.1, 0.1)
-        self.button.background_color = (0.4, 0.4, 0.4)
+        self.button.background_color = (.678, .847, 0.902)
         self.button.font_size = "36dp"
         self.button.text_size = dp(300), None
         #self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
-        self.star_image = Image(source="data/icons/white-star.png", size_hint=(1, None), height="50dp")
+        self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
         self.label = Label(text=str(idea.rating), font_name="Raleway", font_size="25dp", color=(0, 0, 0))
         self.add_widget(self.button)
         #self.add_widget(Label())
         self.add_widget(self.star_image)
         self.add_widget(self.label)
         with self.canvas.before:
-            Color(0.5, 0.5, 0.5, 1)
+            Color(.9, .9, 0.902)
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(pos=self.update_rect, size=self.update_rect)
 
