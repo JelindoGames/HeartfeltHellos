@@ -1,6 +1,7 @@
 from kivy.app import App
 from os.path import dirname, join
 
+from kivy import Config
 from kivy.core.text import LabelBase
 from kivy.lang import Builder
 from kivy.properties import (
@@ -111,5 +112,6 @@ class ShowcaseApp(App):
 
 
 if __name__ == '__main__':
+    Config.set('input', 'mouse', 'mouse,disable_multitouch')
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ShowcaseApp().run()
