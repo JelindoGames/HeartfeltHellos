@@ -32,6 +32,8 @@ class ShowcaseApp(App):
     current_title = StringProperty()
     have_back_button = BooleanProperty(False)
     have_home_button = BooleanProperty(False)
+    general_tab_pressed = BooleanProperty(False)
+    friend_tab_pressed = BooleanProperty(False)
     screen_names = ListProperty([])
     stored_data = StoredData()
     current_screen = None
@@ -109,6 +111,21 @@ class ShowcaseApp(App):
 
     def remove_on_back_pressed_callback(self):
         self.on_back_pressed_callback = None
+
+    def on_friend_ideas_pressed(self):
+        self.go_screen("Friend_List")
+        self.general_tab_pressed = False
+        self.friend_tab_pressed = True
+
+    def on_general_ideas_pressed(self):
+        self.go_screen("General_Idea_Screen")
+        self.general_tab_pressed = True
+        self.friend_tab_pressed = False
+
+    def on_home_pressed(self):
+        self.go_screen("Title_Screen")
+        self.general_tab_pressed = False
+        self.friend_tab_pressed = False
 
 
 if __name__ == '__main__':

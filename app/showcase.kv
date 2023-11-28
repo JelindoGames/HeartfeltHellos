@@ -67,7 +67,7 @@ BoxLayout:
             background_color: (.57, .77, 0.902)
             color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
             font_size: "22dp"
-            on_release: app.go_screen("Title_Screen", "right") if app.have_home_button else None
+            on_release: app.on_home_pressed() if app.have_home_button else None
 
     ScreenManager:
         id: sm
@@ -86,9 +86,9 @@ BoxLayout:
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.57, .77, 0.902)
+            background_color: (.4, .5, 0.6) if app.general_tab_pressed else (.57, .77, 0.902)
             font_size: "23dp"
-            on_release: app.go_screen("General_Idea_Screen", "right")
+            on_release: app.on_general_ideas_pressed()
 
         Widget:
             # This widget acts as a vertical separator line
@@ -106,6 +106,6 @@ BoxLayout:
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.57, .77, 0.902)
+            background_color: (.4, .5, 0.6) if app.friend_tab_pressed else (.57, .77, 0.902)
             font_size: "23dp"
-            on_release: app.go_screen("Friend_List", "left")
+            on_release: app.on_friend_ideas_pressed()
