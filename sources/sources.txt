@@ -6,3 +6,6 @@ https://stackoverflow.com/questions/1893598/pythonpath-vs-sys-path
 
 Adding custom fonts
 https://stackoverflow.com/questions/71142175/how-to-add-new-fonts-to-kivy
+
+Dynamically add/remove widgets
+https://stackoverflow.com/questions/48580686/python-how-to-remove-widget-in-kivy
