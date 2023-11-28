@@ -35,7 +35,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
         self.grid_layout.add_widget(Label())
 
         # text box
-        textinput = TextInput(hint_text="Are you still into sports?", font_name="Raleway", font_size="24dp", size_hint_y=None, multiline=False)
+        textinput = TextInput(hint_text="Are you still into sports?", font_name="Raleway", font_size="24dp", size_hint_y=None, multiline=True)
         textinput.bind(text=self.on_name_entered)
         self.grid_layout.add_widget(textinput)
         # self.name = textinput.text
