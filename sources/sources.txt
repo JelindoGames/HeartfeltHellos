@@ -1,3 +1,8 @@
+Dynamically expanding scroll view
 https://karobben.github.io/2021/02/10/Python/kivy_scrollview/
 
+Adding to pythonpath
 https://stackoverflow.com/questions/1893598/pythonpath-vs-sys-path
+
+Adding custom fonts
+https://stackoverflow.com/questions/71142175/how-to-add-new-fonts-to-kivy

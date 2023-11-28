@@ -58,7 +58,6 @@ class ShowcaseApp(App):
 
     def go_previous_screen(self):
         self.index = (self.index - 1) % len(self.available_screens)
-        #screen = self.load_screen(self.index)
         self.switch_to(self.load_screen(self.index), 'right')
 
     def go_next_screen(self):
@@ -75,7 +74,6 @@ class ShowcaseApp(App):
         self.root.ids.sm.switch_to(screen, direction=direction)
         self.update_home_button_status()
         self.update_back_button_status()
-
         try:
             self.current_title = screen.display_name
         except AttributeError:
