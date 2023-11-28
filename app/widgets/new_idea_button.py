@@ -32,7 +32,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.add_widget(self.star_image)
         self.add_widget(self.label)
         with self.canvas.before:
-            Color(.9, .9, 0.902)
+            Color(.75, .75, 0.8)
             self.rect = Rectangle(size=self.size, pos=self.pos)
         self.bind(pos=self.update_rect, size=self.update_rect)
 
