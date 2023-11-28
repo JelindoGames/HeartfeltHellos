@@ -35,7 +35,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
 
-        self.progress_layout = GridLayout(rows=1, size_hint_y=0.1)
+        self.progress_layout = GridLayout(rows=1, size_hint_y=0.2)
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
@@ -66,20 +66,12 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         if len(self.tags_selected) == 0:
             return
         create_person_button = HeartfeltHellosStepProgressionButton(text="Post Idea", on_press=self.create_post)
-        #back_button = HeartfeltHellosStepProgressionButton(text="back", on_press=lambda x: self.stepOne())
-        #self.progress_layout.add_widget(back_button)
-        self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(create_person_button)
 
     def create_post(self, _):
         # TODO change
         App.get_running_app().go_screen("Title_Screen", "left")
-        #new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags)
-        #App.get_running_app().stored_data.friends.append(new_friend)
-        #App.get_running_app().go_screen("Friend_List", "left")
-        #self.friends.append(Friend(self.name, self.tags))
-        # return to friend list screen + add self.friends as input somehow
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
