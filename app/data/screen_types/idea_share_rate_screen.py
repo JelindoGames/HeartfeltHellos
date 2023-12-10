@@ -18,6 +18,7 @@ class ShareRateScreen(Screen):
     box_layout = None
     rating_buttons = None
     idea = None
+    current_rating = None
 
     def __init__(self, **kwargs):
         super(ShareRateScreen, self).__init__(**kwargs)
@@ -30,7 +31,7 @@ class ShareRateScreen(Screen):
         idea_button.do_nothing_on_touch_down()
         self.box_layout.add_widget(idea_button)
         friend = App.get_running_app().stored_data.temp_selected_person
-        self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share Idea", size_hint_y=None, height='50dp', on_press=self.on_share_pressed))
+        self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share Idea", on_press=self.on_share_pressed))
         self.rating_popup = Popup(title="Rate", size_hint_y=0.25)
         self.rating_layout = BoxLayout(orientation="vertical", spacing="10dp")
         self.rating_buttons_layout = GridLayout(cols=5)
@@ -40,15 +41,18 @@ class ShareRateScreen(Screen):
             self.rating_buttons.append(new_button)
             self.rating_buttons_layout.add_widget(new_button)
         self.rating_layout.add_widget(self.rating_buttons_layout)
-        self.rating_popup_close_button = HeartfeltHellosButton(text="Rate", on_press=lambda w: self.rating_popup.dismiss())
+        self.rating_popup_close_button = HeartfeltHellosButton(text="Rate", on_press=lambda w: self.rate_and_close_popup())
         self.rating_popup_close_button.background_disabled_normal = ""
         self.rating_popup_close_button.background_color = (0, 0, 0, 0)
         self.rating_popup_close_button.disabled = True
         self.rating_popup_close_button.color = (0, 0, 0, 0)
         self.rating_layout.add_widget(self.rating_popup_close_button)
         self.rating_popup.add_widget(self.rating_layout)
-        self.box_layout.add_widget(HeartfeltHellosButton(text="Rate Idea", height='40dp', on_press=lambda w: self.rating_popup.open()))
-        self.box_layout.add_widget(HeartfeltHellosButton(text="View Follow-Up Ideas", size_hint_y=None, height='40dp', on_press=self.on_follow_up_pressed))
+        self.rate_idea_button = HeartfeltHellosButton(text="Rate Idea", height='40dp', on_press=lambda w: self.open_popup())
+        self.box_layout.add_widget(self.rate_idea_button)
+        self.refresh_rating_display()
+        self.box_layout.add_widget(Label(text=""))
+        self.box_layout.add_widget(HeartfeltHellosButton(text="View Follow-Up Ideas", on_press=self.on_follow_up_pressed))
         self.add_widget(self.box_layout)
 
     def on_share_pressed(self, arg):
@@ -61,9 +65,11 @@ class ShareRateScreen(Screen):
 
     def on_rating_pressed(self, widget):
         filling = True
+        self.current_rating = 0
         for rating_button in self.rating_buttons:
             if filling:
                 rating_button.fill()
+                self.current_rating += 1
             else:
                 rating_button.unfill()
             if rating_button == widget:
@@ -79,6 +85,20 @@ class ShareRateScreen(Screen):
     def rate_idea(self, rating):
         # Logic to rate the idea
         print(f'Idea rated as: {rating}')
+
+    def refresh_rating_display(self):
+        if self.idea is None or self.idea.my_rating is None:
+            self.rate_idea_button.text = "Rate Idea"
+        else:
+            self.rate_idea_button.text = f"Your Rating: {self.idea.my_rating}"
+
+    def open_popup(self):
+        self.rating_popup.open()
+
+    def rate_and_close_popup(self):
+        self.rating_popup.dismiss()
+        self.idea.set_my_rating(self.current_rating)
+        self.refresh_rating_display()
 
     def on_back_pressed(self):
         del App.get_running_app().stored_data.idea_screen_history[-1]
