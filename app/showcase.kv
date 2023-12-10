@@ -35,11 +35,12 @@ BoxLayout:
             size_hint_x: "0.3dp"
             halign: "center"
             text_size:dp(80), None
-
             background_color: (.57, .77, 0.902)
+            background_disabled_normal: ""
             color: (0, 0.2, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: "22dp"
-            on_release: app.on_back_pressed() if app.have_back_button else None
+            on_release: app.on_back_pressed()
+            disabled: False if app.have_back_button else True
 
         Label:
             text: app.current_title
@@ -65,9 +66,11 @@ BoxLayout:
             halign: "center"
             text_size:dp(80), None
             background_color: (.57, .77, 0.902)
+            background_disabled_normal: ""
             color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
             font_size: "22dp"
-            on_release: app.on_home_pressed() if app.have_home_button else None
+            on_release: app.on_home_pressed()
+            disabled: False if app.have_back_button else True
 
     ScreenManager:
         id: sm
