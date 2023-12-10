@@ -10,5 +10,5 @@ class HeartfeltHellosFriendButton(HeartfeltHellosButton):
         super().__init__(**kwargs)
         self.text = friend.name
         self.size_hint_y = None
-        self.height = "128dp"
+        self.height = "80dp"
 
