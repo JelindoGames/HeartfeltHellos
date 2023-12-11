@@ -20,6 +20,7 @@ class MichaelScreen(Screen):
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
         selected_friend = App.get_running_app().stored_data.temp_selected_person
+        self.display_name = App.get_running_app().stored_data.temp_selected_person.name  # Property
         self.box_layout.add_widget(Label(text=f"Select one of {selected_friend.name}'s interests.", font_size="24dp", height="60dp", font_name="Raleway", text_size=(dp(300),None), size_hint_y=None, color=(0, 0, 0)))
         self.box_layout.add_widget(Label(text="_________________________", font_size="40dp", halign="center",  height="40dp", font_name="Raleway", text_size=(dp(300),None), size_hint_y=None, color=(0, 0, 0)))
         self.tags_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
