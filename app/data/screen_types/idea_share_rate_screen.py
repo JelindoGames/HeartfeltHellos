@@ -70,6 +70,14 @@ class ShareRateScreen(Screen):
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
             share_selection_scroll = ScrollView(do_scroll_y=True)
             share_selection_popup = Popup(title="Share with...", size_hint_y=0.6)
+            if len(App.get_running_app().stored_data.friends) > 0:
+                share_selection_layout.add_widget(Label(text="HeartfeltHellos Friends"))
+            for friend in App.get_running_app().stored_data.friends:
+                button = HeartfeltHellosButton(text=friend.name, size_hint_y=None, height="40dp", on_press=lambda w: self.on_recipient_selected_from_friend(w, share_selection_popup))
+                button.background_color = (0.1, 1, 0.4)
+                share_selection_layout.add_widget(button)
+            if len(App.get_running_app().stored_data.friends) > 0:
+                share_selection_layout.add_widget(Label(text="Contacts"))
             for letter, name_list in constants.contacts:
                 for name in name_list:
                     button = HeartfeltHellosButton(text=name, size_hint_y=None, height="40dp", on_press=lambda w: self.on_recipient_selected_from_contact(w, share_selection_popup))
@@ -84,11 +92,15 @@ class ShareRateScreen(Screen):
         App.get_running_app().go_screen("Message_Screen", "left")
         App.get_running_app().remove_on_back_pressed_callback()
 
-    def on_recipient_selected_from_friend(self, friend, popup):
+    def on_recipient_selected_from_friend(self, widget, popup):
         popup.dismiss()
-        App.get_running_app().stored_data.message_recipient = friend
-        App.get_running_app().go_screen("Message_Screen", "left")
-        App.get_running_app().remove_on_back_pressed_callback()
+        for friend in App.get_running_app().stored_data.friends:
+            if friend.name == widget.text:
+                App.get_running_app().stored_data.message_recipient = friend
+                App.get_running_app().go_screen("Message_Screen", "left")
+                App.get_running_app().remove_on_back_pressed_callback()
+                return
+        print("Should not get here...")
 
     def on_follow_up_pressed(self, arg):
         App.get_running_app().go_screen("Sub_Idea_Screen", "left")
