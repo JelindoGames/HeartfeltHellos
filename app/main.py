@@ -119,12 +119,15 @@ class ShowcaseApp(App):
         self.friend_tab_pressed = True
 
     def on_general_ideas_pressed(self):
-        self.go_screen("General_Idea_Screen")
+        self.go_screen("General_Idea_Screen", "right")
         self.general_tab_pressed = True
         self.friend_tab_pressed = False
 
     def on_home_pressed(self):
-        self.go_screen("Title_Screen")
+        if self.general_tab_pressed:
+            self.go_screen("Title_Screen", "left")
+        elif self.friend_tab_pressed:
+            self.go_screen("Title_Screen", "right")
         self.general_tab_pressed = False
         self.friend_tab_pressed = False
 
