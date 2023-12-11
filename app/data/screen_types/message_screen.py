@@ -19,6 +19,7 @@ class MessageScreen(Screen):
 
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
+        App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
         self.master_layout = BoxLayout(orientation='vertical')
         self.name_layout = BoxLayout(size_hint_y=0.1, orientation='horizontal')
         self.message_layout = BoxLayout(size_hint_y=None, orientation='vertical', padding='10dp', spacing='10dp')
@@ -30,7 +31,7 @@ class MessageScreen(Screen):
         self.master_layout.add_widget(self.name_layout)
         self.master_layout.add_widget(self.message_scroll)
         self.master_layout.add_widget(self.writing_layout)
-        self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.temp_selected_person.name))
+        self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.message_recipient.name))
         self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
         self.writing_layout.add_widget(self.text_input)
         self.writing_layout.add_widget(Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
@@ -50,3 +51,7 @@ class MessageScreen(Screen):
         App.get_running_app().stored_data.message_history.append((self.text_input.text, (0, 0.5, 1)))
         App.get_running_app().stored_data.message_history.append(("Hey, long time no see!", (0.4, 0.4, 0.4)))
         self.text_input.text = ""
+
+    def on_back_pressed(self):
+        App.get_running_app().stored_data.message_recipient = None
+        App.get_running_app().remove_on_back_pressed_callback()

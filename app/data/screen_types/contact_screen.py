@@ -7,6 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 from kivy.app import App
 from app.main import ShowcaseScreen
+import app.constants as constants
 
 
 class ContactList(ShowcaseScreen):
@@ -63,11 +64,8 @@ class ContactList(ShowcaseScreen):
                 self.grid_layout.add_widget(Button(text=contact, size_hint_y=None, height="50dp", background_normal='', background_color=(0.2, 0.2, 0.2), on_press=self.on_contact_pressed))
 
         # Call the helper function for each contact section
-        add_contacts_section('  A', ['Amrit', 'Adeel'])
-        add_contacts_section('  B', ['Ben from Khoury'])
-        add_contacts_section('  J', ['Jamal'])
-        add_contacts_section('  M', ['MatPat', 'Michael', 'Mom'])
-        add_contacts_section('  S', ['Scott'])
+        for contact in constants.contacts:
+            add_contacts_section(*contact)
 
     def on_pre_enter(self, *args):
         # Clear the grid and re-populate it when the screen is about to be shown

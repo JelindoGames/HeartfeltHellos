@@ -94,7 +94,8 @@ class ShowcaseApp(App):
                 return
             if self.on_back_pressed_callback is not None:
                 self.on_back_pressed_callback()
-            self.go_screen(prev_screen, 'right')            
+            self.go_screen(prev_screen, 'right')
+            self.remove_on_back_pressed_callback() # TODO should always do?
         except AttributeError:
             print("Attr Error thrown")
             return 

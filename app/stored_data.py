@@ -21,3 +21,6 @@ class StoredData:
 
     # All the texts you've made (tuple: (text, color))
     message_history = []
+
+    # Who is currently set to receive messages on the message screen
+    message_recipient = None
