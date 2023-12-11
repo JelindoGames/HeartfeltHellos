@@ -18,3 +18,6 @@ class StoredData:
     idea_history = []
 
     previous_friend_list_screen = ""
+
+    # All the texts you've made (tuple: (text, color))
+    message_history = []

@@ -21,7 +21,8 @@ class MessageScreen(Screen):
         super(Screen, self).__init__(**kwargs)
         self.master_layout = BoxLayout(orientation='vertical')
         self.name_layout = BoxLayout(size_hint_y=0.1, orientation='horizontal')
-        self.message_layout = BoxLayout(size_hint_y=0.8, orientation='vertical', padding='10dp', spacing='10dp')
+        self.message_layout = BoxLayout(size_hint_y=None, orientation='vertical', padding='10dp', spacing='10dp')
+        self.message_layout.bind(minimum_height=self.message_layout.setter("height"))
         self.writing_layout = BoxLayout(size_hint_y=0.1, orientation='horizontal')
         self.message_scroll = ScrollView(do_scroll_y=True)
         self.message_scroll.add_widget(self.message_layout)
@@ -33,11 +34,19 @@ class MessageScreen(Screen):
         self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
         self.writing_layout.add_widget(self.text_input)
         self.writing_layout.add_widget(Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
+        self.load_initial_messages()
 
     def send_message(self, message):
         print(message)
 
+    def load_initial_messages(self):
+        for message in App.get_running_app().stored_data.message_history:
+            self.message_layout.add_widget(ColoredLabel(message[1], text=message[0], size_hint_y=None, height="30dp"))
+
     def on_message_sent(self, arg):
+        # TODO change long time no see to something custom
         self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
         self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text="Hey, long time no see!", size_hint_y=None, height="30dp"))
+        App.get_running_app().stored_data.message_history.append((self.text_input.text, (0, 0.5, 1)))
+        App.get_running_app().stored_data.message_history.append(("Hey, long time no see!", (0.4, 0.4, 0.4)))
         self.text_input.text = ""
