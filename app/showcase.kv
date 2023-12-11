@@ -65,7 +65,7 @@ BoxLayout:
 
     BoxLayout:
         orientation: 'horizontal'
-        size_hint_y: "0.05dp"
+        size_hint_y: "0.05dp" if app.have_back_button or app.have_home_button or app.current_title != "" else "0.001dp"
         halign:"center"
 
         HeartfeltHellosButton:
@@ -82,7 +82,7 @@ BoxLayout:
             disabled: False if app.have_back_button else True
 
         Label:
-            text: ""
+            text: app.current_title
             font_name: "Raleway"
             halign: "center"
             text_size:dp(175), None

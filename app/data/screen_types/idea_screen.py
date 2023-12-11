@@ -51,6 +51,7 @@ class IdeaScreen(ShowcaseScreen):
         return "General_Idea_Screen"
 
     def on_create_idea_pressed(self):
+        App.get_running_app().stored_data.idea_screen_history.append(self.get_idea_screen_name())
         App.get_running_app().go_screen("Idea_Creation_First_Step", "left")
 
     def is_top_level_idea_screen(self):

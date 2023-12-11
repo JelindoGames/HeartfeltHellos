@@ -32,7 +32,7 @@ class ShowcaseApp(App):
     current_title = StringProperty()
     have_back_button = BooleanProperty(False)
     have_home_button = BooleanProperty(False)
-    general_tab_pressed = BooleanProperty(False)
+    general_tab_pressed = BooleanProperty(True)
     friend_tab_pressed = BooleanProperty(False)
     screen_names = ListProperty([])
     stored_data = StoredData()
@@ -108,7 +108,7 @@ class ShowcaseApp(App):
         self.have_back_button = self.screens[self.index].previous_screen != ""
 
     def update_home_button_status(self):
-        self.have_home_button = self.current_screen.name != self.screen_names[0]
+        self.have_home_button = self.screens[self.index].has_home_button
 
     def set_on_back_pressed_callback(self, cb):
         self.on_back_pressed_callback = cb

@@ -16,7 +16,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
     def __init__(self, **kwargs):
         super(IdeaCreationScreenFirstStep, self).__init__(**kwargs)
-        self.previous_screen = App.get_running_app().stored_data.previous_friend_list_screen
+        self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.tags = ["books", "movies", "sports"]
         self.friends = []
         # self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=5, size_hint_y=None)
