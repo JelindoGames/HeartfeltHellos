@@ -25,71 +25,21 @@ BoxLayout:
             size: self.size
 
     BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: "0.1dp"
-        halign:"center"
-
-        HeartfeltHellosButton:
-            text: "Back" if app.have_back_button else ""
-            font_name: "Raleway"
-            size_hint_x: "0.3dp"
-            halign: "center"
-            text_size:dp(80), None
-            background_color: (.57, .77, 0.902)
-            background_disabled_normal: ""
-            color: (0, 0.2, 1) if app.have_back_button else (0, 0, 0, 0)
-            font_size: "22dp"
-            on_release: app.on_back_pressed()
-            disabled: False if app.have_back_button else True
-
-        Label:
-            text: app.current_title
-            font_name: "Raleway"
-            halign: "center"
-            text_size:dp(175), None
-            font_size: "23dp"
-            color: (0,0,0)
-            canvas.before:
-                Color: 
-                    rgba: 
-                        (.57, .77, 0.902, 1)
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            
-
-
-        HeartfeltHellosButton:
-            text: "Home" if app.have_home_button else ""
-            font_name: "Raleway"
-            size_hint_x: "0.3dp"
-            halign: "center"
-            text_size:dp(80), None
-            background_color: (.57, .77, 0.902)
-            background_disabled_normal: ""
-            color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
-            font_size: "22dp"
-            on_release: app.on_home_pressed()
-            disabled: False if app.have_back_button else True
-
-    ScreenManager:
-        id: sm
-
-    BoxLayout:
         size_hint_y: 0.1
+        #padding: "10dp"
         canvas.before:
             Color:
-                rgba: (0, 0, 0, 1)  # Color of the separator line, black in this case
+                rgba: (1, 1, 1, 0)  # Color of the separator line, black in this case
             Rectangle:
                 pos: self.pos
                 size: self.size
 
         HeartfeltHellosButton:
-            text: 'General Ideas'
+            text: 'For All'
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.4, .5, 0.6) if app.general_tab_pressed else (.57, .77, 0.902)
+            background_color: (.4, .4, .4) if app.general_tab_pressed else (.6, .6, 0.6)
             font_size: "23dp"
             on_release: app.on_general_ideas_pressed()
 
@@ -105,10 +55,60 @@ BoxLayout:
                     width: 1.01
 
         HeartfeltHellosButton:
-            text: 'Friend Ideas'
+            text: 'For Friends'
             font_name: "Raleway"
             halign: "center"
             text_size:dp(150), None
-            background_color: (.4, .5, 0.6) if app.friend_tab_pressed else (.57, .77, 0.902)
+            background_color: (.4, .4, .4) if app.friend_tab_pressed else (.6, .6, 0.6)
             font_size: "23dp"
             on_release: app.on_friend_ideas_pressed()
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: "0.05dp"
+        halign:"center"
+
+        HeartfeltHellosButton:
+            text: "< Back" if app.have_back_button else ""
+            font_name: "Raleway"
+            size_hint_x: "0.3dp"
+            halign: "center"
+            text_size:dp(80), None
+            background_color: (.57, .77, 0.902, 0)
+            background_disabled_normal: ""
+            color: (0, 0.2, 1) if app.have_back_button else (0, 0, 0, 0)
+            font_size: "22dp"
+            on_release: app.on_back_pressed()
+            disabled: False if app.have_back_button else True
+
+        Label:
+            text: ""
+            font_name: "Raleway"
+            halign: "center"
+            text_size:dp(175), None
+            font_size: "23dp"
+            color: (0,0,0)
+            canvas.before:
+                Color:
+                    rgba:
+                        (.57, .77, 0.902, 0)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        HeartfeltHellosButton:
+            text: "Home" if app.have_home_button else ""
+            font_name: "Raleway"
+            size_hint_x: "0.3dp"
+            halign: "center"
+            text_size:dp(80), None
+            background_color: (.57, .77, 0.902, 0)
+            background_disabled_normal: ""
+            color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
+            font_size: "22dp"
+            on_release: app.on_home_pressed()
+            disabled: False if app.have_back_button else True
+
+
+    ScreenManager:
+        id: sm

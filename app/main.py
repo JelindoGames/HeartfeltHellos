@@ -45,9 +45,9 @@ class ShowcaseApp(App):
 
     def build(self):
         self.add_custom_fonts()
-        self.title = 'Heartfelt Hellos'
+        self.title = 'HeartfeltHellos'
         self.screens = {}
-        self.available_screens = ['Title_Screen', 'General_Idea_Screen', 'Sub_Idea_Screen', 'User_Idea_Screen',
+        self.available_screens = ['General_Idea_Screen', 'Sub_Idea_Screen', 'User_Idea_Screen',
                                   'Create_Person_Options', 'Friend_List', 'Friend_Creation_First_Step',
                                   'Friend_Creation_Second_Step', 'Idea_Share_Rate_Screen', 'Contact_List',
                                   'Message_Screen', 'Idea_Creation_First_Step', 'Idea_Creation_Second_Step', 
@@ -74,7 +74,10 @@ class ShowcaseApp(App):
 
     def switch_to(self, screen, direction):
         self.current_screen = screen
-        self.root.ids.sm.switch_to(screen, direction=direction)
+        if direction != "instant":
+            self.root.ids.sm.switch_to(screen, direction=direction, duration=0.3)
+        else:
+            self.root.ids.sm.switch_to(screen, duration=0)
         self.update_home_button_status()
         self.update_back_button_status()
         try:
@@ -114,12 +117,12 @@ class ShowcaseApp(App):
         self.on_back_pressed_callback = None
 
     def on_friend_ideas_pressed(self):
-        self.go_screen("Friend_List")
+        self.go_screen("Friend_List", "instant")
         self.general_tab_pressed = False
         self.friend_tab_pressed = True
 
     def on_general_ideas_pressed(self):
-        self.go_screen("General_Idea_Screen", "right")
+        self.go_screen("General_Idea_Screen", "instant")
         self.general_tab_pressed = True
         self.friend_tab_pressed = False
 
