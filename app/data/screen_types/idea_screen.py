@@ -14,6 +14,7 @@ class IdeaScreen(ShowcaseScreen):
 
     def __init__(self, **kwargs):
         super(IdeaScreen, self).__init__(**kwargs)
+        print(f"idea screen history: {App.get_running_app().stored_data.idea_screen_history}")
         self.grid_layout = GridLayout(spacing='20dp', padding='20dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
@@ -28,7 +29,6 @@ class IdeaScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
         post_idea_button = HeartfeltHellosButton(text="+ Post Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed())
         self.grid_layout.add_widget(post_idea_button)
-        App.get_running_app().stored_data.previous_idea_screen = "General_Idea_Screen"
         if (len(self.get_ideas()) > 0):
             for idea in self.get_ideas():
                 new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name(), on_press=lambda x: print("Pressed Idea Button"))
@@ -52,6 +52,7 @@ class IdeaScreen(ShowcaseScreen):
         return "General_Idea_Screen"
 
     def on_create_idea_pressed(self):
+        App.get_running_app().remove_on_back_pressed_callback()
         App.get_running_app().stored_data.idea_screen_history.append(self.get_idea_screen_name())
         App.get_running_app().go_screen("Idea_Creation_First_Step", "left")
 

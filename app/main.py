@@ -80,7 +80,6 @@ class ShowcaseApp(App):
             self.root.ids.sm.switch_to(screen, duration=0)
         self.update_home_button_status()
         self.update_back_button_status()
-        self.remove_on_back_pressed_callback()
         try:
             self.current_title = screen.display_name
         except AttributeError:
@@ -98,6 +97,7 @@ class ShowcaseApp(App):
                 return
             if self.on_back_pressed_callback is not None:
                 self.on_back_pressed_callback()
+            self.remove_on_back_pressed_callback()
             self.go_screen(prev_screen, 'right')
         except AttributeError:
             print("Attr Error thrown")
@@ -120,17 +120,26 @@ class ShowcaseApp(App):
         self.go_screen("Friend_List", "instant")
         self.general_tab_pressed = False
         self.friend_tab_pressed = True
+        if self.on_back_pressed_callback is not None:
+            self.on_back_pressed_callback()
+        self.remove_on_back_pressed_callback()
 
     def on_general_ideas_pressed(self):
         self.go_screen("General_Idea_Screen", "instant")
         self.general_tab_pressed = True
         self.friend_tab_pressed = False
+        if self.on_back_pressed_callback is not None:
+            self.on_back_pressed_callback()
+        self.remove_on_back_pressed_callback()
 
     def on_home_pressed(self):
         if self.general_tab_pressed:
             self.go_screen("General_Idea_Screen", "right")
         elif self.friend_tab_pressed:
             self.go_screen("Friend_List", "right")
+        if self.on_back_pressed_callback is not None:
+            self.on_back_pressed_callback()
+        self.remove_on_back_pressed_callback()
 
 
 if __name__ == '__main__':

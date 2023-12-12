@@ -17,6 +17,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
     def __init__(self, **kwargs):
         super(IdeaCreationScreenFirstStep, self).__init__(**kwargs)
+        App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
         self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.tags = ["books", "movies", "sports"]
         self.friends = []
@@ -62,11 +63,11 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
     def on_next_pressed(self, arg):
         # storing idea prompt temporarily
+        App.get_running_app().remove_on_back_pressed_callback()
         App.get_running_app().stored_data.temp_prompt = self.newest_idea
-        if (App.get_running_app().stored_data.previous_idea_screen != "Sub_Idea_Screen"):
-            App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
-        else:
-            App.get_running_app().stored_data.temp_selected_idea.followup.append(Idea(App.get_running_app().stored_data.temp_prompt, None, App.get_running_app().stored_data.temp_selected_idea.tags, []))
-            App.get_running_app().go_screen(App.get_running_app().stored_data.previous_idea_screen, "left")
+        App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
+
+    def on_back_pressed(self):
+        del App.get_running_app().stored_data.idea_screen_history[-1]
 
 

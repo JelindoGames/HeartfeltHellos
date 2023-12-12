@@ -30,8 +30,6 @@ class StoredData:
     # For Idea creation form
     temp_prompt = ""
 
-    previous_idea_screen = ""
-
     # For friend creation form
     temp_friend_name = ""
 

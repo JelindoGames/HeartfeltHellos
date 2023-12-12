@@ -68,7 +68,6 @@ class ShareRateScreen(Screen):
         if App.get_running_app().stored_data.temp_selected_person is not None:
             App.get_running_app().stored_data.message_recipient = App.get_running_app().stored_data.temp_selected_person
             App.get_running_app().go_screen("Message_Screen", "left")
-            App.get_running_app().remove_on_back_pressed_callback()
         else:
             share_selection_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="10dp", size_hint_y=None)
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
@@ -94,7 +93,6 @@ class ShareRateScreen(Screen):
         popup.dismiss()
         App.get_running_app().stored_data.message_recipient = Friend(widget.text, [])
         App.get_running_app().go_screen("Message_Screen", "left")
-        App.get_running_app().remove_on_back_pressed_callback()
 
     def on_recipient_selected_from_friend(self, widget, popup):
         popup.dismiss()
@@ -102,13 +100,12 @@ class ShareRateScreen(Screen):
             if friend.name == widget.text:
                 App.get_running_app().stored_data.message_recipient = friend
                 App.get_running_app().go_screen("Message_Screen", "left")
-                App.get_running_app().remove_on_back_pressed_callback()
                 return
         print("Should not get here...")
 
     def on_follow_up_pressed(self, arg):
-        App.get_running_app().go_screen("Sub_Idea_Screen", "left")
         App.get_running_app().remove_on_back_pressed_callback()
+        App.get_running_app().go_screen("Sub_Idea_Screen", "left")
 
     def on_rating_pressed(self, widget):
         filling = True
@@ -152,6 +149,7 @@ class ShareRateScreen(Screen):
         self.idea_button.update_rating()
 
     def on_back_pressed(self):
+        print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")
         del App.get_running_app().stored_data.idea_screen_history[-1]
         del App.get_running_app().stored_data.idea_history[-1]
-        App.get_running_app().remove_on_back_pressed_callback()
+        print(f"final: {App.get_running_app().stored_data.idea_screen_history}")
