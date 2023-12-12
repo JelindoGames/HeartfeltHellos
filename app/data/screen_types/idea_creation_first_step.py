@@ -70,7 +70,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
         # if in followups, use prev followup tags
         if App.get_running_app().stored_data.idea_screen_history[-1] == "Sub_Idea_Screen":
             App.get_running_app().stored_data.temp_selected_idea.followup.append(
-                Idea(App.get_running_app().stored_data.temp_prompt, None,
+                Idea(App.get_running_app().stored_data.temp_prompt, [],
                      App.get_running_app().stored_data.temp_selected_idea.tags, []))
             App.get_running_app().stored_data.idea_screen_history = App.get_running_app().stored_data.idea_screen_history[:-1]
             App.get_running_app().go_screen("Sub_Idea_Screen", "left")

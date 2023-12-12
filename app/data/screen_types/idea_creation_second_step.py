@@ -90,8 +90,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def create_post(self, _):
         # create and add idea to stored list of ideas
-        
-        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, None, self.tags_selected))
+        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, [], self.tags_selected))
         print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")
         next_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         App.get_running_app().stored_data.idea_screen_history = App.get_running_app().stored_data.idea_screen_history[:-1]

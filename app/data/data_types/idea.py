@@ -17,6 +17,8 @@ class Idea:
             self.ratings.append(rating)
 
     def get_rating(self):
+        if len(self.ratings) == 0:
+            return 0
         return sum(self.ratings) / len(self.ratings)
 
     def hasTag(self, tag: str):
