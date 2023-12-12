@@ -38,11 +38,21 @@ class IdeaScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
 
     def get_ideas(self) -> list:
+        ideas = App.get_running_app().stored_data.ideas
         # Default: Give general ideas (can be overridden in subclasses)
         general_ideas = []
-        for idea in App.get_running_app().stored_data.ideas:
+        for idea in ideas:
             if (idea.hasTag("general")) :
+                # adding to sort
+                if (len(general_ideas) != 0):
+                    # compare rating and place in the right spot
+                    for gen_idea in general_ideas:
+                        if (gen_idea.get_rating() < idea.get_rating()):
+                            general_ideas.insert(general_ideas.index(gen_idea), idea)
+                            break
+                                
                 general_ideas.append(idea)
+
         return general_ideas
 
     def get_header(self):
