@@ -1,20 +1,23 @@
 class Idea:
 
-    def __init__(self, prompt, rating, tags, followup=[]):
+    def __init__(self, prompt, ratings: list, tags, followup=[]):
         self.prompt = prompt
-        self.rating = rating
+        self.ratings = ratings
         self.tags = tags
         self.my_rating = None
         self.followup = followup
 
     def set_my_rating(self, rating: int):
-        self.my_rating = rating
+        if self.my_rating is None:
+            self.my_rating = rating
+            self.ratings.append(rating)
+        else:
+            self.ratings.remove(self.my_rating)
+            self.my_rating = rating
+            self.ratings.append(rating)
 
-    def update_rating(self, new_rating: int):
-        if(self.rating == None):
-            self.rating = new_rating
-            return
-        self.rating = (self.rating + new_rating) / 2
+    def get_rating(self):
+        return sum(self.ratings) / len(self.ratings)
 
     def hasTag(self, tag: str):
         for idea_tag in self.tags:

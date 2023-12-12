@@ -144,9 +144,8 @@ class ShareRateScreen(Screen):
         self.rating_popup.dismiss()
         self.idea.set_my_rating(self.current_rating)
         self.refresh_rating_display()
-        self.idea.update_rating(self.current_rating)
-        print("current idea: " + self.idea.prompt + " with rating of " + str(self.idea.rating))
         self.idea_button.update_rating()
+        print("current idea: " + self.idea.prompt + " with rating of " + str(self.idea.get_rating()))
 
     def on_back_pressed(self):
         print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")

@@ -26,7 +26,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.button.text_size = dp(300), None
         #self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
         self.star_image = Image(source="data/icons/star.png", size_hint=(1, None), height="50dp")
-        self.label = Label(text=str(idea.rating), font_name="Raleway", font_size="25dp", color=(0, 0, 0))
+        self.label = Label(text=str("{:.1f}".format(self.idea.get_rating())), font_name="Raleway", font_size="25dp", color=(0, 0, 0))
         self.add_widget(self.button)
         #self.add_widget(Label())
         self.add_widget(self.star_image)
@@ -53,8 +53,6 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
         self.do_something_on_touch_down = False
 
     def update_rating(self):
-        self.label.text = str(self.idea.rating)
-        if (len(self.label.text) == 1):
-            self.label.text = str("{:.1f}".format(self.idea.rating))
+        self.label.text = str("{:.1f}".format(self.idea.get_rating()))
 
 
