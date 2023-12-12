@@ -42,6 +42,7 @@ class IdeaScreen(ShowcaseScreen):
         # Default: Give general ideas (can be overridden in subclasses)
         general_ideas = []
         for idea in ideas:
+            isAdded = False
             if (idea.hasTag("general")) :
                 # adding to sort
                 if (len(general_ideas) != 0):
@@ -49,9 +50,12 @@ class IdeaScreen(ShowcaseScreen):
                     for gen_idea in general_ideas:
                         if (gen_idea.get_rating() < idea.get_rating()):
                             general_ideas.insert(general_ideas.index(gen_idea), idea)
+                            isAdded = True
                             break
-                                
-                general_ideas.append(idea)
+
+                if (not isAdded):              
+                    general_ideas.append(idea)
+                    isAdded = True
 
         return general_ideas
 
