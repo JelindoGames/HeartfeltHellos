@@ -33,19 +33,26 @@ class MessageScreen(Screen):
         self.master_layout.add_widget(self.writing_layout)
         self.name_layout.add_widget(ColoredLabel((0.5, 0.5, 0.5, 1), text=App.get_running_app().stored_data.message_recipient.name))
         self.text_input = TextInput(text=App.get_running_app().stored_data.temp_selected_idea.prompt, size_hint_x=0.8)
+        self.text_input.bind(text=self.on_text_change)
         self.writing_layout.add_widget(self.text_input)
-        self.writing_layout.add_widget(Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent))
+        self.send_button = Button(text="Send", size_hint_x=0.2, on_press=self.on_message_sent)
+        self.writing_layout.add_widget(self.send_button)
         self.load_initial_messages()
-
-    def send_message(self, message):
-        print(message)
 
     def load_initial_messages(self):
         for message in App.get_running_app().stored_data.message_history:
             self.message_layout.add_widget(ColoredLabel(message[1], text=message[0], size_hint_y=None, height="30dp"))
 
+    def on_text_change(self, widget, text):
+        if text == "":
+            self.send_button.disabled = True
+        else:
+            self.send_button.disabled = False
+
     def on_message_sent(self, arg):
         # TODO change long time no see to something custom
+        if self.text_input.text == "":
+            return
         self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
         self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text="Hey, long time no see!", size_hint_y=None, height="30dp"))
         App.get_running_app().stored_data.message_history.append((self.text_input.text, (0, 0.5, 1)))

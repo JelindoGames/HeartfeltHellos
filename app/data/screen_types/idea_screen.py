@@ -26,7 +26,7 @@ class IdeaScreen(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
-        post_idea_button = HeartfeltHellosButton(text="Post Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed())
+        post_idea_button = HeartfeltHellosButton(text="+ Post Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed())
         self.grid_layout.add_widget(post_idea_button)
         for idea in self.get_ideas():
             new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name(), on_press=lambda x: print("Pressed Idea Button"))
