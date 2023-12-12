@@ -7,7 +7,6 @@ class UserIdeaScreen(IdeaScreen):
 
     def get_ideas(self):
         selected_tag = App.get_running_app().stored_data.temp_selected_tag
-        # TODO something much more advanced
         return self.get_ideas_with_tag(selected_tag)
     
     def get_ideas_with_tag(self, tag: str):
