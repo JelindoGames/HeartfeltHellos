@@ -54,6 +54,8 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
         if self.next_button is not None:
             return
         self.next_button = HeartfeltHellosStepProgressionButton(text="next", on_press=self.on_next_pressed)
+        if App.get_running_app().stored_data.idea_screen_history[-1] == "Sub_Idea_Screen":
+            self.next_button.text = "create\npost"
         if self.progress_grid is None:
             self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=3, size_hint_y=None)
             self.progress_grid.add_widget(Label())
@@ -61,11 +63,20 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
             self.grid_layout.add_widget(self.progress_grid)
         self.progress_grid.add_widget(self.next_button)
 
-    def on_next_pressed(self, arg):
+    def on_next_pressed(self, arg):        
         # storing idea prompt temporarily
         App.get_running_app().remove_on_back_pressed_callback()
         App.get_running_app().stored_data.temp_prompt = self.newest_idea
-        App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
+        # if in followups, use prev followup tags
+        if App.get_running_app().stored_data.idea_screen_history[-1] == "Sub_Idea_Screen":
+            App.get_running_app().stored_data.temp_selected_idea.followup.append(
+                Idea(App.get_running_app().stored_data.temp_prompt, None,
+                     App.get_running_app().stored_data.temp_selected_idea.tags, []))
+            App.get_running_app().stored_data.idea_screen_history = App.get_running_app().stored_data.idea_screen_history[:-1]
+            App.get_running_app().go_screen("Sub_Idea_Screen", "left")
+        else:  
+            # else, go to tag selection
+            App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
 
     def on_back_pressed(self):
         del App.get_running_app().stored_data.idea_screen_history[-1]

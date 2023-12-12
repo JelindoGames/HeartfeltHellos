@@ -54,4 +54,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
 
     def update_rating(self):
         self.label.text = str(self.idea.rating)
+        if (len(self.label.text) == 1):
+            self.label.text = str("{:.1f}".format(self.idea.rating))
+
 

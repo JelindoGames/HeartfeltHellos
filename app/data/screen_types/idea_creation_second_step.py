@@ -16,7 +16,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
     progress_layout = None
-    tags = ["books", "movies", "sports"]
+    tags = App.get_running_app().stored_data.tags
     tags_selected = []
 
     def __init__(self, **kwargs):
@@ -42,12 +42,14 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.tags_selected = []
+        self.tags.append("general")
+
         self.refresh_tags()
         self.refresh_progress_layout()
 
     def refresh_tags(self, tag_filter=""):
         self.grid_layout.clear_widgets()
-        for tag in App.get_running_app().stored_data.tags:
+        for tag in self.tags:
             if tag_filter in tag:
                 bg = (0, 0.5, 1) if tag in self.tags_selected else (.678, .847, 0.902)
                 tag_button = HeartfeltHellosButton(text=tag, height="50dp", on_press=lambda x: self.pressTag(x.text),
@@ -73,10 +75,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def create_post(self, _):
         # create and add idea to stored list of ideas
-        if App.get_running_app().stored_data.idea_screen_history[-1] == "Sub_Idea_Screen":
-            App.get_running_app().stored_data.temp_selected_idea.followup.append(
-                Idea(App.get_running_app().stored_data.temp_prompt, None,
-                    App.get_running_app().stored_data.temp_selected_idea.tags, []))
+        
         App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, None, self.tags_selected))
         print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")
         next_screen = App.get_running_app().stored_data.idea_screen_history[-1]
