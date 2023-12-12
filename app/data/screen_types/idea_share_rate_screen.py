@@ -1,6 +1,7 @@
 import copy
 
 import app.constants as constants
+from app.data.data_types.idea import Idea
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -31,9 +32,9 @@ class ShareRateScreen(Screen):
         self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp", spacing="10dp")
-        idea_button = HeartfeltHellosNewIdeaButton(self.idea, None)
-        idea_button.do_nothing_on_touch_down()
-        self.box_layout.add_widget(idea_button)
+        self.idea_button = HeartfeltHellosNewIdeaButton(self.idea, None)
+        self.idea_button.do_nothing_on_touch_down()
+        self.box_layout.add_widget(self.idea_button)
         self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share Idea", on_press=self.on_share_pressed))
         # Rating Button / Popup
         self.rating_popup = Popup(title="Rate", size_hint_y=0.25)
@@ -135,6 +136,7 @@ class ShareRateScreen(Screen):
         else:
             self.rate_idea_button.text = f"Your Rating: {self.idea.my_rating}"
 
+
     def open_rating_popup(self):
         self.rating_popup.open()
 
@@ -142,6 +144,9 @@ class ShareRateScreen(Screen):
         self.rating_popup.dismiss()
         self.idea.set_my_rating(self.current_rating)
         self.refresh_rating_display()
+        self.idea.update_rating(self.current_rating)
+        print("current idea: " + self.idea.prompt + " with rating of " + str(self.idea.rating))
+        self.idea_button.update_rating()
 
     def on_back_pressed(self):
         del App.get_running_app().stored_data.idea_screen_history[-1]

@@ -7,6 +7,8 @@ from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
 from app.data.data_types.friend import Friend
+from app.data.data_types.idea import Idea
+
 
 
 class IdeaCreationScreenSecondStep(ShowcaseScreen):
@@ -70,8 +72,11 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.add_widget(create_person_button)
 
     def create_post(self, _):
+        # create and add idea to stored list of ideas
+        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, None, self.tags))
+
         # TODO change
-        App.get_running_app().go_screen("Title_Screen", "left")
+        App.get_running_app().go_screen("User_Idea_Screen", "left")
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()

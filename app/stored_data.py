@@ -18,6 +18,9 @@ class StoredData:
     # All the friends you currently have on the app
     friends = []
 
+    # For Idea creation form
+    temp_prompt = ""
+
     # For friend creation form
     temp_friend_name = ""
 

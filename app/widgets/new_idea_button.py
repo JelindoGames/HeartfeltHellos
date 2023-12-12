@@ -51,3 +51,7 @@ class HeartfeltHellosNewIdeaButton(BoxLayout):
 
     def do_nothing_on_touch_down(self):
         self.do_something_on_touch_down = False
+
+    def update_rating(self):
+        self.label.text = str(self.idea.rating)
+

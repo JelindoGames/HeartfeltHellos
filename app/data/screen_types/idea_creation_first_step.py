@@ -36,11 +36,11 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
         # text box
         textinput = TextInput(hint_text="Are you still into sports?", font_name="Raleway", font_size="24dp", size_hint_y=None, multiline=True)
-        textinput.bind(text=self.on_name_entered)
+        textinput.bind(text=self.on_idea_entered)
         self.grid_layout.add_widget(textinput)
-        # self.name = textinput.text
+        
 
-    def on_name_entered(self, attribute, value):
+    def on_idea_entered(self, attribute, value):
         self.newest_idea = value
         if value != "":
             self.consider_add_next_button()
@@ -60,5 +60,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
         self.progress_grid.add_widget(self.next_button)
 
     def on_next_pressed(self, arg):
+        # storing idea prompt temporarily
+        App.get_running_app().stored_data.temp_prompt = self.newest_idea
         App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
 
