@@ -37,13 +37,27 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
-        self.tags = App.get_running_app().stored_data.tags
         self.tags_selected = []
         self.refresh_tags()
         self.refresh_progress_layout()
 
     def refresh_tags(self, tag_filter=""):
         self.grid_layout.clear_widgets()
+        self.tags = []
+        for tag in App.get_running_app().stored_data.tags: 
+            isAdded = False
+            if (len(self.tags) != 0):
+                # compare tag lexiconically and place in the right spot
+                    for ordered_tag in self.tags:
+                        if (ordered_tag > tag):
+                            self.tags.insert(self.tags.index(ordered_tag), tag)
+                            isAdded = True
+                            break
+            
+            if (not isAdded):              
+                self.tags.append(tag)
+                isAdded = True
+
         for tag in self.tags:
             if tag_filter in tag:
                 bg = (0, 0.5, 1) if tag in self.tags_selected else (.678, .847, 0.902)
