@@ -7,7 +7,7 @@ class HeartfeltHellosAddFriendButton(HeartfeltHellosButton):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.text = "Add Friend"
+        self.text = "+ New Friend"
         self.bold = True
         self.size_hint_y = None
         self.height = "80dp"

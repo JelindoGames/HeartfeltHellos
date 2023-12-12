@@ -64,7 +64,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.clear_widgets()
         if len(self.tags_selected) == 0:
             return
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Create Person", on_press=self.createFriend)
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Create Friend", on_press=self.createFriend)
         self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(create_person_button)
 
