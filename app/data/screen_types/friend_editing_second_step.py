@@ -1,3 +1,4 @@
+import copy
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
@@ -38,7 +39,7 @@ class FriendEditingScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
-        self.tags_selected = []
+        self.tags_selected = copy.deepcopy(App.get_running_app().stored_data.temp_selected_person.tags)
         self.refresh_tags()
         self.refresh_progress_layout()
 
@@ -63,7 +64,7 @@ class FriendEditingScreenSecondStep(ShowcaseScreen):
         self.progress_layout.clear_widgets()
         if len(self.tags_selected) == 0:
             return
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Create Friend", on_press=self.createFriend)
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Finish", on_press=self.createFriend)
         self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(create_person_button)
 

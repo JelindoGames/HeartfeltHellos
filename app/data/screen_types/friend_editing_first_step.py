@@ -23,6 +23,7 @@ class FriendEditingScreenFirstStep(ShowcaseScreen):
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+        self.newest_name = App.get_running_app().stored_data.temp_selected_person.name
 
     def on_pre_enter(self, *args):
         self.stepOne()
