@@ -40,7 +40,11 @@ class MessageScreen(Screen):
         self.load_initial_messages()
 
     def load_initial_messages(self):
-        for message in App.get_running_app().stored_data.message_history:
+        name = App.get_running_app().stored_data.message_recipient.name
+        history_for_name = App.get_running_app().stored_data.message_history.get(name, None)
+        if history_for_name is None:
+            return
+        for message in history_for_name:
             self.message_layout.add_widget(ColoredLabel(message[1], text=message[0], size_hint_y=None, height="30dp"))
 
     def on_text_change(self, widget, text):
@@ -55,8 +59,11 @@ class MessageScreen(Screen):
             return
         self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
         self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text="Hey, long time no see!", size_hint_y=None, height="30dp"))
-        App.get_running_app().stored_data.message_history.append((self.text_input.text, (0, 0.5, 1)))
-        App.get_running_app().stored_data.message_history.append(("Hey, long time no see!", (0.4, 0.4, 0.4)))
+        name = App.get_running_app().stored_data.message_recipient.name
+        history_for_name = App.get_running_app().stored_data.message_history.get(name, [])
+        history_for_name.append((self.text_input.text, (0, 0.5, 1)))
+        history_for_name.append(("Hey, long time no see!", (0.4, 0.4, 0.4)))
+        App.get_running_app().stored_data.message_history[name] = history_for_name
         self.text_input.text = ""
 
     def on_back_pressed(self):

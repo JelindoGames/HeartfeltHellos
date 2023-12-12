@@ -8,7 +8,7 @@ class StoredData:
     # All the ideas that are currently on the app
     # follow ups are created and tied to the ideas
     # User-created ideas are add to the list
-    ideas = [Idea("Do you still play soccer?", 4.2, ["sports"], 
+    ideas = [Idea("Do you still play soccer?", 4.2, ["sports"],
                   [Idea("Why don't you play anymore?", 4.0, ["sports"], []),
                    Idea("How'd your latest game go?", 3.6, ["sports"], [])]), 
              Idea("Did you see the game last Sunday?", 3.9, ["sports"], []),
@@ -49,8 +49,8 @@ class StoredData:
 
     previous_friend_list_screen = ""
 
-    # All the texts you've made (tuple: (text, color))
-    message_history = []
+    # All the texts you've made - key = recipient name, value = list of tuples (text, color)
+    message_history = {}
 
     # Who is currently set to receive messages on the message screen
     message_recipient = None
