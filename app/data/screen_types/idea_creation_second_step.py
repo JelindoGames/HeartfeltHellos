@@ -16,7 +16,6 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
     progress_layout = None
-    tags = App.get_running_app().stored_data.tags
     tags_selected = []
 
     def __init__(self, **kwargs):
@@ -26,23 +25,33 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(
             Label(text="What tags are related to the idea?", font_name="Raleway", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
+        # search tag text box
         textinput = TextInput(hint_text="Search Tag here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None)
         textinput.bind(text=lambda a, v: self.refresh_tags(v))
         self.master_layout.add_widget(textinput)
+        # adding tag button
+        add_tag_button = HeartfeltHellosButton(text="add tag", height="50dp", on_press=self.add_tag, size_hint_y=None)
+        self.master_layout.add_widget(add_tag_button)
         self.add_widget(self.master_layout)
 
+        # tags
         self.grid_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.master_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
 
+        # next button
         self.progress_layout = GridLayout(rows=1, size_hint_y=0.2)
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
         self.tags_selected = []
+
+        self.tags = []
         self.tags.append("general")
+        for tag in App.get_running_app().stored_data.tags: 
+            self.tags.append(tag)
 
         self.refresh_tags()
         self.refresh_progress_layout()
@@ -69,9 +78,15 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.clear_widgets()
         if len(self.tags_selected) == 0:
             return
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Post Idea", on_press=self.create_post)
+        create_idea_button = HeartfeltHellosStepProgressionButton(text="Post Idea", on_press=self.create_post)
         self.progress_layout.add_widget(Label())  # Filler
-        self.progress_layout.add_widget(create_person_button)
+        self.progress_layout.add_widget(create_idea_button)
+
+    def add_tag(self, _): 
+        self.grid_layout.clear_widgets()
+        App.get_running_app().stored_data.idea_screen_history.append("Idea_Creation_Second_Step")
+        App.get_running_app().go_screen("Tag_Creation_Screen", "left")
+
 
     def create_post(self, _):
         # create and add idea to stored list of ideas

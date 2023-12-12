@@ -14,7 +14,6 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
     progress_layout = None
-    tags = App.get_running_app().stored_data.tags
     tags_selected = []
 
     def __init__(self, **kwargs):
@@ -38,6 +37,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
+        self.tags = App.get_running_app().stored_data.tags
         self.tags_selected = []
         self.refresh_tags()
         self.refresh_progress_layout()
