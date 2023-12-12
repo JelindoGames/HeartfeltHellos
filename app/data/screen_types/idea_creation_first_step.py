@@ -3,6 +3,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.app import App
+from app.data.data_types.idea import Idea
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
 
@@ -62,5 +63,10 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
     def on_next_pressed(self, arg):
         # storing idea prompt temporarily
         App.get_running_app().stored_data.temp_prompt = self.newest_idea
-        App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
+        if (App.get_running_app().stored_data.previous_idea_screen != "Sub_Idea_Screen"):
+            App.get_running_app().go_screen("Idea_Creation_Second_Step", "left")
+        else:
+            App.get_running_app().stored_data.temp_selected_idea.followup.append(Idea(App.get_running_app().stored_data.temp_prompt, None, App.get_running_app().stored_data.temp_selected_idea.tags, []))
+            App.get_running_app().go_screen(App.get_running_app().stored_data.previous_idea_screen, "left")
+
 

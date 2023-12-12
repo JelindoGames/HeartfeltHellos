@@ -1,10 +1,11 @@
 class Idea:
 
-    def __init__(self, prompt, rating, tags):
+    def __init__(self, prompt, rating, tags,followup):
         self.prompt = prompt
         self.rating = rating
         self.tags = tags
         self.my_rating = None
+        self.followup = followup
 
     def set_my_rating(self, rating: int):
         self.my_rating = rating

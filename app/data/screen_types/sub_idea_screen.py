@@ -1,12 +1,14 @@
 from app.data.screen_types.idea_screen import IdeaScreen
+from kivy.app import App
+
 from app.data.data_types.idea import Idea
 
 
 class SubIdeaScreen(IdeaScreen):
 
     def get_ideas(self):
-        return [Idea("Why don't you play anymore?", 4.0, ["Tag 1", "Tag 2"]),
-                Idea("How'd your latest game go?", 3.6, ["Tag 3", "Tag 4"])]
+        App.get_running_app().stored_data.previous_idea_screen = "Sub_Idea_Screen"
+        return App.get_running_app().stored_data.temp_selected_idea.followup
 
     def get_header(self):
         return "Sub-Ideas"
