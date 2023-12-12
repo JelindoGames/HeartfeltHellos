@@ -3,6 +3,9 @@ Other than the kivy documentation and other provided resources, these were used 
 Dynamically expanding scroll view
 https://karobben.github.io/2021/02/10/Python/kivy_scrollview/
 
+"Button" with multiple widgets inside
+https://stackoverflow.com/questions/52567136/kivy-make-a-grid-layout-inside-a-label-or-button
+
 Adding to pythonpath
 https://stackoverflow.com/questions/1893598/pythonpath-vs-sys-path
 
@@ -14,6 +17,9 @@ https://stackoverflow.com/questions/48580686/python-how-to-remove-widget-in-kivy
 
 Disable multitouch
 https://stackoverflow.com/questions/68999371/kivy-remove-the-red-dot-creation-on-right-clic
+
+Disable default background color for button
+https://stackoverflow.com/questions/20181250/changing-the-background-color-of-a-button-in-kivy
 
 Background for disabled buttons
 https://stackoverflow.com/questions/31032880/how-to-change-color-of-disabled-widget-in-kivy
