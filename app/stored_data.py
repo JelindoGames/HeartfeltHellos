@@ -3,7 +3,7 @@ from data.data_types.idea import Idea
 class StoredData:
     # All the tags that are currently on the app
     # User-created tags are add to the list
-    tags = ["sports", "movies", "books"]
+    tags = ["sports", "movies", "books", "general"]
     
     # All the ideas that are currently on the app
     # User-created ideas are add to the list
@@ -13,7 +13,13 @@ class StoredData:
              Idea("Have you seen the FNAF movie?", 4.1, ["movies"]),
              Idea("What movies are you interested in seeing soon?", 3.8, ["movies"]),
              Idea("Read any good books lately?", 3.7, ["books"]),
-             Idea("What's the worst book you've ever read?", 3.2, ["books"])]
+             Idea("What's the worst book you've ever read?", 3.2, ["books"]),
+             Idea("Do you have a cat?", 4.5, ["general"]),
+             Idea("Do you like video games?", 4.1, ["general"]),
+             Idea("Seen any good movies?", 3.8, ["general"]),
+             Idea("Learned any interesting facts lately?", 3.6, ["general"]),
+             Idea("What's changed since I last heard from you?", 3.4, ["general"]),
+             Idea("If you could be any animal, what would you be?", 2.8, ["general"])]
 
     # All the friends you currently have on the app
     friends = []

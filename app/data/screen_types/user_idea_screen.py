@@ -14,7 +14,6 @@ class UserIdeaScreen(IdeaScreen):
         for idea in App.get_running_app().stored_data.ideas:
             print("iterating... current idea: " + idea.prompt)
             if (idea.hasTag(tag)) :
-                print(idea.prompt + " added")
                 ideas_with_tag.append(idea)
         return ideas_with_tag
 
