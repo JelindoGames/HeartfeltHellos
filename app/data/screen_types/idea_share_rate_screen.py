@@ -27,6 +27,9 @@ class ShareRateScreen(Screen):
 
     def __init__(self, **kwargs):
         super(ShareRateScreen, self).__init__(**kwargs)
+        # Properties
+        self.has_home_button = not App.get_running_app().stored_data.idea_screen_history[-1] == "General_Idea_Screen"
+        # Setup
         App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
         self.idea = App.get_running_app().stored_data.idea_history[-1]
         self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]

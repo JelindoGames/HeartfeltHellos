@@ -80,6 +80,7 @@ class ShowcaseApp(App):
             self.root.ids.sm.switch_to(screen, duration=0)
         self.update_home_button_status()
         self.update_back_button_status()
+        self.remove_on_back_pressed_callback()
         try:
             self.current_title = screen.display_name
         except AttributeError:
@@ -98,7 +99,6 @@ class ShowcaseApp(App):
             if self.on_back_pressed_callback is not None:
                 self.on_back_pressed_callback()
             self.go_screen(prev_screen, 'right')
-            self.remove_on_back_pressed_callback() # TODO should always do?
         except AttributeError:
             print("Attr Error thrown")
             return 

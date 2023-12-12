@@ -107,7 +107,7 @@ BoxLayout:
             color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
             font_size: "22dp"
             on_release: app.on_home_pressed()
-            disabled: False if app.have_back_button else True
+            disabled: False if app.have_home_button else True
 
 
     ScreenManager:
