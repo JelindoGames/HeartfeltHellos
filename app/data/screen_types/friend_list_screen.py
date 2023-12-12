@@ -1,11 +1,12 @@
-from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.popup import Popup
+from kivy.uix.boxlayout import BoxLayout
 from kivy.app import App
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_add_friend_button import HeartfeltHellosAddFriendButton
 from app.widgets.heartfelt_hellos_friend_button import HeartfeltHellosFriendButton
-from app.data.data_types.friend import Friend
+from app.widgets.heartfelt_hellos_button import HeartfeltHellosButton
 
 
 class FriendScreen(ShowcaseScreen):
@@ -30,7 +31,7 @@ class FriendScreen(ShowcaseScreen):
         self.grid_layout.add_widget(add_friend_widget)
 
         for friend in self.get_friends():
-            friend_name_widget = HeartfeltHellosFriendButton(friend, self.pressed_friend, self.pressed_edit_friend)
+            friend_name_widget = HeartfeltHellosFriendButton(friend, self.pressed_friend, self.pressed_edit_friend, self.pressed_remove_friend)
             self.grid_layout.add_widget(friend_name_widget)
 
     def pressed_add_friend(self):
@@ -45,6 +46,22 @@ class FriendScreen(ShowcaseScreen):
         App.get_running_app().stored_data.temp_selected_person = friend
         App.get_running_app().go_screen("Friend_Editing_First_Step", "left")
         print(f"Pressed edit friend ({friend})")
+
+    def pressed_remove_friend(self, friend):
+        self.confirm_popup = Popup(title="Remove Friend?", size_hint_y=0.2)
+        confirm_layout = BoxLayout(orientation="horizontal", spacing="10dp")
+        confirm_layout.add_widget(HeartfeltHellosButton(text="No", on_press=lambda w: self.on_remove_canceled()))
+        confirm_layout.add_widget(HeartfeltHellosButton(text="Yes", on_press=lambda w: self.on_remove_confirmed(friend)))
+        self.confirm_popup.add_widget(confirm_layout)
+        self.confirm_popup.open()
+
+    def on_remove_canceled(self):
+        self.confirm_popup.dismiss()
+
+    def on_remove_confirmed(self, friend):
+        App.get_running_app().stored_data.friends.remove(friend)
+        self.confirm_popup.dismiss()
+        self.on_pre_enter()
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
