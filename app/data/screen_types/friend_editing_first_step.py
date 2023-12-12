@@ -7,7 +7,7 @@ from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellosStepProgressionButton
 
 
-class FriendCreationScreenFirstStep(ShowcaseScreen):
+class FriendEditingScreenFirstStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
     progress_grid = None
@@ -15,28 +15,29 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
     newest_name = ""
 
     def __init__(self, **kwargs):
-        super(FriendCreationScreenFirstStep, self).__init__(**kwargs)
+        super(FriendEditingScreenFirstStep, self).__init__(**kwargs)
         self.tags = App.get_running_app().stored_data.tags
         self.friends = []
-        # self.progress_grid = GridLayout(spacing='10dp', padding='10dp', cols=5, size_hint_y=None)
         self.grid_layout = GridLayout(spacing='10dp', padding='10dp', cols=1, size_hint_y=None)
         self.grid_layout.bind(minimum_height=self.grid_layout.setter("height"))
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+        self.newest_name = App.get_running_app().stored_data.temp_selected_person.name
 
     def on_pre_enter(self, *args):
         self.stepOne()
 
     def stepOne(self):
         self.grid_layout.clear_widgets()
-        self.grid_layout.add_widget(Label(text="Step 1: What is their name?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255), size_hint_y=None))
+        self.grid_layout.add_widget(Label(text="What is their name?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255), size_hint_y=None))
 
         # text box
-        textinput = TextInput(hint_text="Enter Name Here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None, multiline=False)
+        friend = App.get_running_app().stored_data.temp_selected_person
+        textinput = TextInput(hint_text="Enter Name Here", text=friend.name, font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None, multiline=False)
         textinput.bind(text=self.on_name_entered)
         self.grid_layout.add_widget(textinput)
-        # self.name = textinput.text
+        self.consider_add_next_button()
 
     def on_name_entered(self, attribute, value):
         self.newest_name = value
@@ -59,5 +60,5 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
 
     def on_next_pressed(self, arg):
         App.get_running_app().stored_data.temp_friend_name = self.newest_name
-        App.get_running_app().go_screen("Friend_Creation_Second_Step", "left")
+        App.get_running_app().go_screen("Friend_Editing_Second_Step", "left")
 

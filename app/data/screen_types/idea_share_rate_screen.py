@@ -150,6 +150,8 @@ class ShareRateScreen(Screen):
 
     def on_back_pressed(self):
         print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")
-        del App.get_running_app().stored_data.idea_screen_history[-1]
-        del App.get_running_app().stored_data.idea_history[-1]
+        if len(App.get_running_app().stored_data.idea_screen_history) > 0:
+            del App.get_running_app().stored_data.idea_screen_history[-1]
+        if len(App.get_running_app().stored_data.idea_history) > 0:
+            del App.get_running_app().stored_data.idea_history[-1]
         print(f"final: {App.get_running_app().stored_data.idea_screen_history}")

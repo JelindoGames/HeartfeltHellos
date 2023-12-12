@@ -29,23 +29,22 @@ class FriendScreen(ShowcaseScreen):
         add_friend_widget = HeartfeltHellosAddFriendButton(on_press=lambda x: self.pressed_add_friend())
         self.grid_layout.add_widget(add_friend_widget)
 
-        # divider rendering
-        #line = Label(text="__________________", halign="center", color=(255,255,255))
-        #self.grid_layout.add_widget(line)
-
         for friend in self.get_friends():
-            friend_name_widget = HeartfeltHellosFriendButton(friend, on_press=lambda x: self.pressed_friend(x.text))
+            friend_name_widget = HeartfeltHellosFriendButton(friend, self.pressed_friend, self.pressed_edit_friend)
             self.grid_layout.add_widget(friend_name_widget)
 
     def pressed_add_friend(self):
         # pressed add friend, go to correct screen
         App.get_running_app().go_screen("Create_Person_Options", "left")
 
-    def pressed_friend(self, name):
-        # TODO Duplicate names won't work, must fix
-        friend_selected = next(friend for friend in App.get_running_app().stored_data.friends if friend.name == name)
-        App.get_running_app().stored_data.temp_selected_person = friend_selected
+    def pressed_friend(self, friend):
+        App.get_running_app().stored_data.temp_selected_person = friend
         App.get_running_app().go_screen(self.next_screen, "left")
+
+    def pressed_edit_friend(self, friend):
+        App.get_running_app().stored_data.temp_selected_person = friend
+        App.get_running_app().go_screen("Friend_Editing_First_Step", "left")
+        print(f"Pressed edit friend ({friend})")
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()

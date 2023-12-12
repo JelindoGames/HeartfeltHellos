@@ -1,3 +1,4 @@
+import copy
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
@@ -9,7 +10,7 @@ from app.widgets.heartfelt_hellos_step_progression_button import HeartfeltHellos
 from app.data.data_types.friend import Friend
 
 
-class FriendCreationScreenSecondStep(ShowcaseScreen):
+class FriendEditingScreenSecondStep(ShowcaseScreen):
     master_layout = None
     scroll_view = None
     grid_layout = None
@@ -18,10 +19,10 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
     tags_selected = []
 
     def __init__(self, **kwargs):
-        super(FriendCreationScreenSecondStep, self).__init__(**kwargs)
+        super(FriendEditingScreenSecondStep, self).__init__(**kwargs)
         self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
         self.master_layout.add_widget(
-            Label(text="Step 2: What are their interests?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255),
+            Label(text="What are their interests?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
         textinput = TextInput(hint_text="Search Tag here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None)
         textinput.bind(text=lambda a, v: self.refresh_tags(v))
@@ -38,7 +39,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(self.progress_layout)
 
     def on_pre_enter(self, *args):
-        self.tags_selected = []
+        self.tags_selected = copy.deepcopy(App.get_running_app().stored_data.temp_selected_person.tags)
         self.refresh_tags()
         self.refresh_progress_layout()
 
@@ -63,14 +64,14 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         self.progress_layout.clear_widgets()
         if len(self.tags_selected) == 0:
             return
-        create_person_button = HeartfeltHellosStepProgressionButton(text="Create Friend", on_press=self.createFriend)
+        create_person_button = HeartfeltHellosStepProgressionButton(text="Finish", on_press=self.createFriend)
         self.progress_layout.add_widget(Label())  # Filler
         self.progress_layout.add_widget(create_person_button)
 
     def createFriend(self, _):
-        new_friend = Friend(App.get_running_app().stored_data.temp_friend_name, self.tags_selected)
-        App.get_running_app().stored_data.friends.append(new_friend)
-        App.get_running_app().go_screen(App.get_running_app().stored_data.previous_friend_list_screen, "left")
+        App.get_running_app().stored_data.temp_selected_person.name = App.get_running_app().stored_data.temp_friend_name
+        App.get_running_app().stored_data.temp_selected_person.tags = self.tags_selected
+        App.get_running_app().go_screen("Friend_List", "left")
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
