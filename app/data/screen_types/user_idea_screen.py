@@ -7,12 +7,12 @@ class UserIdeaScreen(IdeaScreen):
 
     def get_ideas(self):
         selected_tag = App.get_running_app().stored_data.temp_selected_tag
+        App.get_running_app().stored_data.previous_idea_screen = "Idea_Share_Rate_Screen"
         return self.get_ideas_with_tag(selected_tag)
     
     def get_ideas_with_tag(self, tag: str):
         ideas_with_tag = []
         for idea in App.get_running_app().stored_data.ideas:
-            print("iterating... current idea: " + idea.prompt)
             if (idea.hasTag(tag)) :
                 ideas_with_tag.append(idea)
         return ideas_with_tag

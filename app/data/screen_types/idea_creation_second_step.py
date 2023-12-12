@@ -47,7 +47,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def refresh_tags(self, tag_filter=""):
         self.grid_layout.clear_widgets()
-        for tag in self.tags:
+        for tag in App.get_running_app().stored_data.tags:
             if tag_filter in tag:
                 bg = (0, 0.5, 1) if tag in self.tags_selected else (.678, .847, 0.902)
                 tag_button = HeartfeltHellosButton(text=tag, height="50dp", on_press=lambda x: self.pressTag(x.text),
@@ -73,10 +73,10 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def create_post(self, _):
         # create and add idea to stored list of ideas
-        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, None, self.tags))
-
+        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, None, self.tags_selected))
+        
         # TODO change
-        App.get_running_app().go_screen("User_Idea_Screen", "left")
+        App.get_running_app().go_screen(App.get_running_app().stored_data.previous_idea_screen, "left")
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()

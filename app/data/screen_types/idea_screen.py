@@ -28,6 +28,7 @@ class IdeaScreen(ShowcaseScreen):
         self.grid_layout.clear_widgets()
         post_idea_button = HeartfeltHellosButton(text="+ Post Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed())
         self.grid_layout.add_widget(post_idea_button)
+        App.get_running_app().stored_data.previous_idea_screen = "General_Idea_Screen"
         for idea in self.get_ideas():
             new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name(), on_press=lambda x: print("Pressed Idea Button"))
             self.grid_layout.add_widget(new_dynamic_widget)
@@ -37,12 +38,11 @@ class IdeaScreen(ShowcaseScreen):
 
     def get_ideas(self) -> list:
         # Default: Give general ideas (can be overridden in subclasses)
-        ideas_with_tag = []
+        general_ideas = []
         for idea in App.get_running_app().stored_data.ideas:
-            print("iterating... current idea: " + idea.prompt)
             if (idea.hasTag("general")) :
-                ideas_with_tag.append(idea)
-        return ideas_with_tag
+                general_ideas.append(idea)
+        return general_ideas
 
     def get_header(self):
         return "General Ideas"

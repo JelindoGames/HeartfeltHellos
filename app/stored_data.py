@@ -20,6 +20,8 @@ class StoredData:
              Idea("Learned any interesting facts lately?", 3.6, ["general"]),
              Idea("What's changed since I last heard from you?", 3.4, ["general"]),
              Idea("If you could be any animal, what would you be?", 2.8, ["general"])]
+    
+    previous_idea_screen = ""
 
     # All the friends you currently have on the app
     friends = []
