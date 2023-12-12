@@ -1,5 +1,8 @@
 Other than the kivy documentation and other provided resources, these were used for guidance on coding problems.
 
+Setting sizes
+https://stackoverflow.com/questions/53899534/how-to-change-button-size-in-kivy
+
 Dynamically expanding scroll view
 https://karobben.github.io/2021/02/10/Python/kivy_scrollview/
 
