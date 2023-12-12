@@ -1,22 +1,26 @@
-#:import HeartfeltHellosButton app.widgets.heartfelt_hellos_button
+#:import CreatePersonOptionsScreen app.data.screen_types.create_person_options
 
-ShowcaseScreen:
+CreatePersonOptionsScreen:
     name: 'Create_Person_Options'
     display_name: "Add Friend"
 
     previous_screen: "Friend_List"
     has_home_button: True
 
-    HeartfeltHellosButton:
-        size_hint_y: None
-        halign: "center"
-        height: "128dp"
-        text: 'Create from\nScratch'
-        on_press: app.go_screen("Friend_Creation_First_Step", "left")
-
-    HeartfeltHellosButton:
-        size_hint_y: None
-        halign: "center"
-        height: "128dp"
-        text: 'Create from\nContact'
-        on_press: app.go_screen("Contact_List", "left")
+#    BoxLayout:
+#        orientation: "vertical"
+#        spacing: "10dp"
+#
+#        HeartfeltHellosButton:
+#            size_hint_y: None
+#            height: "80dp"
+#            valign: "top"
+#            text: 'Create from Scratch'
+#            on_press: app.go_screen("Friend_Creation_First_Step", "left")
+#
+#        HeartfeltHellosButton:
+#            size_hint_y: None
+#            height: "80dp"
+#            valign: "top"
+#            text: 'Create from Contact'
+#            on_press: app.go_screen("Contact_List", "left")
