@@ -57,12 +57,13 @@ class MessageScreen(Screen):
         # TODO change long time no see to something custom
         if self.text_input.text == "":
             return
+        idea = App.get_running_app().stored_data.temp_selected_idea
         self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
-        self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text="Hey, long time no see!", size_hint_y=None, height="30dp"))
+        self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text=idea.response, size_hint_y=None, height="30dp"))
         name = App.get_running_app().stored_data.message_recipient.name
         history_for_name = App.get_running_app().stored_data.message_history.get(name, [])
         history_for_name.append((self.text_input.text, (0, 0.5, 1)))
-        history_for_name.append(("Hey, long time no see!", (0.4, 0.4, 0.4)))
+        history_for_name.append((idea.response, (0.4, 0.4, 0.4)))
         App.get_running_app().stored_data.message_history[name] = history_for_name
         self.text_input.text = ""
 
