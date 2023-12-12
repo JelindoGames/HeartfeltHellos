@@ -128,11 +128,9 @@ class ShowcaseApp(App):
 
     def on_home_pressed(self):
         if self.general_tab_pressed:
-            self.go_screen("Title_Screen", "left")
+            self.go_screen("General_Idea_Screen", "right")
         elif self.friend_tab_pressed:
-            self.go_screen("Title_Screen", "right")
-        self.general_tab_pressed = False
-        self.friend_tab_pressed = False
+            self.go_screen("Friend_List", "right")
 
 
 if __name__ == '__main__':
