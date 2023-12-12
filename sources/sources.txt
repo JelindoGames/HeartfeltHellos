@@ -17,3 +17,6 @@ https://stackoverflow.com/questions/68999371/kivy-remove-the-red-dot-creation-on
 
 Background for disabled buttons
 https://stackoverflow.com/questions/31032880/how-to-change-color-of-disabled-widget-in-kivy
+
+Background color for label/non-button widget
+https://stackoverflow.com/questions/57118705/kivy-define-background-color-of-label
