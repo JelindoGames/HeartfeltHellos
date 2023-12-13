@@ -3,7 +3,7 @@ from data.data_types.idea import Idea
 class StoredData:
     # All the tags that are currently on the app
     # User-created tags are add to the list
-    tags = ["sports", "movies", "books"]
+    tags = ["books", "movies", "sports"]
     
     # All the ideas that are currently on the app
     # follow ups are created and tied to the ideas

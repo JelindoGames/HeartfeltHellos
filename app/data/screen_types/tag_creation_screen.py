@@ -56,10 +56,27 @@ class TagCreationScreen(ShowcaseScreen):
             self.progress_grid.add_widget(Label())
             self.grid_layout.add_widget(self.progress_grid)
         self.progress_grid.add_widget(self.next_button)
+
+    def add_tag_to_database(self):
+        tags = App.get_running_app().stored_data.tags
+        isAdded = False
+        if (len(tags) != 0):
+            # compare tag lexiconically and place in the right spot
+            for tag in tags:
+                if (self.newest_tag.lower() < tag.lower()):
+                    tags.insert(self.tags.index(tag), self.newest_tag)
+                    isAdded = True
+                    break
+            
+            if (not isAdded):              
+                tags.append(self.newest_tag)
+                isAdded = True
         
 
     def on_create_tag_pressed(self, arg):
-        App.get_running_app().stored_data.tags.append(self.newest_tag)
+        
+        # App.get_running_app().stored_data.tags.append(self.newest_tag)
+        self.add_tag_to_database()
         next_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         App.get_running_app().stored_data.idea_screen_history = App.get_running_app().stored_data.idea_screen_history[:-1]
         App.get_running_app().go_screen(next_screen, "left")

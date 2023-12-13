@@ -15,6 +15,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
     grid_layout = None
     progress_layout = None
     tags_selected = []
+    tags = App.get_running_app().stored_data.tags
 
     def __init__(self, **kwargs):
         super(FriendCreationScreenSecondStep, self).__init__(**kwargs)
@@ -43,20 +44,6 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
 
     def refresh_tags(self, tag_filter=""):
         self.grid_layout.clear_widgets()
-        self.tags = []
-        for tag in App.get_running_app().stored_data.tags: 
-            isAdded = False
-            if (len(self.tags) != 0):
-                # compare tag lexiconically and place in the right spot
-                    for ordered_tag in self.tags:
-                        if (ordered_tag > tag):
-                            self.tags.insert(self.tags.index(ordered_tag), tag)
-                            isAdded = True
-                            break
-            
-            if (not isAdded):              
-                self.tags.append(tag)
-                isAdded = True
 
         for tag in self.tags:
             if tag_filter in tag:
@@ -72,7 +59,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
             if (len(self.tags_selected) != 0):
                 # compare rating and place in the right spot
                 for tag in self.tags_selected:
-                    if (name < tag):
+                    if (name.lower() < tag.lower()):
                         self.tags_selected.insert(self.tags_selected.index(tag), name)
                         isAdded = True
                         break

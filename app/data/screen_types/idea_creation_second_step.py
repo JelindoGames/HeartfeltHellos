@@ -48,21 +48,19 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.tags_selected = []
-        self.tags = []
-        self.tags.append("general")
-        for tag in App.get_running_app().stored_data.tags: 
+        self.tags = App.get_running_app().stored_data.tags
+        if ("general" in self.tags):
+            self.tags.remove("general")
+        for tag in self.tags: 
             isAdded = False
-            if (len(self.tags) != 0):
-                # compare tag lexiconically and place in the right spot
-                    for ordered_tag in self.tags:
-                        if (ordered_tag > tag):
-                            self.tags.insert(self.tags.index(ordered_tag), tag)
-                            isAdded = True
-                            break
-            
-            if (not isAdded):              
-                self.tags.append(tag)
+            if ("general" < tag.lower()):
+                self.tags.insert(self.tags.index(tag), "general")
                 isAdded = True
+                break
+            
+        if (not isAdded):              
+            self.tags.append(tag)
+            isAdded = True
 
         # self.tags = []
         # self.tags.append("general")
