@@ -14,6 +14,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
     progress_grid = None
     next_button = None
     newest_idea = ""
+    too_long_error = False
 
     def __init__(self, **kwargs):
         super(IdeaCreationScreenFirstStep, self).__init__(**kwargs)
@@ -27,6 +28,7 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+        self.too_long_text = Label(text="Length can't be more than 60 characters!", color=(1, 0, 0))
 
     def on_pre_enter(self, *args):
         self.stepOne()
@@ -44,7 +46,16 @@ class IdeaCreationScreenFirstStep(ShowcaseScreen):
 
     def on_idea_entered(self, attribute, value):
         self.newest_idea = value
-        if value != "":
+        if len(value) > 60:
+            if self.too_long_error is False:
+                self.progress_grid.remove_widget(self.next_button)
+                self.next_button = None
+                self.too_long_error = True
+                self.grid_layout.add_widget(self.too_long_text)
+        elif value != "":
+            if self.too_long_error is True:
+                self.too_long_error = False
+                self.grid_layout.remove_widget(self.too_long_text)
             self.consider_add_next_button()
         else:
             self.progress_grid.remove_widget(self.next_button)
