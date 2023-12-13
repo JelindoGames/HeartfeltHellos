@@ -20,9 +20,13 @@ class TitleScreen(Screen):
         App.get_running_app().viewed_idea_tab_pressed = False
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
-        self.box_layout.add_widget(Label(text="\nLet's Reconnect!", font_name="Raleway", font_size="45dp", halign="center", valign="middle", text_size=(dp(400), None), color=(0, 0, 0))) 
-        self.box_layout.add_widget(Label(text="\n\n\n\nWhat type of conversation ideas do you want?",font_name="Raleway", font_size="27dp", valign="middle",
-                              halign="center", text_size=(dp(325), None), color= (0, 0, 0)))
+        self.box_layout.add_widget(Label(text="Let's Reconnect!", font_name="Raleway", font_size="42dp", halign="center",
+                                         valign="middle", text_size=(dp(400), None), color=(0, 0, 0),
+                                         size_hint_y=None, height="70dp"))
+        self.box_layout.add_widget(Label(text="What type of conversation ideas do you want?",font_name="Raleway",
+                                         font_size="24dp", valign="middle", halign="center", text_size=(dp(325), None),
+                                         color=(0, 0, 0), size_hint_y=None, height="60dp"))
+        self.box_layout.add_widget(Label(text="", size_hint_y=None, height="160dp"))
         self.add_widget(self.box_layout)
 
     def on_viewed_ideas_clicked(self, widget):
