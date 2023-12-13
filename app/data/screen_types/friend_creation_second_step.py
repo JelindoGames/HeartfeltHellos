@@ -67,7 +67,19 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
 
     def pressTag(self, name: str):
         if name not in self.tags_selected:
-            self.tags_selected.append(name)
+            isAdded = False
+            # adding to sort
+            if (len(self.tags_selected) != 0):
+                # compare rating and place in the right spot
+                for tag in self.tags_selected:
+                    if (name < tag):
+                        self.tags_selected.insert(self.tags_selected.index(tag), name)
+                        isAdded = True
+                        break
+
+            if (not isAdded):              
+                self.tags_selected.append(name)
+                isAdded = True
         else:
             self.tags_selected.remove(name)
         self.refresh_tags()

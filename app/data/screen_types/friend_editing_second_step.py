@@ -15,7 +15,6 @@ class FriendEditingScreenSecondStep(ShowcaseScreen):
     scroll_view = None
     grid_layout = None
     progress_layout = None
-    tags = App.get_running_app().stored_data.tags
     tags_selected = []
 
     def __init__(self, **kwargs):
@@ -45,6 +44,22 @@ class FriendEditingScreenSecondStep(ShowcaseScreen):
 
     def refresh_tags(self, tag_filter=""):
         self.grid_layout.clear_widgets()
+        # sorting self.tags to display buttons in alphabetical order
+        self.tags = []
+        for tag in App.get_running_app().stored_data.tags: 
+            isAdded = False
+            if (len(self.tags) != 0):
+                # compare tag lexiconically and place in the right spot
+                    for ordered_tag in self.tags:
+                        if (ordered_tag > tag):
+                            self.tags.insert(self.tags.index(ordered_tag), tag)
+                            isAdded = True
+                            break
+            
+            if (not isAdded):              
+                self.tags.append(tag)
+                isAdded = True
+        # displaying tag buttons
         for tag in self.tags:
             if tag_filter in tag:
                 bg = (0, 0.5, 1) if tag in self.tags_selected else (.678, .847, 0.902)
@@ -53,8 +68,21 @@ class FriendEditingScreenSecondStep(ShowcaseScreen):
                 self.grid_layout.add_widget(tag_button)
 
     def pressTag(self, name: str):
+        # appending selected tags in alphabetical order
         if name not in self.tags_selected:
-            self.tags_selected.append(name)
+            isAdded = False
+            # adding to sort
+            if (len(self.tags_selected) != 0):
+                # compare rating and place in the right spot
+                for tag in self.tags_selected:
+                    if (name < tag):
+                        self.tags_selected.insert(self.tags_selected.index(tag), name)
+                        isAdded = True
+                        break
+
+            if (not isAdded):              
+                self.tags_selected.append(name)
+                isAdded = True
         else:
             self.tags_selected.remove(name)
         self.refresh_tags()
