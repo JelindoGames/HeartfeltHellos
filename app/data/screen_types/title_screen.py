@@ -15,9 +15,10 @@ class TitleScreen(Screen):
 
     def __init__(self, **kwargs):
         super(TitleScreen, self).__init__(**kwargs)
+        App.get_running_app().general_tab_pressed = False
+        App.get_running_app().friend_tab_pressed = False
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
-        # viewed_ideas = App.get_running_app().stored_data.viewed_ideas
         if (len(App.get_running_app().stored_data.viewed_ideas) != 0):
             viewed_ideas_button = HeartfeltHellosButton(text="See previously\nviewed ideas", size_hint_y=None, height="96dp", on_press=self.on_viewed_ideas_clicked)
             self.box_layout.add_widget(viewed_ideas_button)
