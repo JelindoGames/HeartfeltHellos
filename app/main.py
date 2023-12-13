@@ -35,6 +35,7 @@ class ShowcaseApp(App):
     general_tab_pressed = BooleanProperty(False)
     viewed_idea_tab_pressed = BooleanProperty(False)
     friend_tab_pressed = BooleanProperty(False)
+    history_available = BooleanProperty(False)
     screen_names = ListProperty([])
     stored_data = StoredData()
     current_screen = None
@@ -82,6 +83,7 @@ class ShowcaseApp(App):
             self.root.ids.sm.switch_to(screen, duration=0)
         self.update_home_button_status()
         self.update_back_button_status()
+        self.update_history_button_status()
         try:
             self.current_title = screen.display_name
         except AttributeError:
@@ -111,6 +113,9 @@ class ShowcaseApp(App):
 
     def update_home_button_status(self):
         self.have_home_button = self.screens[self.index].has_home_button
+
+    def update_history_button_status(self):
+        self.history_available = len(self.stored_data.viewed_ideas) > 0
 
     def set_on_back_pressed_callback(self, cb):
         self.on_back_pressed_callback = cb
