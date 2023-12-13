@@ -19,9 +19,6 @@ class TitleScreen(Screen):
         App.get_running_app().friend_tab_pressed = False
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
-        # if (len(App.get_running_app().stored_data.viewed_ideas) != 0):
-        #     viewed_ideas_button = HeartfeltHellosButton(text="See previously\nviewed ideas", size_hint_y=None, height="96dp", on_press=self.on_viewed_ideas_clicked)
-        #     self.box_layout.add_widget(viewed_ideas_button)
         self.box_layout.add_widget(Label(text="\nLet's Reconnect!", font_name="Raleway", font_size="45dp", halign="center", valign="middle", text_size=(dp(400), None), color=(0, 0, 0))) 
         self.box_layout.add_widget(Label(text="\n\n\n\nWhat type of conversation ideas do you want?",font_name="Raleway", font_size="27dp", valign="middle",
                               halign="center", text_size=(dp(325), None), color= (0, 0, 0)))
