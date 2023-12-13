@@ -28,6 +28,7 @@ class MichaelScreen(Screen):
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.box_layout.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.tags_layout)
+        
         for tag in selected_friend.tags:
             tag_button = HeartfeltHellosButton(text=tag, size_hint_y=None, height="48dp", on_press=lambda x: self.on_tag_clicked(x.text))
             self.tags_layout.add_widget(tag_button)

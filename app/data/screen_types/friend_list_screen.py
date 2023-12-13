@@ -45,7 +45,6 @@ class FriendScreen(ShowcaseScreen):
     def pressed_edit_friend(self, friend):
         App.get_running_app().stored_data.temp_selected_person = friend
         App.get_running_app().go_screen("Friend_Editing_First_Step", "left")
-        print(f"Pressed edit friend ({friend})")
 
     def pressed_remove_friend(self, friend):
         self.confirm_popup = Popup(title="Remove Friend?", size_hint_y=0.2)

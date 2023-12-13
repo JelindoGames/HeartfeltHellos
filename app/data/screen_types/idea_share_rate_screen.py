@@ -31,8 +31,6 @@ class ShareRateScreen(Screen):
         App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
         self.idea = App.get_running_app().stored_data.idea_history[-1]
         App.get_running_app().stored_data.viewed_ideas.add(self.idea)
-        for idea in App.get_running_app().stored_data.viewed_ideas:
-            print("ideas viewed: " + idea.prompt)
         self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp", spacing="10dp")
@@ -102,7 +100,6 @@ class ShareRateScreen(Screen):
                 App.get_running_app().stored_data.message_recipient = friend
                 App.get_running_app().go_screen("Message_Screen", "left")
                 return
-        print("Should not get here...")
 
     def on_follow_up_pressed(self, arg):
         App.get_running_app().remove_on_back_pressed_callback()
@@ -127,10 +124,6 @@ class ShareRateScreen(Screen):
         # Logic to share the idea
         pass
 
-    def rate_idea(self, rating):
-        # Logic to rate the idea
-        print(f'Idea rated as: {rating}')
-
     def refresh_rating_display(self):
         if self.idea is None or self.idea.my_rating is None:
             self.rate_idea_button.text = "Rate Idea"
@@ -146,12 +139,9 @@ class ShareRateScreen(Screen):
         self.idea.set_my_rating(self.current_rating)
         self.refresh_rating_display()
         self.idea_button.update_rating()
-        print("current idea: " + self.idea.prompt + " with rating of " + str(self.idea.get_rating()))
 
     def on_back_pressed(self):
-        print(f"initial: {App.get_running_app().stored_data.idea_screen_history}")
         if len(App.get_running_app().stored_data.idea_screen_history) > 0:
             del App.get_running_app().stored_data.idea_screen_history[-1]
         if len(App.get_running_app().stored_data.idea_history) > 0:
             del App.get_running_app().stored_data.idea_history[-1]
-        print(f"final: {App.get_running_app().stored_data.idea_screen_history}")

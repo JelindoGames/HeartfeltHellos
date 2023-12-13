@@ -28,6 +28,4 @@ class TitleScreen(Screen):
         self.add_widget(self.box_layout)
 
     def on_viewed_ideas_clicked(self, widget):
-        # App.get_running_app().stored_data.temp_selected_tag = value
-        print("viewed ideas button pressed")
         App.get_running_app().go_screen("Viewed_Idea_Screen", "left")
