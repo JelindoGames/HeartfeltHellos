@@ -52,7 +52,7 @@ class ShowcaseApp(App):
                                   'Friend_Creation_Second_Step', 'Idea_Share_Rate_Screen', 'Contact_List',
                                   'Message_Screen', 'Idea_Creation_First_Step', 'Idea_Creation_Second_Step', 
                                   'Michael_Screen', 'Friend_Editing_First_Step', 'Friend_Editing_Second_Step',
-                                  'Tag_Creation_Screen', 'Viewed Idea Screen']
+                                  'Tag_Creation_Screen', 'Viewed_Idea_Screen']
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
