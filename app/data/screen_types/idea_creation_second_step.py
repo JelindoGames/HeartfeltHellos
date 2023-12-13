@@ -23,7 +23,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         #self.friends = []
         self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
         self.master_layout.add_widget(
-            Label(text="What tags are related to the idea?", font_name="Raleway", height="50dp", color=(255, 255, 255),
+            Label(text="What tags are related to the idea?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
         # search tag text box
         textinput = TextInput(hint_text="Search Tag here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None)
@@ -31,6 +31,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
         self.master_layout.add_widget(textinput)
         # adding tag button
         add_tag_button = HeartfeltHellosButton(text="add tag", height="50dp", on_press=self.add_tag, size_hint_y=None)
+        add_tag_button.background_color = (0.5, 0.5, 0.8)
         self.master_layout.add_widget(add_tag_button)
         self.add_widget(self.master_layout)
 
@@ -105,7 +106,7 @@ class IdeaCreationScreenSecondStep(ShowcaseScreen):
 
     def create_post(self, _):
         # create and add idea to stored list of ideas
-        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, [], self.tags_selected))
+        App.get_running_app().stored_data.ideas.append(Idea(App.get_running_app().stored_data.temp_prompt, [], self.tags_selected, "Hey, long time no see!"))
         next_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         App.get_running_app().stored_data.idea_screen_history = App.get_running_app().stored_data.idea_screen_history[:-1]
         App.get_running_app().go_screen(next_screen, "left")
