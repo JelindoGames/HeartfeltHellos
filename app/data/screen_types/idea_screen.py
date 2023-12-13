@@ -1,5 +1,7 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.label import Label
+from kivy.metrics import dp
 from kivy.app import App
 from app.main import ShowcaseScreen
 from app.widgets.new_idea_button import HeartfeltHellosNewIdeaButton
@@ -32,6 +34,10 @@ class IdeaScreen(ShowcaseScreen):
             for idea in self.get_ideas():
                 new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name())
                 self.grid_layout.add_widget(new_dynamic_widget)
+        else:
+            new_label = Label(text="There seems to be a lack of ideas. Perhaps you could add your own and help others!",
+                              size_hint_y=None, text_size=(dp(320), None), color=(0,0,0), font_size="18dp", font_name="Raleway", halign="center", valign="middle")
+            self.grid_layout.add_widget(new_label)
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
