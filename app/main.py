@@ -32,7 +32,7 @@ class ShowcaseApp(App):
     current_title = StringProperty()
     have_back_button = BooleanProperty(False)
     have_home_button = BooleanProperty(False)
-    general_tab_pressed = BooleanProperty(True)
+    general_tab_pressed = BooleanProperty(False)
     friend_tab_pressed = BooleanProperty(False)
     screen_names = ListProperty([])
     stored_data = StoredData()
@@ -47,7 +47,7 @@ class ShowcaseApp(App):
         self.add_custom_fonts()
         self.title = 'HeartfeltHellos'
         self.screens = {}
-        self.available_screens = ['General_Idea_Screen', 'Sub_Idea_Screen', 'User_Idea_Screen',
+        self.available_screens = ['Title_Screen', 'General_Idea_Screen', 'Sub_Idea_Screen', 'User_Idea_Screen',
                                   'Create_Person_Options', 'Friend_List', 'Friend_Creation_First_Step',
                                   'Friend_Creation_Second_Step', 'Idea_Share_Rate_Screen', 'Contact_List',
                                   'Message_Screen', 'Idea_Creation_First_Step', 'Idea_Creation_Second_Step', 
@@ -135,9 +135,11 @@ class ShowcaseApp(App):
 
     def on_home_pressed(self):
         if self.general_tab_pressed:
-            self.go_screen("General_Idea_Screen", "right")
+            self.go_screen("Title_Screen", "instant")
         elif self.friend_tab_pressed:
-            self.go_screen("Friend_List", "right")
+            self.go_screen("Title_Screen", "instant")
+        self.general_tab_pressed = False
+        self.friend_tab_pressed = False
         if self.on_back_pressed_callback is not None:
             self.on_back_pressed_callback()
         self.remove_on_back_pressed_callback()

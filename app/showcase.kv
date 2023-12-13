@@ -25,45 +25,6 @@ BoxLayout:
             size: self.size
 
     BoxLayout:
-        size_hint_y: 0.1
-        #padding: "10dp"
-        canvas.before:
-            Color:
-                rgba: (1, 1, 1, 0)  # Color of the separator line, black in this case
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        HeartfeltHellosButton:
-            text: 'For All'
-            font_name: "Raleway"
-            halign: "center"
-            text_size:dp(150), None
-            background_color: (.4, .4, .4) if app.general_tab_pressed else (.6, .6, 0.6)
-            font_size: "23dp"
-            on_release: app.on_general_ideas_pressed()
-
-        Widget:
-            # This widget acts as a vertical separator line
-            size_hint_x: None
-            width: 4  # Width of the separator line
-            canvas.before:
-                Color:
-                    rgba: (0, 0, 0, 1)  # Color of the separator line, black in this case
-                Line:
-                    points: [self.center_x, self.y, self.center_x, self.top]
-                    width: 1.01
-
-        HeartfeltHellosButton:
-            text: 'For Friends'
-            font_name: "Raleway"
-            halign: "center"
-            text_size:dp(150), None
-            background_color: (.4, .4, .4) if app.friend_tab_pressed else (.6, .6, 0.6)
-            font_size: "23dp"
-            on_release: app.on_friend_ideas_pressed()
-
-    BoxLayout:
         orientation: 'horizontal'
         size_hint_y: "0.05dp" if app.have_back_button or app.have_home_button or app.current_title != "" else "0.001dp"
         halign:"center"
@@ -74,7 +35,7 @@ BoxLayout:
             size_hint_x: "0.3dp"
             halign: "center"
             text_size:dp(80), None
-            background_color: (.57, .77, 0.902, 0)
+            background_color: (.57, .77, 0.902)
             background_disabled_normal: ""
             color: (0, 0.2, 1) if app.have_back_button else (0, 0, 0, 0)
             font_size: "22dp"
@@ -85,16 +46,16 @@ BoxLayout:
             text: app.current_title
             font_name: "Raleway"
             halign: "center"
-            text_size:dp(175), None
+            text_size: dp(175), None
             font_size: "23dp"
-            color: (0,0,0)
             canvas.before:
                 Color:
-                    rgba:
-                        (.57, .77, 0.902, 0)
+                    rgb:
+                        (.57, .77, 0.902)
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            color: (0,0,0)
 
         HeartfeltHellosButton:
             text: "Home" if app.have_home_button else ""
@@ -102,7 +63,7 @@ BoxLayout:
             size_hint_x: "0.3dp"
             halign: "center"
             text_size:dp(80), None
-            background_color: (.57, .77, 0.902, 0)
+            background_color: (.57, .77, 0.902)
             background_disabled_normal: ""
             color: (0, 0.2, 1) if app.have_home_button else (0, 0, 0, 0)
             font_size: "22dp"
@@ -112,3 +73,42 @@ BoxLayout:
 
     ScreenManager:
         id: sm
+
+    BoxLayout:
+        size_hint_y: 0.1
+        #padding: "10dp"
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 0)  # Color of the separator line, black in this case
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        HeartfeltHellosButton:
+            text: 'Generic'
+            font_name: "Raleway"
+            halign: "center"
+            text_size:dp(150), None
+            background_color: (.4, .4, .4) if app.general_tab_pressed else (.6, .6, 0.6)
+            font_size: "23dp"
+            on_release: app.on_general_ideas_pressed()
+
+        Widget:
+            # This widget acts as a vertical separator line
+            size_hint_x: None
+            width: 10  # Width of the separator line
+            canvas.before:
+                Color:
+                    rgba: (0, 0, 0, 1)  # Color of the separator line, black in this case
+                Line:
+                    points: [self.center_x, self.y, self.center_x, self.top]
+                    width: 1.01
+
+        HeartfeltHellosButton:
+            text: 'Personalized'
+            font_name: "Raleway"
+            halign: "center"
+            text_size:dp(150), None
+            background_color: (.4, .4, .4) if app.friend_tab_pressed else (.6, .6, 0.6)
+            font_size: "23dp"
+            on_release: app.on_friend_ideas_pressed()
