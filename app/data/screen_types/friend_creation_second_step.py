@@ -20,7 +20,7 @@ class FriendCreationScreenSecondStep(ShowcaseScreen):
         super(FriendCreationScreenSecondStep, self).__init__(**kwargs)
         self.master_layout = GridLayout(spacing='10dp', padding='10dp', cols=1)
         self.master_layout.add_widget(
-            Label(text="Step 2: What are their interests?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255),
+            Label(text="What are their interests?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255),
                   size_hint_y=None))
         textinput = TextInput(hint_text="Search Tag here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None)
         textinput.bind(text=lambda a, v: self.refresh_tags(v))

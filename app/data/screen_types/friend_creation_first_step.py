@@ -32,7 +32,7 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
 
     def stepOne(self):
         self.grid_layout.clear_widgets()
-        self.grid_layout.add_widget(Label(text="Step 1: What is their name?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255), size_hint_y=None))
+        self.grid_layout.add_widget(Label(text="What is their name?", font_name="Raleway", font_size="20dp", height="50dp", color=(255, 255, 255), size_hint_y=None))
 
         # text box
         textinput = TextInput(hint_text="Enter Name Here", font_name="Raleway", height="50dp", font_size="24dp", size_hint_y=None, multiline=False)
