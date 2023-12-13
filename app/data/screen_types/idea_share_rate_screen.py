@@ -39,7 +39,7 @@ class ShareRateScreen(Screen):
         self.box_layout.add_widget(self.idea_button)
         self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share Idea", on_press=self.on_share_pressed))
         # Rating Button / Popup
-        self.rating_popup = Popup(title="Rate", size_hint_y=0.25)
+        self.rating_popup = Popup(title_font="Raleway", title_size="18dp", title="What's your rating?", size_hint_y=0.25)
         self.rating_layout = BoxLayout(orientation="vertical", spacing="10dp")
         self.rating_buttons_layout = GridLayout(cols=5)
         self.rating_buttons = []
@@ -71,7 +71,7 @@ class ShareRateScreen(Screen):
             share_selection_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="10dp", size_hint_y=None)
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
             share_selection_scroll = ScrollView(do_scroll_y=True)
-            share_selection_popup = Popup(title="Share with...", size_hint_y=0.6)
+            share_selection_popup = Popup(title_font="Raleway", title_size="18dp", title="Share with...", size_hint_y=0.6)
             if len(App.get_running_app().stored_data.friends) > 0:
                 share_selection_layout.add_widget(Label(text="HeartfeltHellos Friends"))
             for friend in App.get_running_app().stored_data.friends:
