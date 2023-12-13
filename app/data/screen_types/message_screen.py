@@ -4,6 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.metrics import dp
 from kivy.app import App
 from app.widgets.colored_label import ColoredLabel
 
@@ -45,7 +46,7 @@ class MessageScreen(Screen):
         if history_for_name is None:
             return
         for message in history_for_name:
-            self.message_layout.add_widget(ColoredLabel(message[1], text=message[0], size_hint_y=None, height="30dp"))
+            self.message_layout.add_widget(ColoredLabel(message[1], text=message[0], size_hint_y=None, height="30dp", text_size=(dp(325), None)))
 
     def on_text_change(self, widget, text):
         if text == "":
@@ -54,12 +55,11 @@ class MessageScreen(Screen):
             self.send_button.disabled = False
 
     def on_message_sent(self, arg):
-        # TODO change long time no see to something custom
         if self.text_input.text == "":
             return
         idea = App.get_running_app().stored_data.temp_selected_idea
-        self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp"))
-        self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text=idea.response, size_hint_y=None, height="30dp"))
+        self.message_layout.add_widget(ColoredLabel((0, 0.5, 1), text=self.text_input.text, size_hint_y=None, height="30dp", text_size=(dp(325), None)))
+        self.message_layout.add_widget(ColoredLabel((0.4, 0.4, 0.4), text=idea.response, size_hint_y=None, height="30dp", text_size=(dp(325), None)))
         name = App.get_running_app().stored_data.message_recipient.name
         history_for_name = App.get_running_app().stored_data.message_history.get(name, [])
         history_for_name.append((self.text_input.text, (0, 0.5, 1)))
