@@ -32,6 +32,9 @@ class ShareRateScreen(Screen):
         # Setup
         App.get_running_app().set_on_back_pressed_callback(self.on_back_pressed)
         self.idea = App.get_running_app().stored_data.idea_history[-1]
+        App.get_running_app().stored_data.viewed_ideas.append(self.idea)
+        for idea in App.get_running_app().stored_data.viewed_ideas:
+            print("ideas viewed: " + idea.prompt)
         self.previous_screen = App.get_running_app().stored_data.idea_screen_history[-1]
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp", spacing="10dp")

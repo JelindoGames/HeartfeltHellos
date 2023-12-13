@@ -53,6 +53,9 @@ class StoredData:
 
     previous_friend_list_screen = ""
 
+    # ideas that the user has seen
+    viewed_ideas = []
+
     # All the texts you've made - key = recipient name, value = list of tuples (text, color)
     message_history = {}
 
