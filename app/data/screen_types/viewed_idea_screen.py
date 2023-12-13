@@ -28,9 +28,10 @@ class ViewedIdeaScreen(ShowcaseScreen):
 
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
+        viewed_ideas = self.get_ideas()
         
-        if (len(self.get_ideas()) > 0):
-            for idea in self.get_ideas():
+        if (len(viewed_ideas) > 0):
+            for idea in viewed_ideas:
                 new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name())
                 self.grid_layout.add_widget(new_dynamic_widget)
         else:
@@ -45,20 +46,23 @@ class ViewedIdeaScreen(ShowcaseScreen):
         ideas = App.get_running_app().stored_data.viewed_ideas
         viewed_ideas = []
         for idea in ideas:
-            isAdded = False
-            if (len(viewed_ideas) != 0):
-            # compare rating and place in the right spot
-                for gen_idea in viewed_ideas:
-                    if (gen_idea.get_rating() < idea.get_rating()):
-                        viewed_ideas.insert(viewed_ideas.index(gen_idea), idea)
-                        isAdded = True
-                        break
+            # isAdded = False
+            # if (len(viewed_ideas) != 0):
+            # # compare rating and place in the right spot
+            #     for gen_idea in viewed_ideas:
+            #         if (gen_idea.get_rating() < idea.get_rating()):
+            #             viewed_ideas.insert(viewed_ideas.index(gen_idea), idea)
+            #             isAdded = True
+            #             break
 
-            if (not isAdded):              
-                viewed_ideas.append(idea)
-                isAdded = True
+            # if (not isAdded):              
+            #     viewed_ideas.append(idea)
+            #     isAdded = True
 
-        return viewed_ideas
+            # insert idea to the front of the list to be displayed in viewing order
+            viewed_ideas.insert(0, idea)
+
+        return ideas
 
     def get_header(self):
         return "Viewed Idea Screen"
