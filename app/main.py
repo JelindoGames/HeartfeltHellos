@@ -33,6 +33,7 @@ class ShowcaseApp(App):
     have_back_button = BooleanProperty(False)
     have_home_button = BooleanProperty(False)
     general_tab_pressed = BooleanProperty(False)
+    viewed_idea_tab_pressed = BooleanProperty(False)
     friend_tab_pressed = BooleanProperty(False)
     screen_names = ListProperty([])
     stored_data = StoredData()
@@ -120,7 +121,17 @@ class ShowcaseApp(App):
     def on_friend_ideas_pressed(self):
         self.go_screen("Friend_List", "instant")
         self.general_tab_pressed = False
+        self.viewed_idea_tab_pressed = False
         self.friend_tab_pressed = True
+        if self.on_back_pressed_callback is not None:
+            self.on_back_pressed_callback()
+        self.remove_on_back_pressed_callback()
+    
+    def on_viewed_ideas_pressed(self):
+        self.go_screen("Viewed_Idea_Screen", "instant")
+        self.general_tab_pressed = False
+        self.viewed_idea_tab_pressed = True
+        self.friend_tab_pressed = False
         if self.on_back_pressed_callback is not None:
             self.on_back_pressed_callback()
         self.remove_on_back_pressed_callback()
@@ -128,6 +139,7 @@ class ShowcaseApp(App):
     def on_general_ideas_pressed(self):
         self.go_screen("General_Idea_Screen", "instant")
         self.general_tab_pressed = True
+        self.viewed_idea_tab_pressed = False
         self.friend_tab_pressed = False
         if self.on_back_pressed_callback is not None:
             self.on_back_pressed_callback()
@@ -136,9 +148,12 @@ class ShowcaseApp(App):
     def on_home_pressed(self):
         if self.general_tab_pressed:
             self.go_screen("Title_Screen", "instant")
+        elif self.viewed_idea_tab_pressed:
+            self.go_screen("Title_Screen", "instant")
         elif self.friend_tab_pressed:
             self.go_screen("Title_Screen", "instant")
         self.general_tab_pressed = False
+        self.viewed_idea_tab_pressed = False
         self.friend_tab_pressed = False
         if self.on_back_pressed_callback is not None:
             self.on_back_pressed_callback()
