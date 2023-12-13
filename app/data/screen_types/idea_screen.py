@@ -29,6 +29,7 @@ class IdeaScreen(ShowcaseScreen):
     def on_pre_enter(self, *args):
         self.grid_layout.clear_widgets()
         post_idea_button = HeartfeltHellosButton(text="+ Post Idea", font_size="20dp", size_hint_y=None, on_press=lambda x: self.on_create_idea_pressed())
+        post_idea_button.background_color = (0.5, 0.5, 0.8)
         self.grid_layout.add_widget(post_idea_button)
         if (len(self.get_ideas()) > 0):
             for idea in self.get_ideas():

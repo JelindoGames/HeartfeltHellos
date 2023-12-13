@@ -91,7 +91,7 @@ BoxLayout:
             halign: "center"
             text_size:dp(150), None
             background_color: (.4, .4, .4) if app.general_tab_pressed else (.6, .6, 0.6)
-            font_size: "19dp"
+            font_size: "18dp"
             on_release: app.on_general_ideas_pressed()
 
         Widget:
@@ -110,9 +110,9 @@ BoxLayout:
             font_name: "Raleway"
             text_size: (width, None)
             halign: "center"
-            text_size:dp(150), None
+            text_size: dp(150), None
             background_color: (.4, .4, .4) if app.friend_tab_pressed else (.6, .6, 0.6)
-            font_size: "19dp"
+            font_size: "18dp"
             on_release: app.on_friend_ideas_pressed()
 
         Widget:
@@ -132,7 +132,7 @@ BoxLayout:
             text_size: (width, None)
             halign: "center"
             text_size:dp(150), None
-            size_hint_x: 0.5 if app.history_available else 0
+            size_hint_x: 1 if app.history_available else 0
             background_color: (.4, .4, .4) if app.viewed_idea_tab_pressed else (.6, .6, 0.6)
-            font_size: "14dp"
+            font_size: "18dp"
             on_release: app.on_viewed_ideas_pressed()
