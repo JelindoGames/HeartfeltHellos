@@ -36,9 +36,16 @@ class IdeaScreen(ShowcaseScreen):
                 new_dynamic_widget = HeartfeltHellosNewIdeaButton(idea, self.get_idea_screen_name())
                 self.grid_layout.add_widget(new_dynamic_widget)
         else:
-            new_label = Label(text="There seems to be a lack of ideas. Perhaps you could add your own and help others!",
-                              size_hint_y=None, text_size=(dp(320), None), color=(0,0,0), font_size="18dp", font_name="Raleway", halign="center", valign="middle")
-            self.grid_layout.add_widget(new_label)
+            mtLabel = Label(text="", size_hint_y=None, height="500dp")
+            header = Label(text="There is a lack of ideas.", font_name="Raleway", font_size="30dp", 
+                           halign="center", valign="middle", text_size=(dp(400), None), color=(0, 0, 0), size_hint_y=None, height="30dp")
+            subheader = Label(text="Perhaps you could add your own and help others!", font_name="Raleway", font_size="18dp", 
+                              valign="middle", halign="center", text_size=(dp(325), None), color=(0, 0, 0), size_hint_y=None, height="20dp")
+            self.grid_layout.add_widget(header)
+            self.grid_layout.add_widget(subheader)
+            self.grid_layout.add_widget(mtLabel)
+            
+
 
     def on_leave(self, *args):
         self.grid_layout.clear_widgets()
