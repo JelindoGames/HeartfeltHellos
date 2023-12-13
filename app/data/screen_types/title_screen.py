@@ -17,6 +17,7 @@ class TitleScreen(Screen):
         super(TitleScreen, self).__init__(**kwargs)
         App.get_running_app().general_tab_pressed = False
         App.get_running_app().friend_tab_pressed = False
+        App.get_running_app().viewed_idea_tab_pressed = False
         self.clear_widgets()
         self.box_layout = BoxLayout(orientation="vertical", padding="10dp")
         self.box_layout.add_widget(Label(text="\nLet's Reconnect!", font_name="Raleway", font_size="45dp", halign="center", valign="middle", text_size=(dp(400), None), color=(0, 0, 0))) 

@@ -2,6 +2,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.popup import Popup
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
 from kivy.app import App
 from app.main import ShowcaseScreen
 from app.widgets.heartfelt_hellos_add_friend_button import HeartfeltHellosAddFriendButton
@@ -33,6 +34,13 @@ class FriendScreen(ShowcaseScreen):
         for friend in self.get_friends():
             friend_name_widget = HeartfeltHellosFriendButton(friend, self.pressed_friend, self.pressed_edit_friend, self.pressed_remove_friend)
             self.grid_layout.add_widget(friend_name_widget)
+        if len(self.get_friends()) == 0:
+            empty_label = Label(text="", size_hint_y=None, height="110dp")
+            no_friends_label = Label(text="No friends yet.", font_size="30dp", color=(0, 0, 0), font_name="Raleway", size_hint_y=None, height="50dp")
+            help_label = Label(text="Add one to see ideas just for them!", font_size="18dp", color=(0, 0, 0), font_name="Raleway")
+            self.grid_layout.add_widget(empty_label)
+            self.grid_layout.add_widget(no_friends_label)
+            self.grid_layout.add_widget(help_label)
 
     def pressed_add_friend(self):
         # pressed add friend, go to correct screen
@@ -47,7 +55,7 @@ class FriendScreen(ShowcaseScreen):
         App.get_running_app().go_screen("Friend_Editing_First_Step", "left")
 
     def pressed_remove_friend(self, friend):
-        self.confirm_popup = Popup(title="Remove Friend?", size_hint_y=0.2)
+        self.confirm_popup = Popup(title=f"Remove {friend.name}?", size_hint_y=0.2, title_font="Raleway", title_size="20dp")
         confirm_layout = BoxLayout(orientation="horizontal", spacing="10dp")
         confirm_layout.add_widget(HeartfeltHellosButton(text="No", on_press=lambda w: self.on_remove_canceled()))
         confirm_layout.add_widget(HeartfeltHellosButton(text="Yes", on_press=lambda w: self.on_remove_confirmed(friend)))
