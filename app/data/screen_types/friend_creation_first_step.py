@@ -12,6 +12,7 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
     grid_layout = None
     progress_grid = None
     next_button = None
+    warning_on = False
     newest_name = ""
 
     def __init__(self, **kwargs):
@@ -24,6 +25,7 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
         self.scroll_view = ScrollView(do_scroll_y=True)
         self.add_widget(self.scroll_view)
         self.scroll_view.add_widget(self.grid_layout)
+        self.copy_warning = Label(text="This name is already in your friend list!", color=(1, 0, 0), font_name="Raleway")
 
     def on_pre_enter(self, *args):
         self.stepOne()
@@ -40,11 +42,24 @@ class FriendCreationScreenFirstStep(ShowcaseScreen):
 
     def on_name_entered(self, attribute, value):
         self.newest_name = value
-        if value != "":
+        friend_list = App.get_running_app().stored_data.friends
+        if value in [friend.name for friend in friend_list]:
+            self.progress_grid.remove_widget(self.next_button)
+            self.next_button = None
+            if not self.warning_on:
+                self.grid_layout.add_widget(self.copy_warning)
+                self.warning_on = True
+        elif value != "":
+            if self.warning_on:
+                self.grid_layout.remove_widget(self.copy_warning)
+                self.warning_on = False
             self.consider_add_next_button()
         else:
             self.progress_grid.remove_widget(self.next_button)
             self.next_button = None
+            if not self.warning_on:
+                self.grid_layout.add_widget(self.copy_warning)
+                self.warning_on = True
 
     def consider_add_next_button(self):
         if self.next_button is not None:

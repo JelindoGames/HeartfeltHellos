@@ -60,8 +60,12 @@ class ContactList(ShowcaseScreen):
             self.grid_layout.add_widget(Widget(size_hint_y=None, height="1dp"))
 
             # Add buttons for each name
+            friend_list = App.get_running_app().stored_data.friends
             for contact in [name for name in names if self.search_input.text.lower() in name.lower()]:
-                self.grid_layout.add_widget(Button(text=contact, size_hint_y=None, height="50dp", background_normal='', background_color=(0.2, 0.2, 0.2), on_press=self.on_contact_pressed))
+                button = Button(text=contact, size_hint_y=None, height="50dp", background_normal='', background_color=(0.2, 0.2, 0.2), on_press=self.on_contact_pressed)
+                if contact in [friend.name for friend in friend_list]:
+                    button.disabled = True
+                self.grid_layout.add_widget(button)
 
         # Call the helper function for each contact section
         for contact in constants.contacts:
