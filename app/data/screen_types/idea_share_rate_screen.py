@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.scrollview import ScrollView
 from kivy.app import App
@@ -52,13 +53,10 @@ class ShareRateScreen(Screen):
             self.rating_buttons.append(new_button)
             self.rating_buttons_layout.add_widget(new_button)
         self.rating_layout.add_widget(self.rating_buttons_layout)
-        self.rating_popup_close_button = HeartfeltHellosButton(text="Rate", on_press=lambda w: self.rate_and_close_rating_popup())
-        self.rating_popup_close_button.background_disabled_normal = ""
-        self.rating_popup_close_button.background_color = (0, 0, 0, 0)
-        self.rating_popup_close_button.disabled = True
-        self.rating_popup_close_button.color = (0, 0, 0, 0)
+        self.rating_popup_close_button = HeartfeltHellosButton(text="Close", on_press=lambda w: self.rate_and_close_rating_popup())
         self.rating_layout.add_widget(self.rating_popup_close_button)
         self.rating_popup.add_widget(self.rating_layout)
+        # self.rating_popup.title = Button(text="close",on_press=self.rating_popup.dismiss())
         self.rate_idea_button = HeartfeltHellosButton(text="Rate Idea", height='40dp', on_press=lambda w: self.open_rating_popup())
         self.box_layout.add_widget(self.rate_idea_button)
         self.refresh_rating_display()
@@ -140,7 +138,8 @@ class ShareRateScreen(Screen):
 
     def rate_and_close_rating_popup(self):
         self.rating_popup.dismiss()
-        self.idea.set_my_rating(self.current_rating)
+        if (self.current_rating != None):
+            self.idea.set_my_rating(self.current_rating)
         self.refresh_rating_display()
         self.idea_button.update_rating()
 
