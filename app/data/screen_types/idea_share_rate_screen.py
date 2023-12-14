@@ -39,7 +39,9 @@ class ShareRateScreen(Screen):
         self.idea_button = HeartfeltHellosNewIdeaButton(self.idea, None)
         self.idea_button.do_nothing_on_touch_down()
         self.box_layout.add_widget(self.idea_button)
-        self.box_layout.add_widget(HeartfeltHellosButton(text=f"Share Idea", on_press=self.on_share_pressed))
+        friend = App.get_running_app().stored_data.temp_selected_person
+        share_button_text = f"Share with {friend.name}" if friend is not None else "Share Idea"
+        self.box_layout.add_widget(HeartfeltHellosButton(text=share_button_text, on_press=self.on_share_pressed))
         # Rating Button / Popup
         self.rating_popup = Popup(title_font="Raleway", title_size="18dp", title="What's your rating?", size_hint_y=0.25)
         self.rating_layout = BoxLayout(orientation="vertical", spacing="10dp")
