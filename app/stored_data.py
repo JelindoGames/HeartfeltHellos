@@ -28,7 +28,7 @@ class StoredData:
                   [Idea("What's your least favorite genre?", [3, 3, 3], ["books"], "I bet it would have to be romance. I cringe everytime I try to read them.", [])]),
              Idea("Do you have a cat?", [2, 2, 3, 4], ["general", "animals"], "Yes, his name is Fluffy and I love him <3",
                   [Idea("What's their favorite toys?", [3, 3, 3], ["general", "animals"], "The love to chase laser beams. It helps to tire them out before bedtime, too!", [])]),
-             Idea("Do you like video games?", [4, 3, 5, 5, 4], ["general", "technology"], "Mostly... I stay away from the farming sim games though. Those bore me out!",
+             Idea("Do you like video games?", [4, 3, 5, 5, 4], ["general", "technology", "videogames"], "Mostly... I stay away from the farming sim games though. Those bore me out!",
                   [Idea("What's your favorite gaming genre?", [4, 3, 5, 5, 4], ["general", "technology", "videogames"], "Definitely first-person shooters! Those keep me on my toes.", []),
                    Idea("What do you like to do in your spare time?", [4, 3, 5, 5, 4], ["general", "technology", "videogames"], "I like to knit and read on top of playing video games.", [])]),
              Idea("Seen any good movies?", [3, 3, 5, 4, 3, 4], ["general"], "Well, I saw Morbius the other day.", 
