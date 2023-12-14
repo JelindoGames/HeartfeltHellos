@@ -71,13 +71,13 @@ class ShareRateScreen(Screen):
             App.get_running_app().stored_data.message_recipient = App.get_running_app().stored_data.temp_selected_person
             App.get_running_app().go_screen("Message_Screen", "left")
         else:
-            share_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y="0.8dp")
+            # share_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y="0.8dp")
             share_selection_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y=None)
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
             share_selection_scroll = ScrollView(do_scroll_y=True)
             share_selection_popup = Popup(title_font="Raleway", title_size="18dp", title="Share with...", size_hint_y="0.4dp")
-            if (platform == 'macosx'):
-                share_layout.size_hint_y="0.6dp"
+            # if (platform == 'macosx'):
+            #     share_layout.size_hint_y="0.6dp"
 
             if len(App.get_running_app().stored_data.friends) > 0:
                 share_selection_layout.add_widget(Label(text="HeartfeltHellos Friends", font_name="Raleway"))
@@ -92,10 +92,10 @@ class ShareRateScreen(Screen):
                     button = HeartfeltHellosButton(text=name, size_hint_y=None, height="40dp", on_press=lambda w: self.on_recipient_selected_from_contact(w, share_selection_popup))
                     share_selection_layout.add_widget(button)
             share_selection_scroll.add_widget(share_selection_layout)
-            share_layout.add_widget(share_selection_scroll)
-            button = HeartfeltHellosButton(text="Close Rating", size_hint_y=None, height="40dp", on_press=lambda w: self.close_share_popup(share_selection_popup))
-            share_layout.add_widget(button)
-            share_selection_popup.add_widget(share_layout)
+            # share_layout.add_widget(share_selection_scroll)
+            # button = HeartfeltHellosButton(text="Close Rating", size_hint_y=None, height="40dp", on_press=lambda w: self.close_share_popup(share_selection_popup))
+            # share_layout.add_widget(button)
+            share_selection_popup.add_widget(share_selection_scroll)
             share_selection_popup.open()
 
     def close_share_popup(self,popup):
