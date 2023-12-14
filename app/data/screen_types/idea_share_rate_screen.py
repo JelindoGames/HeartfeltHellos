@@ -70,10 +70,10 @@ class ShareRateScreen(Screen):
             App.get_running_app().go_screen("Message_Screen", "left")
         else:
             share_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y="0.8dp")
-            share_selection_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y=None)
+            share_selection_layout = BoxLayout(orientation="vertical", spacing="10dp", padding="15dp", size_hint_y="1dp")
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
             share_selection_scroll = ScrollView(do_scroll_y=True)
-            share_selection_popup = Popup(title_font="Raleway", title_size="18dp", title="Share with...", size_hint_y=0.6)
+            share_selection_popup = Popup(title_font="Raleway", title_size="18dp", title="Share with...", size_hint_y="0.6dp")
             if len(App.get_running_app().stored_data.friends) > 0:
                 share_selection_layout.add_widget(Label(text="HeartfeltHellos Friends", font_name="Raleway"))
             for friend in App.get_running_app().stored_data.friends:
