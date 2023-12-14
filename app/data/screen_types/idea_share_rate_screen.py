@@ -76,7 +76,7 @@ class ShareRateScreen(Screen):
             share_selection_layout.bind(minimum_height=share_selection_layout.setter('height'))
             share_selection_scroll = ScrollView(do_scroll_y=True)
             share_selection_popup = Popup(title_font="Raleway", title_size="18dp", title="Share with...", size_hint_y="0.4dp")
-            if (platform == 'mac'):
+            if (platform == 'macosx'):
                 share_layout.size_hint_y="0.6dp"
 
             if len(App.get_running_app().stored_data.friends) > 0:
