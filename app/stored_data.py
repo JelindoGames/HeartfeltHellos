@@ -3,7 +3,7 @@ from data.data_types.idea import Idea
 class StoredData:
     # All the tags that are currently on the app
     # User-created tags are add to the list
-    tags = ["academic", "animals", "books", "movies", "music", "sports", "technology", "videogames"]
+    tags = ["academic", "animals", "books", "movies", "sports", "technology", "videogames"]
     
     # All the ideas that are currently on the app
     # follow ups are created and tied to the ideas
@@ -26,16 +26,18 @@ class StoredData:
                    Idea("Who's your favorite author?", [4, 5], ["books"], "Definitely would be Elina Tochilnikova. She is such a great writer and backs up her theories with research!", [])]),
              Idea("What's the worst book you've ever read?", [2, 4, 4, 3], ["books"], "Probably the textbook for my math class.", 
                   [Idea("What's your least favorite genre?", [3, 3, 3], ["books"], "I bet it would have to be romance. I cringe everytime I try to read them.", [])]),
-             Idea("Do you have a cat?", [2, 2, 3, 4], ["general"], "Yes, his name is Fluffy and I love him <3", 
-                  [Idea("What's their favorite toys?", [3, 3, 3], ["books"], "The love to chase laser beams. It helps to tire them out before bedtime, too!", [])]),
-             Idea("Do you like video games?", [4, 3, 5, 5, 4], ["general"], "Mostly... I stay away from the farming sim games though. Those bore me out!", 
-                  [Idea("What's your favorite gaming genre?", [4, 3, 5, 5, 4], ["general"], "Definitely first-person shooters! Those keep me on my toes.", []),
-                   Idea("What do you like to do in your spare time?", [4, 3, 5, 5, 4], ["general"], "I like to knit and read on top of playing video games.", [])]),
+             Idea("Do you have a cat?", [2, 2, 3, 4], ["general", "animals"], "Yes, his name is Fluffy and I love him <3",
+                  [Idea("What's their favorite toys?", [3, 3, 3], ["general", "animals"], "The love to chase laser beams. It helps to tire them out before bedtime, too!", [])]),
+             Idea("Do you like video games?", [4, 3, 5, 5, 4], ["general", "technology"], "Mostly... I stay away from the farming sim games though. Those bore me out!",
+                  [Idea("What's your favorite gaming genre?", [4, 3, 5, 5, 4], ["general", "technology", "videogames"], "Definitely first-person shooters! Those keep me on my toes.", []),
+                   Idea("What do you like to do in your spare time?", [4, 3, 5, 5, 4], ["general", "technology", "videogames"], "I like to knit and read on top of playing video games.", [])]),
              Idea("Seen any good movies?", [3, 3, 5, 4, 3, 4], ["general"], "Well, I saw Morbius the other day.", 
                   [Idea("What's your favorite actor from the movie?", [4, 3, 5, 5, 4], ["general"], "Jared Leto played the lead role so well! Looking forward to the next one.", [])]),
              Idea("Learned any interesting facts lately?", [4, 3, 4, 3, 4], ["general"], "Nothing I can think of, how about you?", []),
              Idea("What's changed since I last heard from you?", [3, 3, 3, 4, 4], ["general"], "Not a ton tbh, how about you?", []),
-             Idea("If you could be any animal, what would you be?", [1, 5, 2, 3, 3, 4], ["general"], "Hmm, maybe a cat. That sounds kinda fun.", [])]
+             Idea("If you could be any animal, what would you be?", [1, 5, 2, 3, 3, 4], ["general"], "Hmm, maybe a cat. That sounds kinda fun.", []),
+             Idea("How've classes been going for you?", [3, 4, 5, 4], ["academics"], "Not bad, not great. Just trying my best here.",
+                  [Idea("What's your favorite class?", [3, 4], ["academics"], "Probably history. It's fun to hear about the past.", [])])]
 
     # All the friends you currently have on the app
     friends = []
